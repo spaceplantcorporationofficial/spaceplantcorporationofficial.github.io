@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BriefKit 2.0 — Decks, 2-Host Podcasts & 30fps AI Explainer Videos (100% On-Device)</title>
+<meta name="description" content="Turn any prompt, PDF, or whiteboard photo into a PowerPoint pitch deck, NotebookLM-style 2-host podcast, and 30fps narrated 16:9 or 9:16 karaoke explainer video — 100% private on iPhone & iPad.">
+<style>
+  :root {
+    --bg: #080a10;
+    --surface: #121622;
+    --elevated: #191f30;
+    --border: rgba(255,255,255,0.10);
+    --emerald: #29db8f;
+    --cyan: #2eccf0;
+    --gold: #faad2e;
+    --coral: #fa7057;
+    --text: #f4f7fb;
+    --muted: #98a4bc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(41,219,143,0.16), transparent 60%),
+                radial-gradient(ellipse 60% 45% at 85% 20%, rgba(46,204,240,0.11), transparent 55%),
+                var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; backdrop-filter: blur(18px); background: rgba(8,10,16,0.78); z-index: 40;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+  .brand-mark {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, #29db8f, #2eccf0 60%, #faad2e);
+    display: grid; place-items: center; color: #080a10; font-weight: 900; font-size: 17px;
+    box-shadow: 0 8px 24px rgba(41,219,143,0.35);
+  }
+  .nav-cta {
+    padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 14px;
+    background: linear-gradient(90deg, var(--emerald), var(--cyan)); color: #061015;
+    box-shadow: 0 6px 24px rgba(41,219,143,0.3); transition: transform .15s ease;
+  }
+  .nav-cta:hover { transform: translateY(-1px); }
+  .hero { padding: 72px 0 42px; text-align: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 15px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+    background: rgba(41,219,143,0.12); border: 1px solid rgba(41,219,143,0.38); color: var(--emerald);
+    text-transform: uppercase; margin-bottom: 22px;
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 68px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.04;
+    max-width: 920px; margin: 0 auto 20px;
+  }
+  .grad {
+    background: linear-gradient(92deg, #ffffff 10%, var(--emerald) 55%, var(--cyan) 92%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { font-size: 19px; color: var(--muted); max-width: 720px; margin: 0 auto 30px; }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn-primary {
+    padding: 15px 28px; border-radius: 14px; font-weight: 800; font-size: 16px;
+    background: linear-gradient(95deg, var(--emerald), var(--cyan)); color: #061116;
+    box-shadow: 0 12px 34px rgba(41,219,143,0.32); border: none; cursor: pointer;
+  }
+  .btn-ghost {
+    padding: 15px 26px; border-radius: 14px; font-weight: 700; font-size: 16px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer;
+  }
+  .proof-strip {
+    display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+    font-size: 13px; color: var(--muted); font-weight: 600;
+  }
+  .proof-strip span strong { color: var(--text); }
+
+  /* Interactive Studio Playground */
+  .studio {
+    margin: 26px auto 72px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 26px; overflow: hidden; box-shadow: 0 28px 80px rgba(0,0,0,0.6);
+  }
+  .studio-top {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 18px 24px; background: rgba(255,255,255,0.025); border-bottom: 1px solid var(--border);
+  }
+  .presets { display: flex; gap: 8px; flex-wrap: wrap; }
+  .preset-btn {
+    padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--elevated); color: var(--muted); font-weight: 700; font-size: 13px; cursor: pointer;
+  }
+  .preset-btn.active { background: rgba(41,219,143,0.16); border-color: var(--emerald); color: var(--emerald); }
+  .tabs { display: flex; gap: 6px; background: #0c0f18; padding: 5px; border-radius: 12px; border: 1px solid var(--border); }
+  .tab {
+    padding: 8px 15px; border-radius: 9px; font-size: 13px; font-weight: 700; color: var(--muted);
+    background: transparent; border: none; cursor: pointer;
+  }
+  .tab.active { background: linear-gradient(90deg, var(--emerald), var(--cyan)); color: #061015; }
+  .studio-body { padding: 28px; min-height: 440px; }
+
+  /* Deck view */
+  .deck-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 22px; align-items: stretch; }
+  @media (max-width: 860px) { .deck-grid { grid-template-columns: 1fr; } }
+  .slide-canvas {
+    border-radius: 20px; padding: 34px; position: relative; overflow: hidden;
+    background: linear-gradient(145deg, #1b2235, #0f1422); border: 1px solid rgba(255,255,255,0.14);
+    display: flex; flex-direction: column; justify-content: space-between; min-height: 360px;
+  }
+  .slide-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 0.11em; color: var(--gold); text-transform: uppercase; }
+  .slide-title { font-size: 30px; font-weight: 900; letter-spacing: -0.025em; margin: 10px 0 12px; line-height: 1.12; }
+  .slide-bullets { list-style: none; display: grid; gap: 10px; margin: 14px 0; }
+  .slide-bullets li {
+    padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,0.05);
+    border-left: 3px solid var(--emerald); font-size: 15px; color: #e8eef8;
+  }
+  .slide-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 12px; color: var(--muted); }
+  .side-panel { display: flex; flex-direction: column; gap: 14px; }
+  .panel-card { background: var(--elevated); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
+  .panel-card h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 8px; }
+  .slide-nav { display: flex; gap: 8px; margin-top: 10px; }
+  .mini-btn {
+    flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text); font-weight: 700; cursor: pointer;
+  }
+
+  /* Podcast view */
+  .pod-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 22px; }
+  @media (max-width: 860px) { .pod-wrap { grid-template-columns: 1fr; } }
+  .pod-stage {
+    background: linear-gradient(155deg, #161d2e, #0c101b); border: 1px solid var(--border);
+    border-radius: 20px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .hosts { display: flex; gap: 12px; margin-bottom: 18px; }
+  .host-chip {
+    flex: 1; padding: 12px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    transition: all .25s ease;
+  }
+  .host-chip.speaking { border-color: var(--emerald); background: rgba(41,219,143,0.14); transform: translateY(-2px); }
+  .wave { display: flex; align-items: flex-end; gap: 4px; height: 78px; margin: 18px 0; }
+  .bar { flex: 1; border-radius: 4px; background: linear-gradient(180deg, var(--cyan), var(--emerald)); transition: height .12s ease; }
+  .transcript { display: grid; gap: 10px; max-height: 360px; overflow-y: auto; }
+  .line {
+    padding: 13px 15px; border-radius: 14px; background: var(--elevated); border: 1px solid var(--border);
+    font-size: 14px; cursor: pointer; transition: border-color .2s;
+  }
+  .line.active { border-color: var(--gold); background: rgba(250,173,46,0.10); }
+  .line strong { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+
+  /* Video view */
+  .video-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+  .video-stage {
+    margin: 0 auto; border-radius: 20px; overflow: hidden; border: 2px solid rgba(41,219,143,0.35);
+    background: radial-gradient(circle at 80% 20%, rgba(46,204,240,0.18), transparent 50%), #0a0e18;
+    position: relative; transition: all .3s ease; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .video-stage.landscape { width: 100%; max-width: 780px; aspect-ratio: 16 / 9; }
+  .video-stage.portrait { width: 100%; max-width: 310px; aspect-ratio: 9 / 16; }
+  .karaoke {
+    background: rgba(6,8,14,0.88); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 14px; padding: 12px 16px; text-align: center; font-weight: 800; font-size: 16px;
+  }
+  .kw { display: inline-block; padding: 2px 6px; border-radius: 7px; margin: 0 2px; transition: all .15s; }
+  .kw.active { background: var(--gold); color: #090b12; transform: scale(1.06); }
+
+  /* Value Grid & Savings Calculator */
+  .section { padding: 48px 0; }
+  .section h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; text-align: center; margin-bottom: 14px; }
+  .section .sub { text-align: center; color: var(--muted); max-width: 640px; margin: 0 auto 38px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+  .card .badge { font-size: 11px; font-weight: 800; letter-spacing: 0.09em; color: var(--emerald); text-transform: uppercase; }
+  .card h3 { font-size: 21px; margin: 8px 0 8px; }
+  .card p { font-size: 14px; color: var(--muted); }
+
+  .calc {
+    background: linear-gradient(135deg, rgba(41,219,143,0.10), rgba(46,204,240,0.08));
+    border: 1px solid rgba(41,219,143,0.32); border-radius: 24px; padding: 32px;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center;
+  }
+  @media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
+  .calc-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .calc-total { text-align: center; background: #0a0e17; border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
+  .savings { font-size: 54px; font-weight: 900; color: var(--emerald); letter-spacing: -0.04em; line-height: 1.05; }
+  footer { border-top: 1px solid var(--border); padding: 36px 0 54px; text-align: center; color: var(--muted); font-size: 13px; }
+</style>
+
+  <meta name="apple-itunes-app" content="app-id=6762632623">
+  <meta property="og:image" content="https://spaceplantcorporationofficial.github.io/briefkit/assets/hero-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://spaceplantcorporationofficial.github.io/briefkit/assets/hero-og.png">
+</head>
+<body>
+<div style="background:#06080d;border-bottom:1px solid rgba(255,255,255,0.09);padding:8px 16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;color:#98a4bc;"><a href="/" style="color:#fff;font-weight:800;text-decoration:none;">✦ SpacePlant AI Creator Suite</a><a href="/voxstudio/" style="color:#34d399;text-decoration:none;font-weight:700;">VoxStudio 3.0</a><a href="/clipcontrol/" style="color:#38bdf8;text-decoration:none;font-weight:700;">ClipControl 37.0</a><a href="/briefkit/" style="color:#fbbf24;text-decoration:none;font-weight:700;">BriefKit 2.0</a></div>
+<div class="wrap">
+  <nav>
+    <div class="brand"><div class="brand-mark">B</div> BriefKit 2.0</div>
+    <a class="nav-cta" href="https://apps.apple.com/app/id6762632623" target="_blank">Download Free on iOS &amp; iPadOS</a>
+  </nav>
+
+  <section class="hero">
+    <div class="pill">100% On-Device · Apple Silicon · Zero Cloud Credits</div>
+    <h1>One Brief. <span class="grad">Pitch Deck, 2-Host Podcast &amp; 30fps Video.</span></h1>
+    <p>Drop a prompt, 30-page PDF, or whiteboard photo. BriefKit 2.0 turns it into a native PowerPoint (.pptx), a NotebookLM-style 2-host audio deep-dive with studio music, and a 30fps karaoke explainer video — completely offline on iPhone &amp; iPad.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://apps.apple.com/app/id6762632623" target="_blank">Get BriefKit 2.0 Free</a>
+      <button class="btn-ghost" onclick="document.getElementById('playground').scrollIntoView({behavior:'smooth'})">Try Interactive Demo ↓</button>
+    </div>
+    <div class="proof-strip">
+      <span><strong>.pptx</strong> Native OpenXML Export</span>
+      <span><strong>2-Host</strong> Alex &amp; Maya Podcasts</span>
+      <span><strong>16:9 + 9:16</strong> 30fps Karaoke MP4</span>
+      <span><strong>100%</strong> Offline &amp; Private</span>
+    </div>
+  </section>
+
+  <section id="playground" class="studio">
+    <div class="studio-top">
+      <div class="presets">
+        <button class="preset-btn active" onclick="selectPreset(0, this)">AI Startup Seed Pitch</button>
+        <button class="preset-btn" onclick="selectPreset(1, this)">Quantum Deep-Dive</button>
+        <button class="preset-btn" onclick="selectPreset(2, this)">Q4 Growth Strategy</button>
+      </div>
+      <div class="tabs">
+        <button class="tab active" onclick="selectTab('deck', this)">1. Deck &amp; .pptx</button>
+        <button class="tab" onclick="selectTab('podcast', this)">2. 2-Host Podcast</button>
+        <button class="tab" onclick="selectTab('video', this)">3. 30fps Video</button>
+      </div>
+    </div>
+
+    <div class="studio-body" id="studioBody"></div>
+  </section>
+
+  <section class="section">
+    <h2>Five Pro Studios. One Private App.</h2>
+    <p class="sub">Stop juggling Gamma for slides, NotebookLM for podcasts, and $30/mo cloud video sites for narrated explainers.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="badge">PDF + Vision OCR</div>
+        <h3>Drop Any PDF or Whiteboard</h3>
+        <p>Import research papers up to 30 pages or snap photos of slides and textbooks. Vision OCR extracts clean grounding notes locally — confidential docs never touch a server.</p>
+      </div>
+      <div class="card">
+        <div class="badge">NotebookLM Offline</div>
+        <h3>2-Host Conversational Podcasts</h3>
+        <p>Alex &amp; Maya break down your deck with energetic back-and-forth banter mixed over a procedural lo-fi studio chord bed auto-ducked −15 dB under speech.</p>
+      </div>
+      <div class="card">
+        <div class="badge">30fps CoreGraphics + AVAssetWriter</div>
+        <h3>16:9 YouTube &amp; 9:16 Shorts MP4</h3>
+        <p>Render silky 30fps narrated videos with animated slide transitions, live audio equalizer bars, speaker badges, and word-by-word karaoke highlight captions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="calc">
+      <div>
+        <div class="pill" style="margin-bottom:14px">Replace $780/yr in Cloud Subscriptions</div>
+        <h2 style="text-align:left;margin-bottom:16px">Own Your AI Studio Forever.</h2>
+        <div class="calc-row"><span><input type="checkbox" checked onchange="recalc()" data-cost="180"> Cloud AI Slide Generator (Gamma Pro)</span><strong>$180 / yr</strong></div>
+        <div class="calc-row"><span><input type="checkbox" checked onchange="recalc()" data-cost="360"> Faceless AI Narrated Video Studio</span><strong>$360 / yr</strong></div>
+        <div class="calc-row"><span><input type="checkbox" checked onchange="recalc()" data-cost="240"> Cloud AI Voice &amp; Podcast Generator</span><strong>$240 / yr</strong></div>
+        <div class="calc-row" style="border:none;color:var(--emerald)"><span><strong>BriefKit 2.0 Pro (Lifetime Unlock)</strong></span><strong>$69.99 once</strong></div>
+      </div>
+      <div class="calc-total">
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px">Year-1 Savings</div>
+        <div class="savings" id="savingsVal">$710</div>
+        <div style="font-size:14px;color:var(--muted);margin:10px 0 22px">Free to start with 2 full Pro exports. Monthly ($9.99), Yearly ($49.99), or Lifetime ($69.99).</div>
+        <a class="btn-primary" style="display:inline-block;width:100%" href="https://apps.apple.com/app/id6762632623" target="_blank">Download BriefKit 2.0</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built by SpacePlant · BriefKit 2.0 for iPhone &amp; iPad · 100% On-Device Processing · <a href="https://spaceplant-privacy.garbarz.chatgpt.site/" target="_blank" style="text-decoration:underline">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const PRESETS = [
+  {
+    name: "AI Startup Seed Pitch",
+    slides: [
+      { eyebrow: "THE OPPORTUNITY", title: "Privacy-First On-Device AI Studio", bullets: ["Creators waste 40+ min uploading gigabytes to cloud tools", "Apple Silicon cuts cloud GPU COGS to $0 per user", "One tap turns any brief into Deck + Podcast + 30fps Video"], note: "Open with the $300+/yr cloud subscription fatigue creators feel every month." },
+      { eyebrow: "UNIT ECONOMICS", title: "Zero Cloud Cost. 99% Gross Margin.", bullets: ["CoreGraphics + AVAssetWriter renders 30fps MP4s locally", "On-device TTS + procedural lo-fi audio ducking runs offline", "Lifetime $69.99 Pro anchors rapid payback with zero server bills"], note: "Pause on the margin contrast: every SaaS competitor bleeds GPU credits." },
+      { eyebrow: "TRACTION & ASK", title: "Raising $1.5M Seed to Own Mobile Creation", bullets: ["Native iPhone & iPad suite spanning decks, audio & Shorts", "Zero-account onboarding drives instant first-session export", "Expand to enterprise offline compliance & team .pptx templates"], note: "Close with a live 15-second demo video exported right on your iPad." }
+    ],
+    podcast: [
+      { host: "ALEX", color: "#29db8f", text: "Welcome to Deep Dive! Today we are breaking down why on-device AI studios are quietly destroying $30-a-month cloud subscriptions." },
+      { host: "MAYA", color: "#2eccf0", text: "It is wild — creators normally pay for Gamma, then a podcast app, then a cloud video renderer. BriefKit does all three offline on your iPad." },
+      { host: "ALEX", color: "#29db8f", text: "And because the neural voice, lo-fi score, and 30fps karaoke captions run right on Apple Silicon, cloud server costs drop to literally zero." },
+      { host: "MAYA", color: "#2eccf0", text: "Confidential board decks never leave the device either. One PDF goes in, and a full PowerPoint plus TikTok explainer comes out in seconds." }
+    ]
+  },
+  {
+    name: "Quantum Computing Deep-Dive",
+    slides: [
+      { eyebrow: "FUNDAMENTALS", title: "Beyond Binary: Superposition Explained", bullets: ["Classical bits lock to 0 or 1; qubits explore both simultaneously", "Interference amplifies right answers while canceling noise", "Turns intractable molecular simulations into afternoon runs"], note: "Use the spinning coin analogy so non-physicists lock onto intuition fast." },
+      { eyebrow: "ENTANGLEMENT", title: "Linked States Across Any Distance", bullets: ["Measuring one entangled qubit instantaneously correlates its twin", "Scales state capacity exponentially with every added qubit", "Unlocks next-generation drug discovery & battery chemistry"], note: "Highlight why 300 logical qubits hold more states than atoms in the universe." },
+      { eyebrow: "FRONTIER", title: "Error Correction & Logical Qubits", bullets: ["Physical qubits decohere in microseconds without shielding", "Surface codes group physical qubits into fault-tolerant logical units", "Hybrid classical + quantum workflows ship real value today"], note: "Wrap with a study flashcard quiz so learners retain all three core pillars." }
+    ],
+    podcast: [
+      { host: "ALEX", color: "#29db8f", text: "Okay Maya, explain qubits like we are grabbing coffee — why does everyone say quantum computers break classical limits?" },
+      { host: "MAYA", color: "#2eccf0", text: "Picture a maze. A normal computer tries one hallway at a time. Superposition lets a quantum wave explore every hallway together." },
+      { host: "ALEX", color: "#29db8f", text: "And entanglement is the multiplier — linking qubits so adding just one more doubles the computational canvas!" },
+      { host: "MAYA", color: "#2eccf0", text: "Exactly. Once error correction stabilizes logical qubits, designing new medicines and clean batteries changes forever." }
+    ]
+  },
+  {
+    name: "Q4 Growth Strategy Brief",
+    slides: [
+      { eyebrow: "EXECUTIVE SUMMARY", title: "Double Activation Without Adding Ad Spend", bullets: ["Shift onboarding to instant 1-tap template output under 20s", "Bundle native .pptx + narrated recap video for executive sharing", "Target 42% Day-7 retention via saved brief workspaces"], note: "Lead with the capital-efficient growth lever before diving into channels." },
+      { eyebrow: "DISTRIBUTION FLYWHEEL", title: "Every Export Markets the Studio", bullets: ["9:16 karaoke explainers natively fit LinkedIn, Shorts & Reels", "2-host audio briefings turn dense memos into commute listening", "Team share links bring peers directly into the iPad studio"], note: "Emphasize product-led loops over expensive paid acquisition." },
+      { eyebrow: "Q4 ROADMAP", title: "30-60-90 Day Shipping Milestones", bullets: ["Days 1–30: Ship PDF + whiteboard OCR & .pptx deck editor", "Days 31–60: Launch 2-host podcast studio with studio ducking", "Days 61–90: Roll out 16:9 & 9:16 30fps karaoke video export"], note: "Confirm owners and weekly KPI checkpoints before Q&A." }
+    ],
+    podcast: [
+      { host: "ALEX", color: "#29db8f", text: "Let's walk through the Q4 Growth Strategy Brief — the headline goal is doubling activation without raising paid spend." },
+      { host: "MAYA", color: "#2eccf0", text: "My favorite move here is cutting time-to-first-export under 20 seconds. Once someone hears their own PDF as a podcast, they are hooked." },
+      { host: "ALEX", color: "#29db8f", text: "Plus every 9:16 karaoke explainer shared on LinkedIn or Shorts acts as organic proof of the product." },
+      { host: "MAYA", color: "#2eccf0", text: "Clean 30-60-90 execution, native PowerPoint ready for the board, and zero cloud latency." }
+    ]
+  }
+];
+
+let presetIdx = 0, activeTab = 'deck', slideIdx = 0, podLine = 0, playingPod = false, podTimer = null;
+let videoAspect = 'landscape', kwIdx = 0, kwTimer = null;
+
+function selectPreset(i, btn) {
+  presetIdx = i; slideIdx = 0; podLine = 0; kwIdx = 0;
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function selectTab(t, btn) {
+  activeTab = t; stopTimers();
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function stopTimers() {
+  if (podTimer) { clearInterval(podTimer); podTimer = null; playingPod = false; }
+  if (kwTimer) { clearInterval(kwTimer); kwTimer = null; }
+}
+function render() {
+  const p = PRESETS[presetIdx];
+  const body = document.getElementById('studioBody');
+  if (activeTab === 'deck') {
+    const s = p.slides[slideIdx];
+    body.innerHTML = `
+      <div class="deck-grid">
+        <div class="slide-canvas">
+          <div>
+            <div class="slide-eyebrow">${s.eyebrow} · SLIDE ${slideIdx+1} OF ${p.slides.length}</div>
+            <div class="slide-title">${s.title}</div>
+            <ul class="slide-bullets">${s.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+          </div>
+          <div class="slide-footer">
+            <span>Export: Native PowerPoint (.pptx) + Study Flashcards</span>
+            <span style="color:var(--emerald);font-weight:700">100% On-Device</span>
+          </div>
+        </div>
+        <div class="side-panel">
+          <div class="panel-card">
+            <h4>Speaker Presenter Note</h4>
+            <p style="font-size:14px;color:var(--muted)">${s.note}</p>
+            <div class="slide-nav">
+              <button class="mini-btn" onclick="stepSlide(-1)">← Prev Slide</button>
+              <button class="mini-btn" onclick="stepSlide(1)">Next Slide →</button>
+            </div>
+          </div>
+          <div class="panel-card">
+            <h4>Quick Study Flashcard</h4>
+            <p style="font-size:14px;margin-bottom:8px"><strong>Q:</strong> What is the key takeaway of "${s.title}"?</p>
+            <p style="font-size:13px;color:var(--emerald)"><strong>A:</strong> ${s.bullets[0]}</p>
+          </div>
+        </div>
+      </div>`;
+  } else if (activeTab === 'podcast') {
+    const cur = p.podcast[podLine];
+    body.innerHTML = `
+      <div class="pod-wrap">
+        <div class="pod-stage">
+          <div>
+            <div class="pill" style="margin-bottom:14px">2-Host Deep Dive · Auto-Ducked Lo-Fi Bed</div>
+            <div class="hosts">
+              <div class="host-chip ${cur.host==='ALEX'?'speaking':''}"><strong style="color:var(--emerald)">ALEX</strong><div style="font-size:12px;color:var(--muted)">Lead Host</div></div>
+              <div class="host-chip ${cur.host==='MAYA'?'speaking':''}"><strong style="color:var(--cyan)">MAYA</strong><div style="font-size:12px;color:var(--muted)">Analyst Co-Host</div></div>
+            </div>
+            <div class="wave" id="waveBars">${Array.from({length:32},(_,i)=>`<div class="bar" style="height:${20+(i*17)%55}%"></div>`).join('')}</div>
+          </div>
+          <button class="btn-primary" style="width:100%" onclick="togglePod()">${playingPod ? '❚❚ Pause 2-Host Preview' : '▶ Play Animated 2-Host Studio'}</button>
+        </div>
+        <div class="transcript">
+          ${p.podcast.map((l, idx) => `
+            <div class="line ${idx===podLine?'active':''}" onclick="jumpPod(${idx})">
+              <strong style="color:${l.color}">${l.host} · 0:0${idx*7}</strong>
+              ${l.text}
+            </div>`).join('')}
+        </div>
+      </div>`;
+  } else {
+    const line = p.podcast[podLine];
+    const words = line.text.split(' ');
+    const s = p.slides[slideIdx];
+    body.innerHTML = `
+      <div class="video-top">
+        <div style="font-size:14px;color:var(--muted)">Live 30fps Explainer Render Preview · CoreGraphics + AVAssetWriter</div>
+        <div class="tabs">
+          <button class="tab ${videoAspect==='landscape'?'active':''}" onclick="setAspect('landscape')">16:9 YouTube / Keynote</button>
+          <button class="tab ${videoAspect==='portrait'?'active':''}" onclick="setAspect('portrait')">9:16 TikTok / Shorts</button>
+        </div>
+      </div>
+      <div class="video-stage ${videoAspect}">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:800;letter-spacing:0.08em">
+          <span style="color:var(--emerald)">● ${line.host} SPEAKING</span>
+          <span style="color:var(--muted)">${videoAspect==='landscape'?'1280×720 · 30fps':'720×1280 · 30fps'}</span>
+        </div>
+        <div>
+          <div class="slide-eyebrow">${s.eyebrow}</div>
+          <div style="font-size:${videoAspect==='landscape'?'26px':'21px'};font-weight:900;margin:6px 0 10px">${s.title}</div>
+          <div style="font-size:13px;color:var(--muted)">• ${s.bullets[0]}</div>
+        </div>
+        <div class="karaoke" id="karaokeBox">${words.map((w,i)=>`<span class="kw ${i===kwIdx%words.length?'active':''}">${w}</span>`).join('')}</div>
+      </div>`;
+    startKaraoke(words.length);
+  }
+}
+function stepSlide(d) { slideIdx = (slideIdx + d + PRESETS[presetIdx].slides.length) % PRESETS[presetIdx].slides.length; render(); }
+function jumpPod(i) { podLine = i; render(); }
+function togglePod() {
+  if (playingPod) { stopTimers(); render(); return; }
+  playingPod = true; render();
+  let ticks = 0;
+  podTimer = setInterval(() => {
+    ticks++;
+    document.querySelectorAll('#waveBars .bar').forEach((b, i) => {
+      b.style.height = (16 + Math.abs(Math.sin(ticks * 0.45 + i * 0.55)) * 78) + '%';
+    });
+    if (ticks % 16 === 0) {
+      podLine = (podLine + 1) % PRESETS[presetIdx].podcast.length;
+      render();
+    }
+  }, 150);
+}
+function setAspect(a) { videoAspect = a; stopTimers(); render(); }
+function startKaraoke(len) {
+  if (kwTimer) clearInterval(kwTimer);
+  kwTimer = setInterval(() => {
+    kwIdx = (kwIdx + 1) % len;
+    document.querySelectorAll('#karaokeBox .kw').forEach((el, i) => el.classList.toggle('active', i === kwIdx));
+  }, 240);
+}
+function recalc() {
+  let sum = 0;
+  document.querySelectorAll('.calc input[type=checkbox]').forEach(c => { if (c.checked) sum += Number(c.dataset.cost); });
+  document.getElementById('savingsVal').textContent = '$' + Math.max(0, sum - 70);
+}
+render();
+</script>
+</body>
+</html>

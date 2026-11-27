@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoxStudio — The On-Device AI Voice Platform for iPhone &amp; iPad</title>
+  <meta name="description" content="Text to Speech, Instant Voice Cloning, Voice Design, Multi-Speaker Studio, and Whisper Scribe—100% on-device on iPhone, iPad, and Mac. Unlimited local characters. Pay once, own forever." />
+  <meta property="og:title" content="VoxStudio — Realistic AI Speech, Cloning &amp; Studio 100% On-Device" />
+  <meta property="og:description" content="Everything you love about cloud voice studios, rebuilt natively on Apple Silicon with MLX neural models. Zero cloud uploads. Zero subscriptions." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #090a0c;
+      --surface: #121318;
+      --surface-2: #191b22;
+      --surface-3: #22252f;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text: #fafafa;
+      --muted: rgba(250, 250, 250, 0.62);
+      --subtle: rgba(250, 250, 250, 0.40);
+      --emerald: #34d399;
+      --amber: #f5923a;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(960px 440px at 50% -6%, rgba(255, 255, 255, 0.07), transparent 68%),
+        radial-gradient(640px 380px at 86% 12%, rgba(52, 211, 153, 0.09), transparent 70%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* Minimalist Editorial Navigation (ElevenLabs DNA) */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(20px);
+      background: rgba(9, 10, 12, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.025em; }
+    .brand-mark {
+      width: 28px; height: 28px; border-radius: 8px; background: #fff; color: #090a0c;
+      display: grid; place-items: center; font-weight: 900; font-size: 14px;
+    }
+    .brand-pill {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 999px;
+      background: rgba(52, 211, 153, 0.14); color: var(--emerald);
+      border: 1px solid rgba(52, 211, 153, 0.30);
+    }
+    .nav-links { display: flex; align-items: center; gap: 26px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+    .nav-links a:hover { color: #fff; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 13.5px;
+      cursor: pointer; border: none; transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+    }
+    .btn-white { background: #ffffff; color: #090a0c; }
+    .btn-white:hover { transform: translateY(-1px); opacity: 0.94; }
+    .btn-ghost { background: var(--surface-2); color: #fff; border: 1px solid var(--border-strong); }
+    .btn-ghost:hover { background: var(--surface-3); }
+
+    /* Hero */
+    .hero { padding: 72px 0 44px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 13px; border-radius: 999px;
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      background: var(--surface); border: 1px solid var(--border-strong); color: var(--emerald);
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 6.2vw, 68px);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1.03;
+      max-width: 900px; margin: 0 auto 18px;
+    }
+    .hero p.lead {
+      font-size: clamp(16px, 2vw, 19px); color: var(--muted);
+      max-width: 670px; margin: 0 auto 28px;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 42px; }
+
+    /* Above-the-Fold Interactive Playground (Signature ElevenLabs Conversion Engine) */
+    .playground {
+      max-width: 980px; margin: 0 auto; text-align: left;
+      background: var(--surface); border: 1px solid var(--border-strong);
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 32px 84px rgba(0, 0, 0, 0.65);
+    }
+    .pg-tabs {
+      display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.025); border-bottom: 1px solid var(--border);
+    }
+    .pg-tab {
+      padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
+      background: transparent; color: var(--muted); border: 1px solid transparent; cursor: pointer;
+    }
+    .pg-tab.active {
+      background: #ffffff; color: #090a0c;
+    }
+    .pg-body {
+      display: grid; grid-template-columns: 1.45fr 0.85fr;
+    }
+    .pg-editor {
+      padding: 20px 22px; border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .pg-textarea {
+      width: 100%; min-height: 142px; resize: vertical;
+      background: transparent; border: none; outline: none;
+      color: #fff; font-size: 16px; line-height: 1.6; font-family: inherit;
+    }
+    .pg-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pg-chip {
+      padding: 6px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 600;
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); cursor: pointer;
+    }
+    .pg-chip:hover { color: #fff; border-color: var(--border-strong); }
+    .pg-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .pg-meta { font-size: 11.5px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .pg-meta span { color: var(--emerald); font-family: inherit; font-weight: 700; }
+
+    .pg-inspector {
+      padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;
+      background: rgba(255, 255, 255, 0.015);
+    }
+    .pg-label {
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--subtle);
+    }
+    .voice-pills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .voice-pill {
+      display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+      border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border);
+      cursor: pointer; text-align: left; color: #fff;
+    }
+    .voice-pill.active { border-color: rgba(255, 255, 255, 0.55); background: var(--surface-3); }
+    .orb { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; }
+    .voice-pill strong { display: block; font-size: 12.5px; line-height: 1.2; }
+    .voice-pill small { display: block; font-size: 10.5px; color: var(--muted); }
+    .slider-group label {
+      display: flex; justify-content: space-between; font-size: 12px; font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .slider-group input[type="range"] { width: 100%; accent-color: #ffffff; }
+
+    /* Live Waveform Dock Inside Playground */
+    .pg-dock {
+      display: flex; align-items: center; gap: 14px; padding: 14px 20px;
+      border-top: 1px solid var(--border); background: #0e1015;
+    }
+    .wave-bars {
+      flex: 1; display: flex; align-items: center; gap: 3px; height: 28px;
+    }
+    .wave-bar {
+      flex: 1; border-radius: 2px; background: rgba(255, 255, 255, 0.22);
+      transition: height 0.14s ease, background 0.14s ease;
+    }
+    .wave-bar.lit { background: #ffffff; }
+
+    /* Trust Strip */
+    .trust-bar {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 32px;
+      margin-top: 32px; font-size: 13px; font-weight: 600; color: var(--muted);
+    }
+    .trust-bar span { display: inline-flex; align-items: center; gap: 7px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); }
+
+    /* Sections */
+    section { padding: 76px 0; }
+    .section-head { max-width: 700px; margin: 0 auto 42px; text-align: center; }
+    .section-head h2 { font-size: clamp(28px, 4.2vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
+    .section-head p { color: var(--muted); font-size: 16px; }
+
+    /* Platform Pillars Grid */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .card-kicker {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--emerald);
+    }
+    .card h3 { font-size: 19px; font-weight: 750; letter-spacing: -0.015em; }
+    .card p { font-size: 13.5px; color: var(--muted); }
+
+    /* Model Architecture Table */
+    .model-table {
+      width: 100%; border-collapse: collapse; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .model-table th, .model-table td {
+      text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--border); font-size: 13.5px;
+    }
+    .model-table th {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--subtle); background: rgba(255,255,255,0.02);
+    }
+    .model-table tr:last-child td { border-bottom: none; }
+    .tag {
+      display: inline-block; padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;
+      background: rgba(52, 211, 153, 0.14); color: var(--emerald);
+    }
+
+    /* Interactive ElevenLabs vs VoxStudio Savings Calculator */
+    .calc-box {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: center;
+      background: var(--surface); border: 1px solid var(--border-strong);
+      border-radius: 24px; padding: 32px;
+    }
+    .tier-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
+    .tier-btn {
+      padding: 14px 16px; border-radius: 14px; text-align: left; cursor: pointer;
+      background: var(--surface-2); border: 1px solid var(--border); color: #fff;
+    }
+    .tier-btn.active { border-color: #ffffff; background: var(--surface-3); }
+    .tier-btn strong { display: block; font-size: 14px; }
+    .tier-btn span { font-size: 12px; color: var(--muted); }
+    .calc-panel {
+      background: #0b0c10; border: 1px solid var(--border);
+      border-radius: 18px; padding: 26px; text-align: center;
+    }
+    .calc-big { font-size: 52px; font-weight: 850; letter-spacing: -0.04em; margin: 6px 0; }
+    .calc-row {
+      display: flex; justify-content: space-between; padding: 9px 0;
+      border-top: 1px solid var(--border); font-size: 13px; color: var(--muted);
+    }
+    .calc-row strong { color: #fff; }
+
+    /* Screenshots */
+    .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .shot {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 22px; padding: 12px;
+    }
+    .shot img { width: 100%; border-radius: 14px; display: block; }
+    .shot figcaption { padding: 12px 6px 4px; font-size: 13px; color: var(--muted); }
+    .shot figcaption strong { display: block; color: #fff; font-size: 14px; }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 36px 0;
+      color: var(--muted); font-size: 13px;
+    }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+
+    @media (max-width: 880px) {
+      .pg-body, .grid-3, .calc-box, .shots { grid-template-columns: 1fr; }
+      .pg-editor { border-right: none; border-bottom: 1px solid var(--border); }
+      .nav-links { display: none; }
+      .tier-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <meta name="apple-itunes-app" content="app-id=6766645034">
+  <meta property="og:image" content="https://spaceplantcorporationofficial.github.io/voxstudio/assets/hero-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://spaceplantcorporationofficial.github.io/voxstudio/assets/hero-og.png">
+</head>
+<body>
+<div style="background:#06080d;border-bottom:1px solid rgba(255,255,255,0.09);padding:8px 16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;color:#98a4bc;"><a href="/" style="color:#fff;font-weight:800;text-decoration:none;">✦ SpacePlant AI Creator Suite</a><a href="/voxstudio/" style="color:#34d399;text-decoration:none;font-weight:700;">VoxStudio 3.0</a><a href="/clipcontrol/" style="color:#38bdf8;text-decoration:none;font-weight:700;">ClipControl 37.0</a><a href="/briefkit/" style="color:#fbbf24;text-decoration:none;font-weight:700;">BriefKit 2.0</a></div>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">||</span>
+        <span>VoxStudio</span>
+        <span class="brand-pill">On-Device</span>
+      </a>
+      <div class="nav-links">
+        <a href="#playground">Playground</a>
+        <a href="#platform">Platform</a>
+        <a href="#models">MLX Models</a>
+        <a href="#pricing">Compare Pricing</a>
+      </div>
+      <a class="btn btn-white" href="https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034">
+        Download for iPad &amp; iPhone
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="playground">
+      <div class="container">
+        <div class="eyebrow">100% On-Device MLX Neural Audio • Zero Cloud Credits</div>
+        <h1>The Complete AI Voice Studio — Running Locally on Your iPad &amp; iPhone.</h1>
+        <p class="lead">
+          Lifelike Text to Speech, Instant Voice Cloning, Voice Design, Multi-Speaker Studio, and Whisper Scribe.
+          Powered by Pocket TTS, Qwen3-TTS, and Apple Silicon. Zero cloud uploads. Pay once, own forever.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-white" href="https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034">
+            Get VoxStudio Free on App Store
+          </a>
+          <a class="btn btn-ghost" href="#pricing">
+            Compare vs. Cloud Subscriptions
+          </a>
+        </div>
+
+        <!-- Interactive ElevenLabs-Style Live Sandbox -->
+        <div class="playground">
+          <div class="pg-tabs" id="pgTabs">
+            <button class="pg-tab active" data-mode="tts">Text to Speech</button>
+            <button class="pg-tab" data-mode="design">Voice Design</button>
+            <button class="pg-tab" data-mode="clone">Instant Voice Cloning</button>
+            <button class="pg-tab" data-mode="studio">Multi-Speaker Studio</button>
+            <button class="pg-tab" data-mode="scribe">Scribe &amp; Captions</button>
+          </div>
+
+          <div class="pg-body">
+            <div class="pg-editor">
+              <div class="pg-presets" id="pgPresets">
+                <button class="pg-chip" data-text="Meet the first neural voice studio that runs 100% locally on your iPad and iPhone. Zero cloud latency, zero monthly credit counters, and total privacy.">Product Launch</button>
+                <button class="pg-chip" data-text="In the quiet hush before dawn, the lighthouse beam swept across the dark harbor one last time—carrying a message no server could intercept.">Audiobook</button>
+                <button class="pg-chip" data-text="Welcome back to Silicon Daily. Today we are replacing five cloud AI subscriptions with one local Apple Silicon app.">Podcast Intro</button>
+                <button class="pg-chip" data-text="Stop paying twenty-two dollars a month just to voice a thirty-second reel. Watch how fast this generates offline.">Short Hook</button>
+              </div>
+              <textarea id="pgText" class="pg-textarea">Meet the first neural voice studio that runs 100% locally on your iPad and iPhone. Zero cloud latency, zero monthly credit counters, and total privacy.</textarea>
+              <div class="pg-footer">
+                <div class="pg-meta">
+                  <b id="charCount">156</b> chars • <span>0 cloud credits used</span>
+                </div>
+                <button id="pgGenerateBtn" class="btn btn-white">Generate speech</button>
+              </div>
+            </div>
+
+            <div class="pg-inspector">
+              <div class="pg-label">Select Voice Persona</div>
+              <div class="voice-pills" id="voicePills">
+                <button class="voice-pill active" data-voice="Rachel" data-pitch="1.04" data-rate="1.0">
+                  <span class="orb" style="background: linear-gradient(135deg,#79ddb8,#20b5ad);"></span>
+                  <div><strong>Rachel</strong><small>Calm Narrator</small></div>
+                </button>
+                <button class="voice-pill" data-voice="Adam" data-pitch="0.82" data-rate="0.95">
+                  <span class="orb" style="background: linear-gradient(135deg,#f5923a,#c84b31);"></span>
+                  <div><strong>Adam</strong><small>Deep Cinema</small></div>
+                </button>
+                <button class="voice-pill" data-voice="Bella" data-pitch="1.12" data-rate="0.98">
+                  <span class="orb" style="background: linear-gradient(135deg,#f472b6,#8b5cf6);"></span>
+                  <div><strong>Bella</strong><small>Conversational</small></div>
+                </button>
+                <button class="voice-pill" data-voice="Arthur" data-pitch="0.88" data-rate="0.92">
+                  <span class="orb" style="background: linear-gradient(135deg,#34d399,#059669);"></span>
+                  <div><strong>Arthur</strong><small>British Literary</small></div>
+                </button>
+              </div>
+
+              <div class="slider-group">
+                <label><span>Speed</span><span id="speedVal">1.00×</span></label>
+                <input type="range" id="speedSlider" min="0.75" max="1.35" step="0.05" value="1.0" />
+              </div>
+
+              <div class="slider-group">
+                <label><span>Stability</span><span id="stabVal">60%</span></label>
+                <input type="range" id="stabSlider" min="0" max="100" step="5" value="60" />
+              </div>
+
+              <div style="font-size: 11.5px; color: var(--muted); padding: 10px 12px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border);">
+                <strong style="color: var(--emerald); display:block; margin-bottom:2px;">On iPad &amp; iPhone:</strong>
+                Runs Pocket Neural v1 (240 MB) &amp; Qwen3-TTS directly on Apple Silicon MLX with zero internet required.
+              </div>
+            </div>
+          </div>
+
+          <div class="pg-dock">
+            <button id="dockPlayBtn" class="btn btn-white" style="padding: 8px 14px;">▶ Play</button>
+            <div style="min-width: 120px;">
+              <div id="dockVoice" style="font-size: 12.5px; font-weight: 700;">Rachel</div>
+              <div id="dockStatus" style="font-size: 11px; color: var(--emerald);">Browser Live Preview</div>
+            </div>
+            <div class="wave-bars" id="waveBars"></div>
+          </div>
+        </div>
+
+        <div class="trust-bar">
+          <span><i class="dot"></i> Pocket TTS (240 MB) + Qwen3-TTS</span>
+          <span><i class="dot"></i> On-Device Instant Voice Cloning</span>
+          <span><i class="dot"></i> App Store Privacy: Data Not Collected</span>
+          <span><i class="dot"></i> iPad Split-View + iPhone Native</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="platform">
+      <div class="container">
+        <div class="section-head">
+          <h2>Six Studio Pillars. Zero Cloud Dependency.</h2>
+          <p>Every core capability creators rely on—engineered cleanly from the ground up for iPadOS and iOS.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="card-kicker">01 • Text to Speech</span>
+            <h3>Distraction-Free Speech Studio</h3>
+            <p>Full 2-column iPad editor + Voice Settings inspector. Dial in Speed, Stability, Expressiveness, and 10 languages with a persistent global waveform player.</p>
+          </article>
+          <article class="card">
+            <span class="card-kicker">02 • Voice Library</span>
+            <h3>18 Curated Voices &amp; My Voices</h3>
+            <p>Browse and filter by gender, accent, age, and use case—from deep trailers to warm audiobooks—with 1-tap audition and bookmarking.</p>
+          </article>
+          <article class="card">
+            <span class="card-kicker">03 • Voice Lab</span>
+            <h3>Instant Cloning &amp; Voice Design</h3>
+            <p>Record 10 seconds at 24 kHz mono right on your iPad mic for zero-shot local voice cloning, or describe a completely original voice with natural language.</p>
+          </article>
+          <article class="card">
+            <span class="card-kicker">04 • Studio</span>
+            <h3>Multi-Speaker Podcasts &amp; Books</h3>
+            <p>Assign distinct voices—including your own local clones—to every paragraph or dialogue turn, adjust pauses, and export one master stitched WAV.</p>
+          </article>
+          <article class="card">
+            <span class="card-kicker">05 • Scribe &amp; Video</span>
+            <h3>Whisper STT, Auto-Captions &amp; Clips</h3>
+            <p>Transcribe audio or video locally, export timestamped .SRT &amp; .VTT subtitles, burn styled captions onto HD MP4, and reframe 9:16 vertical highlights.</p>
+          </article>
+          <article class="card">
+            <span class="card-kicker">06 • History</span>
+            <h3>Persistent Local Audio Archive</h3>
+            <p>Every generated take is saved locally as a studio WAV with waveform metadata. Search, replay, reload into the editor, or AirDrop in one tap.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="models">
+      <div class="container">
+        <div class="section-head">
+          <h2>Multi-Engine On-Device Neural Stack</h2>
+          <p>Switch effortlessly between zero-download instant speech and specialized MLX neural models cached privately on your device.</p>
+        </div>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th>Engine</th>
+              <th>Download</th>
+              <th>Capabilities</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Vox Instant</strong></td>
+              <td>0 MB (Built-in)</td>
+              <td><span class="tag">Zero Wait</span> <span class="tag">10 Languages</span></td>
+              <td>Drafting scripts and hearing speech on second one</td>
+            </tr>
+            <tr>
+              <td><strong>Pocket Neural v1</strong></td>
+              <td>~240 MB</td>
+              <td><span class="tag">8 Voices</span> <span class="tag">Zero-Shot Cloning</span></td>
+              <td>Daily iPhone &amp; iPad TTS and instant local voice cloning</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen3-TTS 0.6B Base (4-bit)</strong></td>
+              <td>~1.71 GB</td>
+              <td><span class="tag">10 Languages</span> <span class="tag">Pro Cloning</span> <span class="tag">Streaming</span></td>
+              <td>Multilingual narration and high-fidelity in-context speaker cloning</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen3-TTS 1.7B VoiceDesign</strong></td>
+              <td>~2.31 GB</td>
+              <td><span class="tag">Text-to-Voice Design</span></td>
+              <td>Inventing custom voices from natural-language prompts</td>
+            </tr>
+            <tr>
+              <td><strong>Whisper Scribe CoreML</strong></td>
+              <td>~150 MB</td>
+              <td><span class="tag">Speech-to-Text</span> <span class="tag">.SRT / .VTT</span></td>
+              <td>Local transcription, auto-captions, and Smart Clips</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="calc-box">
+          <div>
+            <span class="card-kicker">Stop Renting Characters</span>
+            <h2 style="font-size: clamp(26px, 3.8vw, 38px); letter-spacing:-0.03em; margin: 8px 0 10px;">
+              Compare Cloud Credit Tiers vs. Owning VoxStudio Once
+            </h2>
+            <p style="color: var(--muted); font-size: 14.5px;">
+              Select the cloud voice subscription tier you would otherwise pay every month:
+            </p>
+            <div class="tier-grid" id="tierGrid">
+              <button class="tier-btn" data-price="6" data-name="Cloud Starter">
+                <strong>Starter ($6/mo)</strong>
+                <span>30,000 credits / mo (~30 mins)</span>
+              </button>
+              <button class="tier-btn active" data-price="22" data-name="Cloud Creator">
+                <strong>Creator ($22/mo)</strong>
+                <span>120,000 credits / mo (~2 hrs)</span>
+              </button>
+              <button class="tier-btn" data-price="99" data-name="Cloud Pro">
+                <strong>Pro ($99/mo)</strong>
+                <span>600,000 credits / mo (~10 hrs)</span>
+              </button>
+              <button class="tier-btn" data-price="299" data-name="Cloud Scale">
+                <strong>Scale ($299/mo)</strong>
+                <span>1.8M credits / mo (~30 hrs)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="calc-panel">
+            <div class="card-kicker">First-Year Savings</div>
+            <div class="calc-big" id="saveYear1">$224</div>
+            <div id="paybackMsg" style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+              VoxStudio Pro pays for itself in ~8 weeks.
+            </div>
+            <div class="calc-row"><span>Selected cloud plan / yr</span><strong id="cloudYr">$264/yr</strong></div>
+            <div class="calc-row"><span>VoxStudio Pro (one-time)</span><strong style="color: var(--emerald);">$39.99 once</strong></div>
+            <div class="calc-row"><span>Monthly character limit</span><strong style="color: var(--emerald);">Unlimited (On-Device)</strong></div>
+            <div class="calc-row"><span>3-Year Savings</span><strong id="saveYear3">$752</strong></div>
+            <a class="btn btn-white" style="width: 100%; margin-top: 18px;" href="https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034">
+              Download Free — Own Forever
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Crafted Natively for iPad &amp; iPhone</h2>
+          <p>Desktop-class split sidebar &amp; right inspector on iPad, effortless pocket workflow on iPhone.</p>
+        </div>
+        <div class="shots">
+          <figure class="shot">
+            <img src="./assets/01-voiceover.png" alt="VoxStudio Text to Speech Studio" />
+            <figcaption><strong>Text to Speech Studio</strong>Editor, voice orbs, stability/speed controls &amp; live waveform dock.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/02-captions.png" alt="VoxStudio Scribe and Auto-Captions" />
+            <figcaption><strong>Scribe &amp; Video Captions</strong>Whisper transcription, .SRT/.VTT export &amp; styled HD MP4.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/03-clips.png" alt="VoxStudio Voice Lab and Multi-Speaker Studio" />
+            <figcaption><strong>Voice Lab &amp; Multi-Speaker Studio</strong>Local instant voice cloning, voice design &amp; episode stitching.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 SpacePlant Corporation • VoxStudio On-Device AI Voice Platform</div>
+      <div style="display:flex; gap:20px;">
+        <a href="https://sites.google.com/view/spaceplantcorporationapps/home">Privacy Policy (Data Not Collected)</a>
+        <a href="https://sites.google.com/view/spaceplantcorporationeula/home">Terms of Use</a>
+        <a href="https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034">App Store</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Waveform bars setup
+    const waveBarsEl = document.getElementById('waveBars');
+    const barCount = 38;
+    const baseHeights = Array.from({ length: barCount }, (_, i) => 22 + Math.round(68 * Math.abs(Math.sin(i * 0.42 + 0.5))));
+    baseHeights.forEach((h) => {
+      const d = document.createElement('div');
+      d.className = 'wave-bar';
+      d.style.height = `${h}%`;
+      waveBarsEl.appendChild(d);
+    });
+    const barNodes = Array.from(waveBarsEl.children);
+
+    const pgText = document.getElementById('pgText');
+    const charCount = document.getElementById('charCount');
+    const speedSlider = document.getElementById('speedSlider');
+    const speedVal = document.getElementById('speedVal');
+    const stabSlider = document.getElementById('stabSlider');
+    const stabVal = document.getElementById('stabVal');
+    const dockVoice = document.getElementById('dockVoice');
+    const dockStatus = document.getElementById('dockStatus');
+    const generateBtn = document.getElementById('pgGenerateBtn');
+    const dockPlayBtn = document.getElementById('dockPlayBtn');
+
+    let selectedVoice = { name: 'Rachel', pitch: 1.04, rate: 1.0 };
+    let animInterval = null;
+    let litIdx = 0;
+
+    function updateChars() {
+      charCount.textContent = pgText.value.length.toLocaleString();
+    }
+    pgText.addEventListener('input', updateChars);
+    speedSlider.addEventListener('input', () => speedVal.textContent = `${Number(speedSlider.value).toFixed(2)}×`);
+    stabSlider.addEventListener('input', () => stabVal.textContent = `${stabSlider.value}%`);
+
+    document.querySelectorAll('.pg-chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        pgText.value = btn.dataset.text;
+        updateChars();
+      });
+    });
+
+    const modeTemplates = {
+      tts: "Meet the first neural voice studio that runs 100% locally on your iPad and iPhone. Zero cloud latency, zero monthly credit counters, and total privacy.",
+      design: "Voice Prompt: A warm, articulate British documentary narrator in her 30s with calm studio cadence — synthesized on-device with Qwen3-TTS VoiceDesign.",
+      clone: "Instant Voice Clone Preview: Record 10 seconds at 24 kHz mono on your iPad mic. Pocket Neural clones your speaker identity locally with zero cloud uploads.",
+      studio: "[Ryan]: Welcome back to Silicon Daily. [Rachel]: Today every single speaker block renders and stitches offline on one iPad.",
+      scribe: "00:00.0 -> 00:04.2: Whisper Scribe transcribes audio and video locally, exporting clean .SRT, .VTT, and burned-in HD captions."
+    };
+
+    document.querySelectorAll('.pg-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.pg-tab').forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        pgText.value = modeTemplates[tab.dataset.mode] || modeTemplates.tts;
+        updateChars();
+      });
+    });
+
+    document.querySelectorAll('.voice-pill').forEach((pill) => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.voice-pill').forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        selectedVoice = {
+          name: pill.dataset.voice,
+          pitch: Number(pill.dataset.pitch),
+          rate: Number(pill.dataset.rate)
+        };
+        dockVoice.textContent = selectedVoice.name;
+      });
+    });
+
+    function stopAnim() {
+      if (animInterval) clearInterval(animInterval);
+      animInterval = null;
+      barNodes.forEach((b, i) => {
+        b.classList.remove('lit');
+        b.style.height = `${baseHeights[i]}%`;
+      });
+      dockPlayBtn.textContent = '▶ Play';
+      dockStatus.textContent = 'Browser Live Preview';
+    }
+
+    function speakPreview() {
+      const text = pgText.value.trim();
+      if (!text) return;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.rate = selectedVoice.rate * Number(speedSlider.value);
+        u.pitch = selectedVoice.pitch;
+        u.onstart = () => {
+          dockPlayBtn.textContent = '■ Stop';
+          dockStatus.textContent = `Speaking • ${Number(speedSlider.value).toFixed(2)}×`;
+          litIdx = 0;
+          animInterval = setInterval(() => {
+            litIdx = (litIdx + 1) % barCount;
+            barNodes.forEach((b, i) => {
+              b.classList.toggle('lit', i <= litIdx);
+              b.style.height = `${18 + Math.round(Math.random() * 78)}%`;
+            });
+          }, 120);
+        };
+        u.onend = stopAnim;
+        u.onerror = stopAnim;
+        window.speechSynthesis.speak(u);
+      }
+    }
+
+    generateBtn.addEventListener('click', speakPreview);
+    dockPlayBtn.addEventListener('click', () => {
+      if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        stopAnim();
+      } else {
+        speakPreview();
+      }
+    });
+
+    // Interactive Pricing Calculator
+    const tierBtns = document.querySelectorAll('.tier-btn');
+    function recalc(monthly) {
+      const annual = monthly * 12;
+      const y1 = Math.max(0, Math.round(annual - 39.99));
+      const y3 = Math.max(0, Math.round(annual * 3 - 39.99));
+      const weeks = Math.max(1, Math.round((39.99 / monthly) * 4.3));
+      document.getElementById('saveYear1').textContent = `$${y1.toLocaleString()}`;
+      document.getElementById('saveYear3').textContent = `$${y3.toLocaleString()}`;
+      document.getElementById('cloudYr').textContent = `$${annual.toLocaleString()}/yr`;
+      document.getElementById('paybackMsg').textContent = `VoxStudio Pro pays for itself in ~${weeks} week${weeks === 1 ? '' : 's'}.`;
+    }
+    tierBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tierBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        recalc(Number(btn.dataset.price));
+      });
+    });
+    recalc(22);
+  </script>
+</body>
+</html>
