@@ -97,8 +97,8 @@
       "podcastFormat": "Shark Tank VC Grill",
       "hostAName": "Marcus (Lead Investor)",
       "hostBName": "Elena (Operator)",
-      "palette": "arcticSlate",
-      "deepLink": "briefkit://preset?id=bk-shark-tank-grill&format=vcGrill&palette=arcticSlate&hostA=Marcus&hostB=Elena"
+      "palette": "oceanGlass",
+      "deepLink": "briefkit://preset?id=bk-shark-tank-grill&format=vcGrill&palette=oceanGlass&hostA=Marcus&hostB=Elena"
     },
     {
       "id": "bk-eli5-study-sprint",
@@ -113,8 +113,8 @@
       "podcastFormat": "ELI5 Study Sprint",
       "hostAName": "Sam (Tutor)",
       "hostBName": "Priya (Study Partner)",
-      "palette": "emeraldStudio",
-      "deepLink": "briefkit://preset?id=bk-eli5-study-sprint&format=eli5StudySprint&palette=emeraldStudio&hostA=Sam&hostB=Priya"
+      "palette": "forestStudio",
+      "deepLink": "briefkit://preset?id=bk-eli5-study-sprint&format=eli5StudySprint&palette=forestStudio&hostA=Sam&hostB=Priya"
     },
     {
       "id": "vx-creator-pop-bold",
