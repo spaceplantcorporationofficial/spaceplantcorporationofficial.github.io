@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SpacePlant Community Preset Gallery — Free .clipstyle, .voxcaption &amp; BriefKit Themes</title>
+  <meta name="description" content="Download and install free creator-made caption styles, split-screen .clipstyle packs, Roast My Deck podcast presets, and .voxcaption themes across the SpacePlant Offline AI Creator Suite." />
+  <meta property="og:title" content="SpacePlant Community Preset Gallery — Offline AI Creator Suite" />
+  <meta property="og:description" content="1-tap creator presets for ClipControl, BriefKit, and VoxStudio. Zero accounts, zero cloud fees." />
+  <meta property="og:image" content="https://spaceplantcorporationofficial.github.io/assets/briefkit-hero.png" />
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #101726;
+      --panel2: #151f33;
+      --border: rgba(255,255,255,0.10);
+      --ink: #f8fafc;
+      --muted: #94a3b8;
+      --emerald: #10b981;
+      --cyan: #22d3ee;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top center, #111c33 0%, var(--bg) 55%);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    nav {
+      position: sticky; top: 0; z-index: 40;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+      background: rgba(7,11,20,0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand { font-weight: 900; letter-spacing: -0.02em; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+    .dot { width: 10px; height: 10px; border-radius: 99px; background: var(--emerald); box-shadow: 0 0 12px var(--emerald); }
+    .nav-links { display: flex; gap: 18px; font-size: 13.5px; font-weight: 700; color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 36px 20px 72px; }
+    .hero {
+      padding: 32px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.14), rgba(34,211,238,0.08) 50%, rgba(16,23,38,0.94));
+      border: 1px solid rgba(16,185,129,0.32);
+      margin-bottom: 28px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--emerald); background: rgba(16,185,129,0.14);
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 14px;
+    }
+    h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.03em; }
+    .hero p { margin: 0 0 20px; max-width: 720px; color: var(--muted); font-size: 16px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 16px; border-radius: 12px; font-weight: 800; font-size: 13.5px;
+      border: 1px solid var(--border); background: var(--panel2); color: #fff; cursor: pointer;
+    }
+    .btn-primary { background: var(--emerald); color: #05130f; border-color: transparent; }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+    .chip {
+      padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 800;
+      background: var(--panel); color: var(--muted); border: 1px solid var(--border); cursor: pointer;
+    }
+    .chip.active { background: rgba(34,211,238,0.16); color: var(--cyan); border-color: rgba(34,211,238,0.5); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+    .card {
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 20px; border-radius: 18px; background: var(--panel); border: 1px solid var(--border);
+    }
+    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .app-pill {
+      font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .author { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .swatch-bar { height: 6px; border-radius: 99px; margin-bottom: 12px; }
+    .card h2 { margin: 0 0 6px; font-size: 19px; letter-spacing: -0.01em; }
+    .card p { margin: 0 0 14px; font-size: 13.5px; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag { font-size: 11px; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 6px; }
+    .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .card-actions .btn { flex: 1; justify-content: center; padding: 9px 12px; font-size: 12.5px; }
+    .submit-box {
+      margin-top: 36px; padding: 26px; border-radius: 20px;
+      background: var(--panel); border: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    footer { text-align: center; padding: 28px 20px 44px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+    .toast {
+      position: fixed; bottom: 20px; right: 20px; z-index: 60;
+      background: #064e3b; color: #ecfdf5; border: 1px solid var(--emerald);
+      padding: 12px 16px; border-radius: 12px; font-weight: 700; font-size: 13px; display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="/"><span class="dot"></span>SpacePlant Community</a>
+    <div class="nav-links">
+      <a href="/">Suite Hub</a>
+      <a href="/briefkit/">BriefKit</a>
+      <a href="/clipcontrol/">ClipControl</a>
+      <a href="/voxstudio/">VoxStudio</a>
+      <a class="active" href="/community/">Presets</a>
+      <a href="/press/">Press</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Zero-Server Creator Exchange · 100% On-Device</div>
+      <h1>Community Style Packs &amp; Viral Brief Themes</h1>
+      <p>Install creator-made <code>.clipstyle</code> Karaoke packs, <code>.voxcaption</code> voice/subtitle themes, and <code>BriefKit</code> Roast &amp; Study Sprint templates in one tap — synced straight into the iOS &amp; iPadOS apps with creator <code>@handle</code> credit.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/community/presets.json" target="_blank" rel="noopener">View Live JSON Feed</a>
+        <a class="btn" href="mailto:support@spaceplant.ai?subject=Submit%20SpacePlant%20Creator%20Preset">Submit Your Preset (Get Credited)</a>
+      </div>
+    </section>
+
+    <div class="filters" role="tablist" aria-label="Filter presets by app">
+      <button class="chip active" data-app="all">All Studios</button>
+      <button class="chip" data-app="clipcontrol">ClipControl (.clipstyle)</button>
+      <button class="chip" data-app="briefkit">BriefKit (Deck &amp; Roast)</button>
+      <button class="chip" data-app="voxstudio">VoxStudio (.voxcaption)</button>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+
+    <section class="submit-box">
+      <div>
+        <h2 style="margin:0 0 6px;font-size:20px;">Build Your Signature Preset &amp; Get Featured Inside the App</h2>
+        <p style="margin:0;color:var(--muted);font-size:14px;max-width:640px;">Export a <code>.clipstyle</code> or <code>.voxcaption</code> file from your iPhone or iPad and email it with your <code>@handle</code>. Featured creators appear live inside the in-app Community Gallery with clickable attribution.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:support@spaceplant.ai?subject=SpacePlant%20Community%20Preset%20Submission&body=App%20(ClipControl%20/%20BriefKit%20/%20VoxStudio):%0ACreator%20@handle:%0APreset%20Name:%0AAttach%20your%20.clipstyle%20or%20.voxcaption%20file!">Submit a Preset →</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">SpacePlant AI Creator Suite</a> · <a href="/press/">Press Kit</a> · <a href="/dashboard/">Growth Dashboard</a> · <a href="/llms.txt">llms.txt</a>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const APP_STORES = {
+      clipcontrol: "https://apps.apple.com/us/app/clipcontrol-ai-video-snippets/id6761507577?ct=community_presets&mt=8",
+      briefkit: "https://apps.apple.com/us/app/briefkit/id6762632623?ct=community_presets&mt=8",
+      voxstudio: "https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034?ct=community_presets&mt=8"
+    };
+    const APP_LABELS = { clipcontrol: "ClipControl", briefkit: "BriefKit", voxstudio: "VoxStudio" };
+    let allPresets = [];
+    let activeFilter = "all";
+
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.style.display = "block";
+      clearTimeout(window._t);
+      window._t = setTimeout(() => el.style.display = "none", 2600);
+    }
+
+    function downloadPreset(preset) {
+      const ext = preset.kind === "clipstyle" ? "clipstyle" : (preset.kind === "voxcaption" ? "voxcaption" : "briefpreset");
+      const blob = new Blob([JSON.stringify(preset, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${preset.id}.${ext}`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast(`Downloaded ${preset.id}.${ext} — AirDrop or open in ${APP_LABELS[preset.app]}!`);
+    }
+
+    function render() {
+      const grid = document.getElementById("grid");
+      const items = activeFilter === "all" ? allPresets : allPresets.filter(p => p.app === activeFilter);
+      grid.innerHTML = items.map(p => {
+        const accent = `#${p.accentHex || "10B981"}`;
+        const tags = (p.tags || []).map(t => `<span class="tag">#${t}</span>`).join("");
+        return `
+          <article class="card">
+            <div>
+              <div class="swatch-bar" style="background:linear-gradient(90deg, ${accent}, rgba(255,255,255,0.12));"></div>
+              <div class="card-top">
+                <span class="app-pill" style="background:${accent}22;color:${accent};">${APP_LABELS[p.app] || p.app}</span>
+                <span class="author">${p.authorHandle}</span>
+              </div>
+              <h2>${p.name}</h2>
+              <p>${p.tagline}</p>
+              <div class="tags">${tags}</div>
+            </div>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="${p.deepLink}">Open in App</a>
+              <button class="btn" onclick='downloadPreset(${JSON.stringify(p).replace(/'/g, "&#39;")})'>Download File</button>
+              <a class="btn" href="${APP_STORES[p.app] || "/"}" target="_blank" rel="noopener">App Store</a>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    document.querySelectorAll(".chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.app;
+        render();
+      });
+    });
+
+    fetch("/community/presets.json")
+      .then(r => r.json())
+      .then(data => { allPresets = data.presets || []; render(); })
+      .catch(() => { document.getElementById("grid").innerHTML = "<p>Could not load presets feed.</p>"; });
+  </script>
+</body>
+</html>

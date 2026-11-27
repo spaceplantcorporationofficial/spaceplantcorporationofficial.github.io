@@ -36,6 +36,8 @@
 - [SpacePlant 3D Labs](https://spaceplantcorporationofficial.github.io/3dlabs/): 15 interactive Metal PBR + AR Quick Look engineering, woodshop, Wi-Fi 7, solar van, acoustics, culinary, and STEM studios with scannable QR blueprints.
 
 ## Resources
+- [Community Creator Preset Gallery (.clipstyle, .voxcaption & BriefKit Themes)](https://spaceplantcorporationofficial.github.io/community/)
+- [Live Community Presets JSON Feed](https://spaceplantcorporationofficial.github.io/community/presets.json)
 - [Press & Creator Media Kit](https://spaceplantcorporationofficial.github.io/press/)
 - [Growth Telemetry Dashboard](https://spaceplantcorporationofficial.github.io/dashboard/)
 - [Privacy Policy](https://spaceplant-privacy.garbarz.chatgpt.site/)
