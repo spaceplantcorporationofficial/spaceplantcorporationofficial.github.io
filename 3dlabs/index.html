@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpacePlant 3D Labs — 15 Interactive 3D Studios with On-Device AI &amp; AR Quick Look</title>
+  <meta name="description" content="15 interactive 3D engineering, culinary, creator, audio, woodshop, architecture, and STEM studios powered by private 100% on-device Apple Intelligence and AR Quick Look." />
+  <style>
+    :root {
+      --bg: #070a10; --surface: #0f141f; --surface-2: #151c2b;
+      --border: rgba(255,255,255,0.10); --text: #f8fafc; --muted: #94a3b8;
+      --accent: #10b981; --cyan: #06b6d4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 20% 0%, rgba(16,185,129,0.12), transparent 45%),
+                  radial-gradient(circle at 80% 10%, rgba(6,182,212,0.12), transparent 45%),
+                  var(--bg);
+      color: var(--text); line-height: 1.5; min-height: 100vh;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .logo { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #10b981, #06b6d4); display: grid; place-items: center; font-weight: 900; color: #05130f; font-size: 18px; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: rgba(16,185,129,0.15); color: #34d399; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .hero { text-align: center; padding: 48px 12px 32px; max-width: 820px; margin: 0 auto; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin: 16px 0; }
+    .hero p { font-size: 1.12rem; color: var(--muted); max-width: 680px; margin: 0 auto 24px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 28px 0 36px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; text-align: center; }
+    .stat strong { display: block; font-size: 1.6rem; color: #fff; }
+    .stat span { font-size: 0.85rem; color: var(--muted); }
+    #blueprint-banner { display: none; background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(6,182,212,0.16)); border: 1px solid rgba(16,185,129,0.5); border-radius: 20px; padding: 24px; margin-bottom: 32px; }
+    #blueprint-banner h2 { font-size: 1.4rem; margin-bottom: 6px; }
+    #blueprint-json { background: rgba(0,0,0,0.35); border-radius: 12px; padding: 14px; font-family: ui-monospace, monospace; font-size: 13px; color: #a7f3d0; overflow-x: auto; margin: 14px 0; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; }
+    .filter-btn { border: 1px solid var(--border); background: var(--surface); color: var(--muted); padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; }
+    .filter-btn.active, .filter-btn:hover { background: #fff; color: #070a10; border-color: #fff; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; transition: transform .18s, border-color .18s; }
+    .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.28); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .cat { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 1.22rem; font-weight: 800; margin-top: 8px; }
+    .card p { font-size: 0.92rem; color: var(--muted); margin-top: 6px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, #10b981, #06b6d4); color: #04130f; flex: 1; }
+    .btn-ghost { background: var(--surface-2); color: #e2e8f0; border: 1px solid var(--border); }
+    footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/">
+        <div class="logo">SP</div>
+        <div>
+          <strong>SpacePlant 3D Labs</strong>
+          <div style="font-size:12px;color:var(--muted);">Spatial Physics · AR Quick Look · On-Device Apple Intelligence</div>
+        </div>
+      </a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-ghost" href="/">← Flagship AI Suite</a>
+        <a class="btn btn-ghost" href="/mindstruct/">MindStruct 2.0</a>
+        <a class="btn btn-ghost" href="/pro/">Pro &amp; B2B Tools</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">15 Interactive iOS &amp; iPadOS 3D Studios · Zero Cloud Tracking</div>
+      <h1>See the Physics.<br/>Snap Safe. Build in 3D &amp; AR.</h1>
+      <p>Every SpacePlant 3D Lab runs 100% on-device with real-time Metal PBR graphics, AR Quick Look USDZ export, scannable QR blueprints, and private Apple Intelligence.</p>
+      <div class="stats">
+        <div class="stat"><strong>15</strong><span>Interactive 3D Labs</span></div>
+        <div class="stat"><strong>100%</strong><span>On-Device Private AI</span></div>
+        <div class="stat"><strong>174</strong><span>Global App Store Markets</span></div>
+        <div class="stat"><strong>$0 Cloud</strong><span>Zero Data Collected</span></div>
+      </div>
+    </section>
+
+    <section id="blueprint-banner">
+      <div class="badge">Shared 3D Blueprint Detected</div>
+      <h2 id="bp-title">Loading SpacePlant 3D Blueprint…</h2>
+      <p id="bp-sub" style="color:#d1fae5;"></p>
+      <pre id="blueprint-json"></pre>
+      <div class="actions">
+        <a id="bp-open-app" class="btn btn-primary" href="#">Open Live in 3D App</a>
+        <a id="bp-store" class="btn btn-ghost" href="#" target="_blank" rel="noopener">Get Free on App Store ↗</a>
+      </div>
+    </section>
+
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+
+    <footer>
+      © 2026 SpacePlant Corporation · Built with Swift 6, Metal PBR, AR Quick Look &amp; On-Device Apple FoundationModels · <a href="/" style="color:#34d399">Main Storefront</a>
+    </footer>
+  </div>
+
+  <script>
+    const LABS = [
+      { id:"codeframe3d", name:"CodeFrame 3D: Deck & Stair Lab", cat:"Pro Build", color:"#10b981", appId:"6839816095", desc:"IRC R507 joist spans, concrete piers, stair stringers, AR yard preview, verified hardware BOM & Client PDFs." },
+      { id:"cutlist3d", name:"CutList 3D: Woodshop Sheet Lab", cat:"Pro Build", color:"#f59e0b", appId:"6839816411", desc:"4×8 Baltic birch laser-kerf nesting, Sagulator shelf-sag deflection physics, 3D cabinet toggle & AR export." },
+      { id:"signalmap3d", name:"SignalMap 3D: Home Wi-Fi Lab", cat:"Pro Build", color:"#06b6d4", appId:"6839816764", desc:"Volumetric 2.4/5/6 GHz RSSI heatmap, drywall/brick/concrete wall loss, Wi-Fi 7 mesh solver & LiDAR." },
+      { id:"rigcool3d", name:"RigCool 3D: PC Airflow Lab", cat:"Hardware", color:"#0ea5e9", appId:"6839816961", desc:"Live GPU intake/exhaust CFM particles, GPU clearance check, 360mm AIO & ATX 3.1 PSU transient headroom." },
+      { id:"solarrig3d", name:"Solar Rig 3D: Off-Grid Van Lab", cat:"Pro Build", color:"#ea580c", appId:"6839793057", desc:"12V/24V LiFePO4 sizing, ABYC wire gauge & voltage-drop fire guard, Victron/Ancor hardware BOM & AR." },
+      { id:"roomtune3d", name:"Room Tune 3D: Acoustics Lab", cat:"Creator", color:"#d946ef", appId:"6839793356", desc:"Axial room modes, SBIR bass nulls, corner bass traps, live iPhone Mic FFT analyzer & LiDAR scanner." },
+      { id:"cheftime", name:"Chef Time: 3D Oven Planner", cat:"Culinary", color:"#d97706", appId:"6839764537", desc:"3D holiday roast & feast rack logistics, conflict-free oven timeline, full recipes & printable Fridge Sheet." },
+      { id:"smoketime", name:"Smoke Time: 3D BBQ Pitmaster", cat:"Culinary", color:"#b45309", appId:"6839792883", desc:"Offset & Kamado firebox heat zones, brisket stall math, live rising embers & minute-by-minute Cook Log." },
+      { id:"doughbrew3d", name:"Dough & Brew 3D: Baking Lab", cat:"Culinary", color:"#ca8a04", appId:"6839794271", desc:"Sourdough Baker's %, ambient-temp bulk fermentation curves, over-proof collapse guard & 1:2 espresso bar." },
+      { id:"growbed3d", name:"Grow Bed 3D: Garden Planner", cat:"Home & Nature", color:"#059669", appId:"6839775880", desc:"Sun-arc shadow casting, companion planting conflict guard, root depth X-ray & printable Garden Blueprint." },
+      { id:"reeftank3d", name:"Reef & Tank 3D: Aquascape Lab", cat:"Home & Nature", color:"#0284c7", appId:"6839793134", desc:"LED PAR light depth map, coral/fish stocking chemistry, nitrogen cycle tracker & live rising bubbles." },
+      { id:"lightstage3d", name:"Light Stage 3D: Photo Studio", cat:"Creator", color:"#7c3aed", appId:"6839781385", desc:"Real-time 3D portrait softboxes, Kelvin/ratio stops, Rembrandt & neon gel presets & studio Call Sheet." },
+      { id:"circuitbench3d", name:"Circuit Bench 3D: Ohm's Lab", cat:"STEM", color:"#2563eb", appId:"6839785006", desc:"Live 3D solderless breadboard, X-ray brass rails, Ohm's law current flow & E12 LED burnout protection." },
+      { id:"gearlab3d", name:"Gear Lab 3D: Mechanical Ratios", cat:"STEM", color:"#4f46e5", appId:"6839793800", desc:"Spinning 2-gear & 3-gear titanium/cobalt trains, RPM/torque math, involute undercut guard & CAD specs." },
+      { id:"packload3d", name:"Pack Load 3D: Ultralight Gear", cat:"Outdoors", color:"#0d9488", appId:"6839794306", desc:"Cutaway alpine pack, live 3D Center-of-Gravity plumb line, bear canister balance & LighterPack weight sheet." }
+    ];
+
+    const params = new URLSearchParams(location.search);
+    const bpApp = params.get("app");
+    const bpRaw = params.get("b");
+    if (bpApp && bpRaw) {
+      const lab = LABS.find(x => x.id === bpApp.toLowerCase());
+      if (lab) {
+        try {
+          let b64 = bpRaw.replace(/-/g, "+").replace(/_/g, "/");
+          while (b64.length % 4) b64 += "=";
+          const decoded = JSON.parse(atob(b64));
+          document.getElementById("blueprint-banner").style.display = "block";
+          document.getElementById("bp-title").textContent = `${lab.name} — Shared 3D Blueprint`;
+          document.getElementById("bp-sub").textContent = "Tap Open Live in 3D App to load these exact parameters directly into your interactive studio.";
+          document.getElementById("blueprint-json").textContent = JSON.stringify(decoded, null, 2);
+          document.getElementById("bp-open-app").href = `${lab.id}://blueprint?b=${encodeURIComponent(bpRaw)}`;
+          document.getElementById("bp-store").href = `https://apps.apple.com/app/id${lab.appId}?ct=3dlabs_qr`;
+        } catch (e) {}
+      }
+    }
+
+    const cats = ["All", ...new Set(LABS.map(l => l.cat))];
+    let activeCat = "All";
+    function render() {
+      document.getElementById("filters").innerHTML = cats.map(c =>
+        `<button class="filter-btn ${c===activeCat?'active':''}" onclick="setCat('${c}')">${c}</button>`
+      ).join("");
+      const list = activeCat === "All" ? LABS : LABS.filter(l => l.cat === activeCat);
+      document.getElementById("grid").innerHTML = list.map(l => `
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="cat" style="background:${l.color}22;color:${l.color};">${l.cat}</span>
+              <span style="font-size:11px;color:var(--muted);font-family:monospace;">ID ${l.appId}</span>
+            </div>
+            <h3>${l.name}</h3>
+            <p>${l.desc}</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://apps.apple.com/app/id${l.appId}?ct=3dlabs_hub" target="_blank" rel="noopener">Get Free on App Store</a>
+            <a class="btn btn-ghost" href="${l.id}://">Open App</a>
+          </div>
+        </article>
+      `).join("");
+    }
+    window.setCat = (c) => { activeCat = c; render(); };
+    render();
+  </script>
+</body>
+</html>

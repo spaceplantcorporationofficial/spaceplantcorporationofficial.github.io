@@ -1,27 +1,41 @@
-# SpacePlant Corporation — On-Device AI Creator Suite for iPhone & iPad
+# SpacePlant Corporation — Sovereign On-Device AI Studios, 3D Labs & Pro Utilities for Apple Silicon
 
-> SpacePlant builds privacy-first, 100% on-device AI creative studios powered by Apple Silicon. Replace $1,392+/year in cloud AI subscriptions with native iOS and iPadOS apps that work completely offline with zero cloud uploads and zero tracking.
+> SpacePlant builds privacy-first, 100% on-device AI creative studios, knowledge vaults, 3D physics labs, and B2B utilities powered by Apple Silicon (iPhone, iPad, iPhone Duo, and Mac). Zero cloud inference servers, zero credit meters, and zero user tracking.
 
-## Flagship Applications
+## Tier 1 — Atelier Flagships
 
-- [VoxStudio](https://spaceplantcorporationofficial.github.io/voxstudio/) — App Store ID `6766645034`
-  - **What it replaces:** ElevenLabs ($264+/yr), cloud voiceover & auto-caption SaaS.
-  - **Core capabilities:** Instant on-device AI voiceover synthesis, local neural TTS (Qwen3-TTS / PocketTTS), Whisper on-device auto-captions, draggable caption canvas, `.SRT` & `.VTT` subtitle exports, and Smart Clips.
+- [MindStruct 2.0: AI Notes & Knowledge Vault](https://spaceplantcorporationofficial.github.io/mindstruct/) — App Store ID `6761636919`
+  - **Core capabilities:** Real local UTF-8 Markdown (`.md`) files in iCloud Drive or Obsidian folders, 60fps Metal Knowledge Graph, automatic Ghost Link discovery, Universal PDF/CSV/JSON/OCR ingestion, unlimited 100% offline Apple Silicon AI (`105–124 tok/s` even in Airplane Mode) with `[[wikilink]]` citations, and native Mac MCP server (`mindstruct-mcp`) for Claude Code, Codex, Cursor & Antigravity.
+  - **Pricing:** Free Core + Offline AI forever · Pro `$12.99/mo` or `$99.99/yr` · Sovereign Lifetime `$249.99`.
+  - **App Store:** https://apps.apple.com/app/id6761636919
+
+- [VoxStudio: AI Voice and Video](https://spaceplantcorporationofficial.github.io/voxstudio/) — App Store ID `6766645034`
+  - **Core capabilities:** Instant on-device AI voiceover synthesis, local neural TTS, Whisper on-device auto-captions, draggable caption canvas, `.SRT` & `.VTT` subtitle exports, and 9:16 Smart Clips. 3 free HD exports included.
+  - **Pricing:** Free (3 HD exports) · Pro `$9.99/mo` or `$49.99/yr` (3-day trial) · Lifetime `$79.99`.
   - **App Store:** https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034
 
-- [ClipControl](https://spaceplantcorporationofficial.github.io/clipcontrol/) — App Store ID `6761507577`
-  - **What it replaces:** OpusClip ($348/yr), Eklipse, cloud Twitch/YouTube VOD clipping services.
-  - **Core capabilities:** Turn 1 long gaming stream, podcast, or recording into 10 ranked 9:16 viral Shorts offline. Interactive dual-crop Facecam + Gameplay split-screen editor, Word-by-Word Karaoke Highlight Pill captions, 1.15x Audio-Peak Facecam Zoom-Punch, Swipe-to-Approve Clip Drop triage, 1 kHz Profanity Auto-Bleep, and shareable `.clipkit` preset links.
+- [ClipControl: AI Stream Clipper](https://spaceplantcorporationofficial.github.io/clipcontrol/) — App Store ID `6761507577`
+  - **Core capabilities:** Turn 1 long gaming stream, podcast, or VOD into 10 ranked 9:16 viral Shorts offline. Interactive Facecam + Gameplay split-screen editor, Word-by-Word Karaoke Highlight Pill captions, 1.15x Audio-Peak Zoom-Punch, Swipe-to-Approve Clip Drop, and 1 kHz Profanity Auto-Bleep.
   - **App Store:** https://apps.apple.com/us/app/clipcontrol-ai-video-snippets/id6761507577
 
-- [BriefKit](https://spaceplantcorporationofficial.github.io/briefkit/) — App Store ID `6762632623`
-  - **What it replaces:** Gamma.app ($180/yr), Google NotebookLM Audio Overviews, and $30/mo faceless AI explainer video tools ($780/yr combined).
-  - **Core capabilities:** Drop a prompt, 30-page PDF, or whiteboard photo (Vision OCR) to generate designer pitch decks with native PowerPoint (`.pptx`) OpenXML export + study flashcards, offline NotebookLM-style 2-host conversational podcasts (Alex & Maya) with an auto-ducked lo-fi ambient score, and 30fps 16:9 YouTube/Keynote & 9:16 TikTok/Shorts narrated karaoke MP4 videos.
-  - **App Store:** https://apps.apple.com/app/id6762632623
-
 - [Music Sound Studio](https://apps.apple.com/app/id6739277754) — App Store ID `6739277754`
-  - **Core capabilities:** Native on-device music creation, studio vocal FX, and beat/instrument workstation for iPhone & iPad (5.0★ rated).
+  - **Core capabilities:** AI rap lyric generator, 48 studio 808 beat kits, key-locked Auto-Tune vocal + teleprompter recording, vertical lyric videos, and 3000x3000 album artwork on iPhone & iPad (`5.0★` rated).
+
+- [Happy Little Pile](https://apps.apple.com/app/id6824304641) — App Store ID `6824304641`
+  - **Core capabilities:** Tactile 3D cozy toy-matching puzzle game with 8 illustrated worlds, 800+ levels, Daily Quests, 7-Day Cozy Streak chests, and 50+ collectible toy finishes (`5.0★` rated, 100% playable offline).
+
+## Tier 2 — Pro, B2B & STEM Studios ([/pro/](https://spaceplantcorporationofficial.github.io/pro/))
+
+- [BriefKit 2.0](https://spaceplantcorporationofficial.github.io/briefkit/) (`6762632623`): Turn prompts, 30-page PDFs, or whiteboard photos into native PowerPoint (`.pptx`) pitch decks, 2-host offline podcasts, and 30fps karaoke explainer MP4s.
+- [TrimLedger: Cut List Planner](https://apps.apple.com/app/id6832685564) (`6832685564`, `$7.99` one-time): Offline woodworking board & sheet cut-list optimizer that prioritizes existing shop offcuts first.
+- [ScopeGuard: Scope Creep](https://apps.apple.com/app/id6799328660) (`6799328660`, `$4.99` one-time): Private on-device SOW diff & freelance client change-order generator.
+- [RoadOps: Load to Cash](https://apps.apple.com/app/id6765711326) (`6765711326`): Owner-operator trucking dispatch, true all-miles RPM calculator, offline BOL/POD capture, and invoice tracking.
+- [Avalon AI Privacy Preflight](https://apps.apple.com/app/id6762163636) (`6762163636`, `$2.99` one-time): 100% local PII, key, email & client-name scrubber before pasting prompts into cloud AI.
+- [FilamentBid: 3D Print Quotes](https://apps.apple.com/app/id6832800655) (`6832800655`): FDM 3D print cost, margin & 3-quantity client quote calculator for Mac, iPhone & iPad.
+- [SpacePlant Math Academy](https://apps.apple.com/app/id6839847702) (`6839847702`): 12 math branches, 8 interactive 60fps visual labs, adaptive diagnostic graph & offline Socratic AI tutor.
+- [SpacePlant 3D Labs](https://spaceplantcorporationofficial.github.io/3dlabs/): 15 interactive Metal PBR + AR Quick Look engineering, woodshop, Wi-Fi 7, solar van, acoustics, culinary, and STEM studios with scannable QR blueprints.
 
 ## Resources
 - [Press & Creator Media Kit](https://spaceplantcorporationofficial.github.io/press/)
+- [Growth Telemetry Dashboard](https://spaceplantcorporationofficial.github.io/dashboard/)
 - [Privacy Policy](https://spaceplant-privacy.garbarz.chatgpt.site/)

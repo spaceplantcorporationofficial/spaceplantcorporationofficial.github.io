@@ -522,16 +522,16 @@
 
           <div class="calc-panel">
             <div class="card-kicker">First-Year Savings</div>
-            <div class="calc-big" id="saveYear1">$224</div>
+            <div class="calc-big" id="saveYear1">$184</div>
             <div id="paybackMsg" style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
-              VoxStudio Pro pays for itself in ~8 weeks.
+              VoxStudio Pro pays for itself in ~15 weeks.
             </div>
             <div class="calc-row"><span>Selected cloud plan / yr</span><strong id="cloudYr">$264/yr</strong></div>
-            <div class="calc-row"><span>VoxStudio Pro (one-time)</span><strong style="color: var(--emerald);">$39.99 once</strong></div>
+            <div class="calc-row"><span>VoxStudio Pro (Lifetime / Annual)</span><strong style="color: var(--emerald);">$79.99 once · $49.99/yr</strong></div>
             <div class="calc-row"><span>Monthly character limit</span><strong style="color: var(--emerald);">Unlimited (On-Device)</strong></div>
-            <div class="calc-row"><span>3-Year Savings</span><strong id="saveYear3">$752</strong></div>
-            <a class="btn btn-white" style="width: 100%; margin-top: 18px;" href="https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034">
-              Download Free — Own Forever
+            <div class="calc-row"><span>3-Year Savings</span><strong id="saveYear3">$712</strong></div>
+            <a class="btn btn-white" style="width: 100%; margin-top: 18px;" href="https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034?ct=vox_web_calc&amp;mt=8">
+              Download Free (3 HD Exports) ↗
             </a>
           </div>
         </div>
@@ -696,13 +696,13 @@
     const tierBtns = document.querySelectorAll('.tier-btn');
     function recalc(monthly) {
       const annual = monthly * 12;
-      const y1 = Math.max(0, Math.round(annual - 39.99));
-      const y3 = Math.max(0, Math.round(annual * 3 - 39.99));
-      const weeks = Math.max(1, Math.round((39.99 / monthly) * 4.3));
+      const y1 = Math.max(0, Math.round(annual - 79.99));
+      const y3 = Math.max(0, Math.round(annual * 3 - 79.99));
+      const weeks = Math.max(1, Math.round((79.99 / monthly) * 4.3));
       document.getElementById('saveYear1').textContent = `$${y1.toLocaleString()}`;
       document.getElementById('saveYear3').textContent = `$${y3.toLocaleString()}`;
       document.getElementById('cloudYr').textContent = `$${annual.toLocaleString()}/yr`;
-      document.getElementById('paybackMsg').textContent = `VoxStudio Pro pays for itself in ~${weeks} week${weeks === 1 ? '' : 's'}.`;
+      document.getElementById('paybackMsg').textContent = `VoxStudio Lifetime pays for itself in ~${weeks} week${weeks === 1 ? '' : 's'}.`;
     }
     tierBtns.forEach((btn) => {
       btn.addEventListener('click', () => {

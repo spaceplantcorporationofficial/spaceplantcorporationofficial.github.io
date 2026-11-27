@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindStruct 2.0 — Real .md Vault, 60fps Graph &amp; 100% Offline Apple Silicon AI</title>
+  <meta name="description" content="Own real UTF-8 Markdown (.md) files in iCloud Drive or your Obsidian folder with a 60fps Knowledge Graph, Universal PDF/CSV/OCR import, and unlimited 105–124 tok/s offline Apple Silicon AI + native Mac MCP server." />
+  <meta name="apple-itunes-app" content="app-id=6761636919" />
+  <meta property="og:title" content="MindStruct 2.0 — Sovereign Markdown Vault + 100+ tok/s Offline Apple AI" />
+  <meta property="og:description" content="Zero cloud lock-in. Real .md files, 60fps Knowledge Graph, Airplane Mode AI with [[wikilink]] citations, and native Mac MCP server for Claude, Codex, Cursor & Antigravity." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #06080f;
+      --surface: #0f1422;
+      --elevated: #161d31;
+      --border: rgba(255,255,255,0.10);
+      --emerald: #29db8f;
+      --cyan: #2eccf0;
+      --violet: #a78bfa;
+      --amber: #f59e0b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 45% at 50% -10%, rgba(46,204,240,0.16), transparent 60%),
+        radial-gradient(ellipse 55% 40% at 85% 20%, rgba(167,139,250,0.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; backdrop-filter: blur(18px); background: rgba(6,8,15,0.84); z-index: 40;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 18px; }
+    .logo {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--cyan), var(--emerald));
+      display: grid; place-items: center; color: #041016; font-weight: 900;
+    }
+    .nav-links { display: flex; gap: 20px; font-size: 14px; font-weight: 700; color: var(--muted); }
+    .nav-links a:hover { color: #fff; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 20px; border-radius: 999px; font-weight: 800; font-size: 14px; cursor: pointer; border: none;
+    }
+    .btn-primary { background: linear-gradient(95deg, var(--emerald), var(--cyan)); color: #041016; }
+    .btn-ghost { background: var(--elevated); border: 1px solid var(--border); color: var(--text); }
+
+    .hero { padding: 68px 0 44px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 15px; border-radius: 999px;
+      background: rgba(46,204,240,0.12); border: 1px solid rgba(46,204,240,0.38);
+      color: var(--cyan); font-size: 11.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(36px, 5.6vw, 64px); font-weight: 900; letter-spacing: -0.038em; line-height: 1.05; max-width: 940px; margin: 0 auto 18px; }
+    .grad { background: linear-gradient(92deg, #fff 10%, var(--cyan) 50%, var(--emerald) 92%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 18.5px; color: var(--muted); max-width: 740px; margin: 0 auto 28px; }
+    .hero-ctas { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .bench-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;
+      max-width: 940px; margin: 0 auto 52px;
+    }
+    .bench-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; text-align: center; }
+    .bench-card strong { display: block; font-size: 24px; font-weight: 900; color: var(--emerald); }
+    .bench-card span { font-size: 12.5px; color: var(--muted); }
+
+    /* Interactive Vault Playground */
+    .cockpit {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+      overflow: hidden; box-shadow: 0 28px 80px rgba(0,0,0,0.55); margin-bottom: 64px;
+    }
+    .cockpit-bar {
+      display: flex; justify-content: space-between; align-items: center; padding: 12px 18px;
+      background: #0a0e18; border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 700;
+    }
+    .airplane-pill {
+      padding: 4px 10px; border-radius: 999px; background: rgba(245,158,11,0.16); color: var(--amber);
+      border: 1px solid rgba(245,158,11,0.4); font-size: 11px; font-weight: 800;
+    }
+    .cockpit-grid { display: grid; grid-template-columns: 240px 1.2fr 1fr; min-height: 410px; }
+    @media (max-width: 920px) { .cockpit-grid { grid-template-columns: 1fr; } }
+    .pane { padding: 18px; border-right: 1px solid var(--border); }
+    .pane:last-child { border-right: none; }
+    .note-btn {
+      display: block; width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px;
+      background: transparent; border: 1px solid transparent; color: var(--muted); font-size: 13px; font-weight: 700;
+      cursor: pointer; margin-bottom: 6px;
+    }
+    .note-btn.active, .note-btn:hover { background: var(--elevated); border-color: rgba(46,204,240,0.38); color: #fff; }
+    .md-preview {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; color: #dbeafe;
+      background: #090d16; border: 1px solid var(--border); border-radius: 14px; padding: 16px; white-space: pre-wrap; min-height: 290px;
+    }
+    .wikilink { color: var(--cyan); font-weight: 700; }
+    .ask-box { background: #090d16; border: 1px solid rgba(41,219,143,0.35); border-radius: 14px; padding: 14px; margin-top: 10px; font-size: 13px; }
+    .ask-q { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .q-chip {
+      font-size: 11.5px; font-weight: 700; padding: 6px 10px; border-radius: 999px;
+      background: var(--elevated); border: 1px solid var(--border); color: var(--text); cursor: pointer;
+    }
+    .q-chip:hover { border-color: var(--emerald); color: var(--emerald); }
+
+    /* MCP & Pricing */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 64px; }
+    @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px; }
+    .code {
+      background: #080b13; border: 1px solid var(--border); border-radius: 14px; padding: 14px;
+      font-family: ui-monospace, monospace; font-size: 12px; color: #a7f3d0; overflow-x: auto; margin-top: 12px;
+    }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 68px; }
+    @media (max-width: 880px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .price-card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; }
+    .price-card.featured { border-color: var(--emerald); box-shadow: 0 0 0 1px rgba(41,219,143,0.3), 0 20px 50px rgba(0,0,0,0.45); }
+    .price { font-size: 38px; font-weight: 900; margin: 10px 0 4px; }
+    .feat { list-style: none; display: grid; gap: 8px; font-size: 13.5px; color: #dce4f2; margin: 16px 0 22px; }
+    .feat li::before { content: "✓ "; color: var(--emerald); font-weight: 900; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0 54px; text-align: center; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="/" class="brand"><div class="logo">M</div> MindStruct 2.0</a>
+    <div class="nav-links">
+      <a href="/">← All SpacePlant Studios</a>
+      <a href="#playground">Airplane Mode Demo</a>
+      <a href="#mcp">Mac MCP Server</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/3dlabs/">3D Labs</a>
+    </div>
+    <a class="btn btn-primary" href="https://apps.apple.com/app/id6761636919?ct=mindstruct_web&amp;mt=8" target="_blank">Download Free on App Store ↗</a>
+  </nav>
+
+  <section class="hero">
+    <div class="eyebrow">iPhone · iPad · iPhone Duo · Mac · 100% On-Device Apple Intelligence</div>
+    <h1>Own Your <span class="grad">Real .md Files.</span><br/>Query Everything Offline at 124 tok/s.</h1>
+    <p>Point MindStruct 2.0 directly at an existing Obsidian folder or iCloud Drive vault. Get a 60fps Knowledge Graph, Universal PDF/CSV/OCR ingestion, grounded <code>[[wikilink]]</code> citations in Airplane Mode, and a native Mac MCP server — with zero cloud servers reading your thoughts.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://apps.apple.com/app/id6761636919?ct=mindstruct_hero&amp;mt=8" target="_blank">Get MindStruct Free on App Store</a>
+      <a class="btn btn-ghost" href="#playground">Try Interactive Vault Below ↓</a>
+    </div>
+    <div class="bench-strip">
+      <div class="bench-card"><strong>124.1 tok/s</strong><span>Verified on Mac mini M6</span></div>
+      <div class="bench-card"><strong>105.0 tok/s</strong><span>Verified on iPad mini A20 Pro</span></div>
+      <div class="bench-card"><strong>100% UTF-8 .md</strong><span>Zero Proprietary DB Lock-In</span></div>
+      <div class="bench-card"><strong>$0 Cloud Burn</strong><span>Unlimited Offline Queries</span></div>
+    </div>
+  </section>
+
+  <section id="playground" class="cockpit">
+    <div class="cockpit-bar">
+      <span>MindStruct 2.0 Studio · Local Vault: <code>~/Documents/Vault/FounderOS</code></span>
+      <span class="airplane-pill">✈ AIRPLANE MODE ON · 0 BYTES SENT TO CLOUD</span>
+    </div>
+    <div class="cockpit-grid">
+      <div class="pane">
+        <div style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;margin-bottom:10px">UTF-8 Markdown Files</div>
+        <button class="note-btn active" onclick="selectNote(0, this)">📄 Q4 Board Strategy.md</button>
+        <button class="note-btn" onclick="selectNote(1, this)">📄 Pricing &amp; Unit Economics.md</button>
+        <button class="note-btn" onclick="selectNote(2, this)">📄 Customer Interview — Acme.md</button>
+        <button class="note-btn" onclick="selectNote(3, this)">🕸 Synthesis / Ghost Links.md</button>
+      </div>
+      <div class="pane">
+        <div style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;margin-bottom:10px">Live Plain-Text Editor (Zero Lock-In)</div>
+        <div id="md-view" class="md-preview"></div>
+      </div>
+      <div class="pane">
+        <div style="font-size:11px;font-weight:800;letter-spacing:0.08em;color:var(--emerald);text-transform:uppercase;margin-bottom:10px">Ask Vault · Grounded On-Device AI</div>
+        <div class="ask-q">
+          <button class="q-chip" onclick="askVault(0)">Why did we raise Annual Pro?</button>
+          <button class="q-chip" onclick="askVault(1)">What blocked the Acme deal?</button>
+          <button class="q-chip" onclick="askVault(2)">Show unlinked Ghost Links</button>
+        </div>
+        <div id="ai-answer" class="ask-box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mcp" class="two-col">
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:12px">Built for AI-Native Builders</div>
+      <h2 style="font-size:26px;font-weight:900;margin-bottom:10px">Native Mac MCP Server Included</h2>
+      <p style="color:var(--muted);font-size:14.5px">Connect Claude Code, Codex, Cursor, or Antigravity directly to your local Markdown vault over JSON-RPC stdio — with folder-diverse retrieval and an append-only <code>.mindstruct/agent-audit.jsonl</code> receipt log visible right inside the app.</p>
+      <pre class="code">{
+  "mcpServers": {
+    "mindstruct": {
+      "command": "mindstruct-mcp",
+      "args": ["--vault", "~/Documents/MyVault"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="card">
+      <div class="eyebrow" style="margin-bottom:12px">Universal Offline Ingestion</div>
+      <h2 style="font-size:26px;font-weight:900;margin-bottom:10px">Drop Any File → Clean Markdown</h2>
+      <p style="color:var(--muted);font-size:14.5px;margin-bottom:14px">Import existing Obsidian vaults, Apple Notes exports, Notion zips, 50-page PDFs, CSV financial tables, JSON logs, or handwritten whiteboard photos via Apple Vision OCR — structured locally on Apple Silicon.</p>
+      <ul class="feat" style="margin:0">
+        <li>60fps Metal-accelerated Knowledge Graph &amp; automatic Ghost Link discovery</li>
+        <li>Apple Pencil sketching + diagram-to-Markdown synthesis on iPad</li>
+        <li>Seamless iCloud Drive sync across iPhone, iPad, iPhone Duo &amp; Mac</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div style="text-align:center;margin-bottom:28px">
+      <div class="eyebrow">Simple Sovereign Pricing</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-0.03em">Free Core + Unlimited Offline AI Forever.</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div style="font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase">Core Studio</div>
+        <div class="price">$0</div>
+        <div style="font-size:13px;color:var(--muted)">Free forever · Zero account required</div>
+        <ul class="feat">
+          <li>Real local <code>.md</code> files &amp; Obsidian folder compatibility</li>
+          <li>60fps interactive Knowledge Graph</li>
+          <li>Unlimited on-device Apple Silicon Ask Vault</li>
+          <li>Universal PDF, CSV, JSON &amp; OCR import</li>
+        </ul>
+        <a class="btn btn-ghost" style="margin-top:auto" href="https://apps.apple.com/app/id6761636919?ct=mindstruct_free&amp;mt=8" target="_blank">Download Free</a>
+      </div>
+      <div class="price-card featured">
+        <div style="font-size:12px;font-weight:800;color:var(--emerald);text-transform:uppercase">MindStruct Pro · Most Popular</div>
+        <div class="price">$99.99<span style="font-size:16px;color:var(--muted)">/yr</span></div>
+        <div style="font-size:13px;color:var(--muted)">7-day free trial · or $12.99/mo</div>
+        <ul class="feat">
+          <li>Unlimited multi-vault switching (Work, Research, Personal)</li>
+          <li>Background Compounding Digest &amp; Ghost Link synthesis</li>
+          <li>Apple Pencil Canvas-to-Markdown AI on iPad</li>
+          <li>Full iOS + iPadOS + macOS Universal unlock</li>
+        </ul>
+        <a class="btn btn-primary" style="margin-top:auto" href="https://apps.apple.com/app/id6761636919?ct=mindstruct_pro&amp;mt=8" target="_blank">Start Free Trial on App Store</a>
+      </div>
+      <div class="price-card">
+        <div style="font-size:12px;font-weight:800;color:var(--cyan);text-transform:uppercase">Sovereign Lifetime</div>
+        <div class="price">$249.99</div>
+        <div style="font-size:13px;color:var(--muted)">Pay once · Own forever · $0 subscriptions</div>
+        <ul class="feat">
+          <li>Every MindStruct Pro feature unlocked permanently</li>
+          <li>Native Mac MCP Server &amp; Agent Audit Ledger</li>
+          <li>Zero cloud AI token meters or recurring bills</li>
+          <li>Family &amp; multi-device Apple Account support</li>
+        </ul>
+        <a class="btn btn-ghost" style="margin-top:auto" href="https://apps.apple.com/app/id6761636919?ct=mindstruct_lifetime&amp;mt=8" target="_blank">Own MindStruct Forever ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    SpacePlant Corporation · <a href="/" style="text-decoration:underline">All SpacePlant Apps</a> · <a href="/3dlabs/" style="text-decoration:underline">3D Labs</a> · <a href="/pro/" style="text-decoration:underline">Pro &amp; B2B Tools</a> · <a href="/press/" style="text-decoration:underline">Press Kit</a>
+  </footer>
+</div>
+
+<script>
+const NOTES = [
+`# Q4 Board Strategy\nUpdated: 2026-11-26 · Tags: #strategy #fcf\n\n- Consolidate engineering focus onto sovereign on-device AI studios.\n- Zero cloud LLM COGS preserves **85%+ net margin** across every seat.\n- Linked analysis: [[Pricing & Unit Economics]] and [[Customer Interview — Acme]].`,
+`# Pricing & Unit Economics\nTags: #pricing #unit-economics\n\n- Cloud wrapper competitors burn $4–$11/user/mo in API inference.\n- MindStruct runs 100% on Apple M-series & A20 Pro Neural Engines ($0 server burn).\n- Annual Pro ($99.99/yr) + Sovereign Lifetime ($249.99) maximize immediate Free Cash Flow.`,
+`# Customer Interview — Acme Legal\nTags: #enterprise #privacy\n\n- Security team **blocked all cloud AI note takers** due to client NDA clauses.\n- Requirement: plain UTF-8 Markdown on encrypted local disk + zero external network calls.\n- Approved MindStruct 2.0 pilot after verifying Airplane Mode at 105 tok/s.`,
+`# Ghost Links & Compounding Digest\nGenerated locally on Apple M6 (0 frontier tokens)\n\n- Connected [[Customer Interview — Acme]] ↔ [[Q4 Board Strategy]]:\n  Zero-cloud NDA compliance is the #1 wedge for legal, medical & founder teams.`
+];
+const ANSWERS = [
+  `<strong>Grounded Answer (118 tok/s · Local Neural Engine):</strong><br/>Per <code>[[Pricing &amp; Unit Economics]]</code>, running 100% on-device eliminates $4–$11/mo in cloud API burn, letting Annual Pro ($99.99/yr) and Lifetime ($249.99) compound directly into Free Cash Flow.`,
+  `<strong>Grounded Answer (105 tok/s · Local Neural Engine):</strong><br/>Per <code>[[Customer Interview — Acme]]</code>, Acme Legal's security team blocked cloud AI note apps under client NDAs and required plain UTF-8 <code>.md</code> files running 100% offline in Airplane Mode.`,
+  `<strong>Ghost Link Discovered Locally:</strong><br/><code>[[Customer Interview — Acme]]</code> ↔ <code>[[Q4 Board Strategy]]</code> share high semantic overlap around <em>zero-cloud NDA compliance</em> (confidence 0.94).`
+];
+function selectNote(i, btn) {
+  document.querySelectorAll('.note-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('md-view').textContent = NOTES[i];
+}
+function askVault(i) {
+  document.getElementById('ai-answer').innerHTML = ANSWERS[i];
+}
+document.getElementById('md-view').textContent = NOTES[0];
+askVault(0);
+</script>
+</body>
+</html>
