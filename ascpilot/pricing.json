@@ -1,0 +1,43 @@
+{
+  "product": "ASC Pilot",
+  "vendor": "SpacePlant Corporation",
+  "summary": "Find the money your App Store Connect account is leaking. CLI + MCP server for AI agents.",
+  "currency": "USD",
+  "buy_page": "https://spaceplantcorporationofficial.github.io/ascpilot/#pricing",
+  "payment_processor": "stripe",
+  "license_delivery": "Key shown on the thank-you page right after payment; also `ascpilot license claim <cs_... session id>`. Offline Ed25519 verification.",
+  "refund_policy": "Full refund within 14 days if it doesn't find anything useful.",
+  "plans": [
+    {
+      "id": "free",
+      "price_usd": 0,
+      "billing": "free",
+      "checkout_url": null,
+      "features": ["All apps, status & IAP health", "Review radar", "Leak summary + worst leak", "CI gate", "3 MCP tools"]
+    },
+    {
+      "id": "pro",
+      "price_usd": 49,
+      "billing": "one-time",
+      "seats": "1 developer, all their machines",
+      "checkout_url": null,
+      "features": ["Every leak with step-by-step fixes", "Money view from Apple's Sales API", "Installs-but-no-payers detection", "Markdown Cash-Flow report", "All MCP tools, full detail", "All 1.x updates"]
+    },
+    {
+      "id": "studio",
+      "price_usd": 149,
+      "billing": "one-time",
+      "seats": "unlimited within one company",
+      "checkout_url": null,
+      "features": ["Everything in Pro", "Unlimited seats in one company", "Multiple App Store Connect accounts", "Priority fixes & rule requests"]
+    }
+  ],
+  "install": {
+    "pipx": "pipx install git+https://github.com/spaceplantcorporationofficial/ascpilot",
+    "uvx": "uvx --from git+https://github.com/spaceplantcorporationofficial/ascpilot ascpilot",
+    "mcp_claude_code": "claude mcp add ascpilot -- ascpilot mcp",
+    "mcp_codex": "codex mcp add ascpilot -- ascpilot mcp",
+    "mcp_registry_name": "io.github.spaceplantcorporationofficial/ascpilot"
+  },
+  "updated": "2026-11-27"
+}

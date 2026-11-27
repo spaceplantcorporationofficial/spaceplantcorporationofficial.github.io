@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Thank you — your ASC Pilot license</title>
+<style>
+  :root{--bg:#07090f;--surface:#0f131e;--border:rgba(255,255,255,.09);--em:#29db8f;--gold:#faad2e;--text:#f4f7fb;--muted:#97a3ba}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,Inter,system-ui,sans-serif;background:radial-gradient(ellipse 80% 45% at 50% -10%,rgba(41,219,143,.15),transparent 60%),var(--bg);color:var(--text);line-height:1.55}
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px}
+  h1{font-size:38px;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+  p{color:var(--muted);margin-bottom:16px}
+  .box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin:22px 0}
+  code,.key{font-family:ui-monospace,"SF Mono",Menlo,monospace}
+  .key{display:block;word-break:break-all;background:#05070c;border:1px solid var(--border);border-radius:10px;padding:14px;font-size:13px;color:#e6fff3}
+  .btn{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:10px;background:var(--em);color:#04120b;font-weight:700;border:0;cursor:pointer}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid var(--muted);border-top-color:var(--em);border-radius:50%;animation:s 1s linear infinite;vertical-align:-2px;margin-right:8px}
+  @keyframes s{to{transform:rotate(360deg)}}
+  ol{margin:10px 0 0 20px;color:var(--muted)} li{margin:6px 0}
+  a{color:var(--em)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Thank you. 🎉</h1>
+  <p>Your payment went through. Your ASC Pilot license key is being minted — it appears below automatically (usually within 1–3 minutes). Keep this tab open or bookmark it.</p>
+  <div class="box" id="status"><span class="spin"></span>Preparing your license…</div>
+  <div class="box" id="done" style="display:none">
+    <b id="plan">Pro</b> license
+    <span class="key" id="key"></span>
+    <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('key').textContent);this.textContent='Copied'">Copy key</button>
+    <ol>
+      <li>Install (if you haven't): <code>pipx install git+https://github.com/spaceplantcorporationofficial/ascpilot</code></li>
+      <li>Activate: <code id="act">ascpilot license activate KEY</code></li>
+      <li>Run: <code>ascpilot leaks</code> · <code>ascpilot money</code> · <code>ascpilot report --out cashflow.md</code></li>
+    </ol>
+  </div>
+  <p id="later">Lost this page? Run <code id="claimcmd">ascpilot license claim &lt;session id&gt;</code> any time — it fetches and activates the same key. Questions or refund (14-day, no questions asked): <a href="https://github.com/spaceplantcorporationofficial/ascpilot/issues/new?labels=license-request&title=License%20help">open a ticket</a>.</p>
+</div>
+<script>
+const sid = new URLSearchParams(location.search).get("session_id") || "";
+const enc = new TextEncoder();
+async function sha(bytes){ return new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)); }
+function cat(...parts){ const n=parts.reduce((a,p)=>a+p.length,0); const o=new Uint8Array(n); let i=0; for(const p of parts){o.set(p,i); i+=p.length;} return o; }
+const hex = b => [...b].map(x=>x.toString(16).padStart(2,"0")).join("");
+async function claimId(){ return hex(await sha(enc.encode("ascpilot-claim-id:"+sid))).slice(0,40); }
+async function openSealed(blob){
+  const ct = Uint8Array.from(atob(blob.ct), c=>c.charCodeAt(0));
+  const macKey = await crypto.subtle.importKey("raw", await sha(enc.encode("ascpilot-claim-mac:"+sid)), {name:"HMAC",hash:"SHA-256"}, false, ["sign"]);
+  const mac = hex(new Uint8Array(await crypto.subtle.sign("HMAC", macKey, ct)));
+  if (mac !== blob.mac) return null;
+  let ks = new Uint8Array(0), c = 0;
+  while (ks.length < ct.length){ const ctr = new Uint8Array([c>>>24&255,c>>>16&255,c>>>8&255,c&255]); ks = cat(ks, await sha(cat(enc.encode("ascpilot-claim-key:"+sid), ctr))); c++; }
+  return new TextDecoder().decode(ct.map((b,i)=>b^ks[i]));
+}
+async function poll(n){
+  const st = document.getElementById("status");
+  if (!sid.startsWith("cs_")) { st.innerHTML = "No checkout session found in this link. If you just paid, use the link from your browser history or open a ticket below."; return; }
+  document.getElementById("claimcmd").textContent = "ascpilot license claim " + sid;
+  try {
+    const r = await fetch("../claims/" + await claimId() + ".json?t=" + Date.now(), {cache:"no-store"});
+    if (r.ok) {
+      const blob = await r.json(); const key = await openSealed(blob);
+      if (key) {
+        st.style.display = "none"; document.getElementById("done").style.display = "block";
+        document.getElementById("key").textContent = key;
+        document.getElementById("plan").textContent = blob.plan === "studio" ? "Studio" : "Pro";
+        document.getElementById("act").textContent = "ascpilot license activate " + key;
+        return;
+      }
+    }
+  } catch(e) {}
+  if (n > 120) { st.innerHTML = "Still minting — this is taking longer than usual. Your payment is safe. Run <code>ascpilot license claim " + sid + "</code> later, or open a ticket below and we'll send your key."; return; }
+  st.innerHTML = '<span class="spin"></span>Minting your license… (' + Math.min(99, Math.round(n/0.6)) + '%)';
+  setTimeout(()=>poll(n+1), 5000);
+}
+poll(0);
+</script>
+</body>
+</html>

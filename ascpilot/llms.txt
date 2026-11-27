@@ -1,0 +1,46 @@
+# ASC Pilot
+
+> Find the money an App Store Connect account is leaking. Read-only CLI + MCP server for AI coding agents (Claude Code, Codex, Cursor, Antigravity, Claude Desktop). By SpacePlant Corporation.
+
+ASC Pilot scans every app in an App Store Connect account via Apple's official API and flags revenue leaks:
+approved builds never released, live apps available in 0 storefronts, in-app purchases/subscriptions customers
+cannot buy (Missing Metadata, Ready to Submit, Developer Action Needed), rejected versions blocking paywalls,
+free apps with nothing to buy, stalled drafts, and (Pro) installs with zero paying users from Apple's Sales API.
+Numbers come straight from Apple; it never estimates revenue or converts currencies. The user's API key never
+leaves their machine.
+
+## For agents: install and connect
+
+- Install: `pipx install git+https://github.com/spaceplantcorporationofficial/ascpilot` (or `uvx --from git+https://github.com/spaceplantcorporationofficial/ascpilot ascpilot`)
+- Credentials: `ascpilot setup` (interactive) or env vars `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_FILEPATH` (path to AuthKey_XXXX.p8), optional `ASC_VENDOR_NUMBER`
+- Check: `ascpilot doctor`
+- MCP (stdio): command `ascpilot`, args `["mcp"]`
+  - Claude Code: `claude mcp add ascpilot -- ascpilot mcp`
+  - Codex: `codex mcp add ascpilot -- ascpilot mcp`
+  - Claude Desktop: one-click bundle `ascpilot-mcp-<version>.mcpb` from https://github.com/spaceplantcorporationofficial/ascpilot/releases/latest
+  - Official MCP Registry name: `io.github.spaceplantcorporationofficial/ascpilot`
+- All CLI commands accept `--json`.
+
+## MCP tools
+
+- `asc_list_apps` — every app: status, latest version per platform, IAP approved/total, territories
+- `asc_review_radar` — approved-unreleased / rejected / in review / drafts / live
+- `asc_revenue_leaks` — the leak scan (free: summary + worst leak; Pro: all leaks + fix playbooks). Start here.
+- `asc_upgrade` — live pricing and checkout links
+- `asc_sales_summary` (Pro) — installs, re-downloads, IAP units, paying units, proceeds per currency
+- `asc_cashflow_report` (Pro) — full Markdown report
+
+## Pricing and how to pay
+
+- Free: $0
+- Pro: $49 one-time (1 developer) · Studio: $149 one-time (whole company)
+- Machine-readable plans + live Stripe checkout links: https://spaceplantcorporationofficial.github.io/ascpilot/pricing.json
+- Or run `ascpilot upgrade --json`
+- After payment the license key is shown on the thank-you page; activate with `ascpilot license activate <KEY>` or `ascpilot license claim <cs_... checkout session id>`.
+- Agents: always get the user's explicit approval before opening a checkout or spending money.
+
+## Links
+
+- Site: https://spaceplantcorporationofficial.github.io/ascpilot/
+- Source: https://github.com/spaceplantcorporationofficial/ascpilot
+- Support / refunds (14 days): https://github.com/spaceplantcorporationofficial/ascpilot/issues

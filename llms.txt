@@ -37,7 +37,7 @@
 
 ## Developer Tools
 
-- [ASC Pilot](https://spaceplantcorporationofficial.github.io/ascpilot/): App Store Connect revenue leak scanner — CLI + MCP server for Claude Code, Codex, Cursor and Antigravity. Finds approved-but-unreleased builds, apps off sale in every storefront, in-app purchases customers cannot buy (Missing Metadata / Ready to Submit), rejections blocking paywalls, and installs with zero payers. Read-only, zero dependencies, key stays local. Free core (MIT) · Pro $49 one-time · Studio $149. Source: https://github.com/spaceplantcorporationofficial/ascpilot
+- [ASC Pilot](https://spaceplantcorporationofficial.github.io/ascpilot/): App Store Connect revenue leak scanner — CLI + MCP server for Claude Code, Codex, Cursor and Antigravity. Finds approved-but-unreleased builds, apps off sale in every storefront, in-app purchases customers cannot buy (Missing Metadata / Ready to Submit), rejections blocking paywalls, and installs with zero payers. Read-only, zero dependencies, key stays local. Free core (MIT) · Pro $49 one-time · Studio $149. Source: https://github.com/spaceplantcorporationofficial/ascpilot · Agent guide: https://spaceplantcorporationofficial.github.io/ascpilot/llms.txt · Pricing JSON: https://spaceplantcorporationofficial.github.io/ascpilot/pricing.json · MCP Registry: io.github.spaceplantcorporationofficial/ascpilot
 
 ## Resources
 - [Community Creator Preset Gallery (.clipstyle, .voxcaption & BriefKit Themes)](https://spaceplantcorporationofficial.github.io/community/)

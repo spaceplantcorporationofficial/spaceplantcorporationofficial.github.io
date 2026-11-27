@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://spaceplantcorporationofficial.github.io/ascpilot/" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://spaceplantcorporationofficial.github.io/ascpilot/" />
+<link rel="alternate" type="text/plain" title="LLM instructions" href="/ascpilot/llms.txt" />
+<link rel="alternate" type="application/json" title="Pricing" href="/ascpilot/pricing.json" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"ASC Pilot","operatingSystem":"macOS, Linux","applicationCategory":"DeveloperApplication","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"49","priceCurrency":"USD","name":"Pro (founding price)"},{"@type":"Offer","price":"149","priceCurrency":"USD","name":"Studio"}],"publisher":{"@type":"Organization","name":"SpacePlant Corporation"}}
 </script>
@@ -136,6 +138,9 @@
       </div>
       <div class="code">$ claude mcp add ascpilot -- ascpilot mcp
 $ codex  mcp add ascpilot -- ascpilot mcp
+<span class="t-dim"># Claude Desktop: one-click .mcpb in Releases
+# MCP Registry: io.github.spaceplantcorporationofficial/ascpilot
+# Agents: /ascpilot/llms.txt · /ascpilot/pricing.json</span>
 
 <span class="t-dim"># then just ask:</span>
 <span class="t-em">›</span> Which of my apps are leaking revenue?
@@ -182,16 +187,21 @@ $ codex  mcp add ascpilot -- ascpilot mcp
   <footer>ASC Pilot is made by <a href="/">SpacePlant Corporation</a>. Not affiliated with Apple. App Store Connect is a trademark of Apple Inc. · <a href="https://github.com/spaceplantcorporationofficial/ascpilot">Source</a></footer>
 </div>
 <script>
-  // Checkout links. Empty string => founding-license reservation via GitHub (no account email needed).
-  const CHECKOUT = { pro: "", studio: "" };
+  // Live checkout links come from pricing.json (single source of truth, also read by the CLI and MCP server).
   const RESERVE = plan => "https://github.com/spaceplantcorporationofficial/ascpilot/issues/new?labels=license-request&title=" +
     encodeURIComponent("Founding " + plan + " license") + "&body=" +
     encodeURIComponent("Plan: " + plan + "\nEmail for the license key + invoice:\nNumber of apps in your account:\n\n(We'll reply with a secure checkout link within 24h. Founding price is locked for you.)");
-  document.querySelectorAll(".buy").forEach(a => {
-    const plan = a.dataset.plan;
-    a.href = CHECKOUT[plan] || RESERVE(plan);
-    if (!CHECKOUT[plan]) { a.textContent = plan === "pro" ? "Reserve Pro at $49" : "Reserve Studio"; a.target = "_blank"; a.rel = "noopener"; }
-  });
+  function wire(links){
+    document.querySelectorAll(".buy").forEach(a => {
+      const plan = a.dataset.plan, url = links[plan];
+      if (url) { a.href = url; a.textContent = plan === "pro" ? "Buy Pro — $49" : "Buy Studio — $149"; a.removeAttribute("target"); }
+      else { a.href = RESERVE(plan); a.textContent = plan === "pro" ? "Reserve Pro at $49" : "Reserve Studio"; a.target = "_blank"; a.rel = "noopener"; }
+    });
+  }
+  wire({});
+  fetch("pricing.json?t=" + Date.now(), {cache: "no-store"}).then(r => r.json()).then(j => {
+    const links = {}; (j.plans || []).forEach(p => { if (p.checkout_url) links[p.id] = p.checkout_url; }); wire(links);
+  }).catch(() => {});
 </script>
 </body>
 </html>
