@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASC Pilot Pro — Live Sample Cash-Flow Report</title>
+<meta name="description" content="See exactly what ASC Pilot Pro outputs: ranked App Store Connect revenue leaks, step-by-step fix playbooks, and Apple Sales API proceeds." />
+<link rel="canonical" href="https://spaceplantcorporationofficial.github.io/ascpilot/demo/" />
+<style>
+  :root{--bg:#07090f;--surface:#0f131e;--elev:#151b2b;--border:rgba(255,255,255,.09);--em:#29db8f;--cy:#2eccf0;--gold:#faad2e;--red:#ff5b5b;--text:#f4f7fb;--muted:#97a3ba}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;background:radial-gradient(ellipse 80% 40% at 50% -10%,rgba(41,219,143,.13),transparent 60%),var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px 90px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border);gap:14px;flex-wrap:wrap}
+  .logo{font-weight:800;letter-spacing:-.02em;font-size:18px}.logo span{color:var(--em)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:11px;font-weight:700;font-size:14px;border:1px solid var(--border);cursor:pointer}
+  .btn.primary{background:var(--em);color:#04120b;border-color:transparent}.btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:var(--elev)}
+  .head{padding:44px 0 26px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--em);background:rgba(41,219,143,.1);border:1px solid rgba(41,219,143,.28);padding:5px 11px;border-radius:999px;margin-bottom:14px}
+  h1{font-size:38px;letter-spacing:-.03em;line-height:1.12}
+  .lead{color:var(--muted);font-size:16px;margin-top:10px;max-width:720px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 30px}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:18px}
+  .stat b{display:block;font-size:30px;letter-spacing:-.03em}.stat span{color:var(--muted);font-size:13px}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .tab{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer}
+  .tab.active{background:var(--elev);color:var(--text);border-color:rgba(255,255,255,.26)}
+  .leak{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:14px}
+  .leak.hidden{display:none}
+  .leak-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .sev{font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:6px}
+  .crit{background:rgba(255,91,91,.22);color:#ff8a8a}.high{background:rgba(250,173,46,.18);color:var(--gold)}.med{background:rgba(46,204,240,.14);color:var(--cy)}
+  .leak h3{font-size:17px}.leak .det{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .skus{background:#05070c;border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;color:#d6deee;margin-bottom:12px;overflow-x:auto}
+  .skus div{padding:2px 0}
+  .fix{border-left:2px solid rgba(41,219,143,.45);padding-left:14px;font-size:14px;color:#cfd6e4}
+  .fix b{color:var(--em);display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .fix ol{margin-left:18px}.fix li{margin:4px 0}
+  .money{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin-top:34px;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:14px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+  th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .cta-bar{margin-top:36px;background:linear-gradient(135deg,rgba(41,219,143,.13),rgba(46,204,240,.08));border:1px solid rgba(41,219,143,.4);border-radius:16px;padding:26px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/ascpilot/">← ASC<span>Pilot</span></a>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn ghost" href="/ascpilot/#install">Install free</a>
+      <a class="btn primary buy" data-plan="pro" href="/ascpilot/#pricing">Buy Pro — $49</a>
+    </div>
+  </nav>
+
+  <header class="head">
+    <div class="pill">Sample Output · ascpilot report --out cashflow.md</div>
+    <h1>What an ASC Pilot Pro Cash-Flow Report looks like</h1>
+    <p class="lead">Generated directly from Apple's App Store Connect API + daily Sales Summary TSVs. Every leak below is an exact pattern found in real indie &amp; studio accounts — complete with product IDs and step-by-step fixes.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>131</b><span>apps scanned (95s, 493 calls)</span></div>
+    <div class="stat"><b style="color:var(--red)">2</b><span>critical (off sale / unreleased)</span></div>
+    <div class="stat"><b style="color:var(--gold)">72</b><span>frozen IAPs users can't buy</span></div>
+    <div class="stat"><b style="color:var(--cy)">$0.00</b><span>observed 14d proceeds (23 new installs)</span></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="filt('all',this)">All sample leaks (5)</button>
+    <button class="tab" onclick="filt('critical',this)">Critical (1)</button>
+    <button class="tab" onclick="filt('high',this)">High (3)</button>
+    <button class="tab" onclick="filt('medium',this)">Medium (1)</button>
+  </div>
+
+  <article class="leak" data-sev="critical">
+    <div class="leak-top"><span class="sev crit">CRITICAL</span><h3>SpacePlant SI — Live build available in 0 territories</h3></div>
+    <p class="det">The app is approved by Apple, shipped 31 days ago, and switched off in all 175 storefronts — completely invisible on the App Store.</p>
+    <div class="fix"><b>Fix playbook (included in Pro)</b><ol>
+      <li>Open App Store Connect → the app → <b>Pricing and Availability</b>.</li>
+      <li>Under Availability, enable all 175 territories (or your target markets) and click Save.</li>
+      <li>No new App Review is required — it goes live within a few hours.</li>
+    </ol></div>
+  </article>
+
+  <article class="leak" data-sev="high">
+    <div class="leak-top"><span class="sev high">HIGH</span><h3>Happy Little Pile — 3 finished product(s) never submitted</h3></div>
+    <p class="det">Products sitting in <code>READY_TO_SUBMIT</code> look complete in App Store Connect, but Apple's servers will not return them to StoreKit — customers cannot buy them.</p>
+    <div class="skus">
+      <div>· Cozy Star Chest (com.spaceplant.happylittlepile.stars.chest, iap)</div>
+      <div>· Grand Star Vault (com.spaceplant.happylittlepile.stars.vault, iap)</div>
+      <div>· Star Pouch (com.spaceplant.happylittlepile.stars.pouch, iap)</div>
+    </div>
+    <div class="fix"><b>Fix playbook (included in Pro)</b><ol>
+      <li>If the app already has an approved IAP: open each product page and click <b>Submit for Review</b> directly.</li>
+      <li>If it has never had an approved IAP: attach all 3 under your next version's <b>In-App Purchases and Subscriptions</b> section, then submit the version.</li>
+    </ol></div>
+  </article>
+
+  <article class="leak" data-sev="high">
+    <div class="leak-top"><span class="sev high">HIGH</span><h3>AI: Athletic Intelligence — 5 product(s) stuck in Missing Metadata</h3></div>
+    <p class="det">These 2 subscriptions and 3 IAPs are incomplete, so the live paywall silently fails to load them.</p>
+    <div class="skus">
+      <div>· Monthly Ad-Free Membership (athleticintelligence.adfree.monthly, subscription)</div>
+      <div>· Yearly Ad-Free Membership (athleticintelligence.adfree.yearly, subscription)</div>
+      <div>· Small / Growing / Big Support (3 consumable IAPs)</div>
+    </div>
+    <div class="fix"><b>Fix playbook (included in Pro)</b><ol>
+      <li>Add display name + description localization, price tier, and an App Review screenshot to each item.</li>
+      <li>For subscriptions, also fill in the Subscription Group localization and territory availability.</li>
+      <li>Once status flips to <code>READY_TO_SUBMIT</code>, submit them for review.</li>
+    </ol></div>
+  </article>
+
+  <article class="leak" data-sev="high">
+    <div class="leak-top"><span class="sev high">HIGH</span><h3>FilamentBid: 3D Print Quotes — 1 finished product never submitted</h3></div>
+    <p class="det">Live on the App Store, free download, and its single monetization SKU (<code>com.spaceplant.filamentbid.removeads</code>) was never submitted to Apple.</p>
+    <div class="fix"><b>Fix playbook (included in Pro)</b><ol>
+      <li>Attach <code>com.spaceplant.filamentbid.removeads</code> to your next app version submission (first IAP on this app requires a version binary).</li>
+    </ol></div>
+  </article>
+
+  <article class="leak" data-sev="medium">
+    <div class="leak-top"><span class="sev med">MEDIUM</span><h3>ClipControl: AI Stream Clipper — 13 new installs, 0 paid units</h3></div>
+    <p class="det">Detected via Apple's official daily Sales API (12/14 daily reports available). Traffic is arriving, but conversion is 0.0%.</p>
+    <div class="fix"><b>Fix playbook (included in Pro)</b><ol>
+      <li>Move the paywall to the first value moment (after first clip export), not cold launch.</li>
+      <li>Verify every StoreKit product ID shown in the paywall matches an <code>APPROVED</code> SKU above.</li>
+    </ol></div>
+  </article>
+
+  <section class="money">
+    <h2 style="font-size:20px">Money View (Apple Sales API · <code>ascpilot money --days 14</code>)</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:4px">Strict Apple-published numbers per currency — never estimated, never converted with guessed FX rates.</p>
+    <table>
+      <thead><tr><th>App</th><th class="num">New</th><th class="num">Re-dl</th><th class="num">IAP</th><th class="num">Paying</th><th class="num">Pay/New</th><th class="num">Proceeds</th></tr></thead>
+      <tbody>
+        <tr><td><b>ClipControl: AI Stream Clipper</b></td><td class="num">13</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num" style="color:var(--gold)">0.0%</td><td class="num">0</td></tr>
+        <tr><td><b>Grocery Pickup, The Game</b></td><td class="num">7</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num" style="color:var(--gold)">0.0%</td><td class="num">0</td></tr>
+        <tr><td><b>Music Sound Studio</b></td><td class="num">1</td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0.0%</td><td class="num">0</td></tr>
+        <tr><td><b>TripCraft: AI Travel Planner</b></td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0.0%</td><td class="num">0</td></tr>
+        <tr><td><b>Planette</b></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0.0%</td><td class="num">0</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="cta-bar">
+    <div>
+      <h2 style="font-size:22px;margin-bottom:4px">Run this on your own App Store Connect account</h2>
+      <p style="color:var(--muted);font-size:14px">One fixed IAP usually pays for Pro 10× over. 14-day full refund if it finds nothing useful.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn primary buy" data-plan="pro" href="/ascpilot/#pricing">Buy Pro — $49</a>
+      <a class="btn ghost buy" data-plan="studio" href="/ascpilot/#pricing">Buy Studio — $149</a>
+    </div>
+  </div>
+</div>
+<script>
+function filt(sev, btn){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".leak").forEach(el=>el.classList.toggle("hidden", sev!=="all" && el.dataset.sev!==sev));
+}
+fetch("../pricing.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(j=>{
+  const links={}; (j.plans||[]).forEach(p=>{if(p.checkout_url)links[p.id]=p.checkout_url});
+  document.querySelectorAll(".buy").forEach(a=>{const u=links[a.dataset.plan]; if(u) a.href=u;});
+}).catch(()=>{});
+</script>
+</body>
+</html>
