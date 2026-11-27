@@ -23,7 +23,7 @@
   nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border)}
   .logo{font-weight:800;letter-spacing:-.02em;font-size:18px}.logo span{color:var(--em)}
   nav .links a{color:var(--muted);margin-left:22px;font-size:14px}nav .links a:hover{color:var(--text)}
-  .hero{padding:72px 0 40px;display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+  .hero{padding:72px 0 40px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:44px;align-items:center}
   .pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red);background:rgba(255,91,91,.1);border:1px solid rgba(255,91,91,.25);padding:6px 12px;border-radius:999px;margin-bottom:18px}
   h1{font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
   h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--red));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -33,7 +33,8 @@
   .btn.primary{background:var(--em);color:#04120b;border-color:transparent}.btn.primary:hover{filter:brightness(1.08)}
   .btn.ghost{background:var(--elev)}.btn.ghost:hover{border-color:rgba(255,255,255,.25)}
   .install{margin-top:22px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
-  .install code{color:var(--text);overflow-x:auto;white-space:nowrap}
+  .install code{color:var(--text);overflow-x:auto;white-space:nowrap;min-width:0;flex:1}
+  .hero>*,.two>*{min-width:0}
   .install button{background:none;border:1px solid var(--border);color:var(--muted);border-radius:7px;padding:4px 9px;cursor:pointer;font-size:12px}
   .term{background:#05070c;border:1px solid var(--border);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden}
   .term .bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--border)}.term .bar i{width:11px;height:11px;border-radius:50%;background:#2a3142}
@@ -51,7 +52,7 @@
   .sev{font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 7px;border-radius:6px;display:inline-block;margin-bottom:10px}
   .crit{background:rgba(255,91,91,.18);color:#ff8a8a}.high{background:rgba(250,173,46,.15);color:var(--gold)}.med{background:rgba(46,204,240,.12);color:var(--cy)}
   .code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;background:#05070c;border:1px solid var(--border);border-radius:12px;padding:18px;color:#cfd6e4;white-space:pre;overflow-x:auto}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
   .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .price{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column}
   .price.best{border-color:rgba(41,219,143,.55);box-shadow:0 0 0 1px rgba(41,219,143,.25),0 20px 60px rgba(41,219,143,.08)}
@@ -61,7 +62,7 @@
   .faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:10px}
   .faq summary{cursor:pointer;font-weight:650}.faq p{color:var(--muted);margin-top:10px;font-size:15px}
   footer{padding:36px 0 60px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
-  @media(max-width:900px){.hero,.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid3,.prices{grid-template-columns:1fr}h1{font-size:40px}}
+  @media(max-width:900px){.hero,.two{grid-template-columns:minmax(0,1fr)}nav{flex-wrap:wrap;gap:10px}nav .links a{margin:0 14px 0 0;white-space:nowrap;display:inline-block}.stats{grid-template-columns:repeat(2,1fr)}.grid3,.prices{grid-template-columns:1fr}h1{font-size:40px}}
 </style>
 </head>
 <body>
