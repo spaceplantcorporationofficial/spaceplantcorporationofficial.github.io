@@ -13,23 +13,41 @@
       "price_usd": 0,
       "billing": "free",
       "checkout_url": null,
-      "features": ["All apps, status & IAP health", "Review radar", "Leak summary + worst leak", "CI gate", "3 MCP tools"]
+      "features": [
+        "All apps, status & IAP health",
+        "Review radar",
+        "Leak summary + worst leak",
+        "CI gate",
+        "3 MCP tools"
+      ]
     },
     {
       "id": "pro",
       "price_usd": 49,
       "billing": "one-time",
       "seats": "1 developer, all their machines",
-      "checkout_url": null,
-      "features": ["Every leak with step-by-step fixes", "Money view from Apple's Sales API", "Installs-but-no-payers detection", "Markdown Cash-Flow report", "All MCP tools, full detail", "All 1.x updates"]
+      "checkout_url": "https://buy.stripe.com/eVq7sMcjE8Se4CU3wE7ok28",
+      "features": [
+        "Every leak with step-by-step fixes",
+        "Money view from Apple's Sales API",
+        "Installs-but-no-payers detection",
+        "Markdown Cash-Flow report",
+        "All MCP tools, full detail",
+        "All 1.x updates"
+      ]
     },
     {
       "id": "studio",
       "price_usd": 149,
       "billing": "one-time",
       "seats": "unlimited within one company",
-      "checkout_url": null,
-      "features": ["Everything in Pro", "Unlimited seats in one company", "Multiple App Store Connect accounts", "Priority fixes & rule requests"]
+      "checkout_url": "https://buy.stripe.com/3cI8wQgzU4BYedu9V27ok29",
+      "features": [
+        "Everything in Pro",
+        "Unlimited seats in one company",
+        "Multiple App Store Connect accounts",
+        "Priority fixes & rule requests"
+      ]
     }
   ],
   "install": {
