@@ -35,6 +35,10 @@
 - [SpacePlant Math Academy](https://apps.apple.com/app/id6839847702) (`6839847702`): 12 math branches, 8 interactive 60fps visual labs, adaptive diagnostic graph & offline Socratic AI tutor.
 - [SpacePlant 3D Labs](https://spaceplantcorporationofficial.github.io/3dlabs/): 15 interactive Metal PBR + AR Quick Look engineering, woodshop, Wi-Fi 7, solar van, acoustics, culinary, and STEM studios with scannable QR blueprints.
 
+## Developer Tools
+
+- [ASC Pilot](https://spaceplantcorporationofficial.github.io/ascpilot/): App Store Connect revenue leak scanner — CLI + MCP server for Claude Code, Codex, Cursor and Antigravity. Finds approved-but-unreleased builds, apps off sale in every storefront, in-app purchases customers cannot buy (Missing Metadata / Ready to Submit), rejections blocking paywalls, and installs with zero payers. Read-only, zero dependencies, key stays local. Free core (MIT) · Pro $49 one-time · Studio $149. Source: https://github.com/spaceplantcorporationofficial/ascpilot
+
 ## Resources
 - [Community Creator Preset Gallery (.clipstyle, .voxcaption & BriefKit Themes)](https://spaceplantcorporationofficial.github.io/community/)
 - [Live Community Presets JSON Feed](https://spaceplantcorporationofficial.github.io/community/presets.json)

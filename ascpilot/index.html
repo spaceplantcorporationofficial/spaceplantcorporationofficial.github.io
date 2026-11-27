@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASC Pilot — Find the money your App Store account is leaking</title>
+<meta name="description" content="ASC Pilot scans App Store Connect for revenue leaks: approved builds never released, apps off sale, in-app purchases customers can't buy, rejections blocking paywalls. CLI + MCP server for Claude Code, Codex, Cursor and Antigravity." />
+<meta property="og:title" content="ASC Pilot — Find the money your App Store account is leaking" />
+<meta property="og:description" content="We pointed it at our own 131-app account and found 72 in-app products customers could not buy. CLI + MCP for AI agents." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://spaceplantcorporationofficial.github.io/ascpilot/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://spaceplantcorporationofficial.github.io/ascpilot/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ASC Pilot","operatingSystem":"macOS, Linux","applicationCategory":"DeveloperApplication","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"49","priceCurrency":"USD","name":"Pro (founding price)"},{"@type":"Offer","price":"149","priceCurrency":"USD","name":"Studio"}],"publisher":{"@type":"Organization","name":"SpacePlant Corporation"}}
+</script>
+<style>
+  :root{--bg:#07090f;--surface:#0f131e;--elev:#151b2b;--border:rgba(255,255,255,.09);--em:#29db8f;--cy:#2eccf0;--gold:#faad2e;--red:#ff5b5b;--text:#f4f7fb;--muted:#97a3ba}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;background:radial-gradient(ellipse 80% 45% at 50% -10%,rgba(255,91,91,.13),transparent 60%),radial-gradient(ellipse 60% 40% at 90% 20%,rgba(41,219,143,.10),transparent 55%),var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--border)}
+  .logo{font-weight:800;letter-spacing:-.02em;font-size:18px}.logo span{color:var(--em)}
+  nav .links a{color:var(--muted);margin-left:22px;font-size:14px}nav .links a:hover{color:var(--text)}
+  .hero{padding:72px 0 40px;display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+  .pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red);background:rgba(255,91,91,.1);border:1px solid rgba(255,91,91,.25);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+  h1{font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+  h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--red));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:19px;margin:20px 0 28px;max-width:540px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid var(--border);cursor:pointer}
+  .btn.primary{background:var(--em);color:#04120b;border-color:transparent}.btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:var(--elev)}.btn.ghost:hover{border-color:rgba(255,255,255,.25)}
+  .install{margin-top:22px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .install code{color:var(--text);overflow-x:auto;white-space:nowrap}
+  .install button{background:none;border:1px solid var(--border);color:var(--muted);border-radius:7px;padding:4px 9px;cursor:pointer;font-size:12px}
+  .term{background:#05070c;border:1px solid var(--border);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden}
+  .term .bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--border)}.term .bar i{width:11px;height:11px;border-radius:50%;background:#2a3142}
+  .term pre{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.6;padding:18px 18px 22px;white-space:pre-wrap;color:#cfd6e4}
+  .t-dim{color:#6c7891}.t-red{color:#ff6b6b;font-weight:700}.t-crit{background:#c62828;color:#fff;font-weight:700;padding:0 3px}.t-yel{color:#ffc857}.t-cy{color:var(--cy)}.t-b{color:#fff;font-weight:700}.t-em{color:var(--em)}
+  section{padding:64px 0;border-top:1px solid var(--border)}
+  h2{font-size:34px;letter-spacing:-.025em;line-height:1.15;margin-bottom:12px}
+  .lead{color:var(--muted);font-size:17px;max-width:720px;margin-bottom:34px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+  .stat b{display:block;font-size:36px;letter-spacing:-.03em}.stat span{color:var(--muted);font-size:14px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+  .card h3{font-size:16px;margin-bottom:6px}.card p{color:var(--muted);font-size:14px}
+  .sev{font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 7px;border-radius:6px;display:inline-block;margin-bottom:10px}
+  .crit{background:rgba(255,91,91,.18);color:#ff8a8a}.high{background:rgba(250,173,46,.15);color:var(--gold)}.med{background:rgba(46,204,240,.12);color:var(--cy)}
+  .code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;background:#05070c;border:1px solid var(--border);border-radius:12px;padding:18px;color:#cfd6e4;white-space:pre;overflow-x:auto}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .price{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column}
+  .price.best{border-color:rgba(41,219,143,.55);box-shadow:0 0 0 1px rgba(41,219,143,.25),0 20px 60px rgba(41,219,143,.08)}
+  .price h3{font-size:18px}.price .amt{font-size:44px;font-weight:800;letter-spacing:-.03em;margin:10px 0 2px}.price .amt small{font-size:15px;color:var(--muted);font-weight:500}
+  .price ul{list-style:none;margin:18px 0 24px;flex:1}.price li{padding:6px 0;color:#cfd6e4;font-size:14px}.price li::before{content:"✓  ";color:var(--em);font-weight:800}
+  .price .note{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
+  .faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+  .faq summary{cursor:pointer;font-weight:650}.faq p{color:var(--muted);margin-top:10px;font-size:15px}
+  footer{padding:36px 0 60px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+  @media(max-width:900px){.hero,.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid3,.prices{grid-template-columns:1fr}h1{font-size:40px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/ascpilot/">ASC<span>Pilot</span></a>
+    <div class="links"><a href="#leaks">What it finds</a><a href="#agents">AI agents</a><a href="#pricing">Pricing</a><a href="https://github.com/spaceplantcorporationofficial/ascpilot">GitHub</a></div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="pill">App Store Connect never warns you about this</div>
+      <h1>Find the money your App Store account is <em>leaking</em>.</h1>
+      <p class="sub">ASC Pilot scans every app in App Store Connect for builds Apple approved that you never released, apps switched off in every storefront, and in-app purchases your customers <b>cannot buy</b>. From your terminal, or from your AI agent.</p>
+      <div class="cta">
+        <a class="btn primary" href="#install">Run a free scan</a>
+        <a class="btn ghost" href="#pricing">Get Pro — $49</a>
+      </div>
+      <div class="install" id="install"><code>pipx install git+https://github.com/spaceplantcorporationofficial/ascpilot &amp;&amp; ascpilot setup &amp;&amp; ascpilot leaks</code><button onclick="navigator.clipboard.writeText('pipx install git+https://github.com/spaceplantcorporationofficial/ascpilot && ascpilot setup && ascpilot leaks');this.textContent='copied'">copy</button></div>
+    </div>
+    <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre><span class="t-dim">$</span> ascpilot leaks
+
+<span class="t-b">Revenue Leak Scan</span> · 131 apps scanned
+
+  <span class="t-crit">2</span> critical   <span class="t-red">18</span> high   <span class="t-yel">31</span> medium   <span class="t-dim">71 low</span>
+  <span class="t-b">38</span> apps leaking · <span class="t-b">72</span> in-app products customers cannot buy
+
+<span class="t-crit">CRIT</span>  <span class="t-b">SpacePlant SI</span> — Live build available in 0 territories
+      <span class="t-dim">Approved, but switched off in all 175 storefronts.</span>
+
+<span class="t-red">HIGH</span>  <span class="t-b">Happy Little Pile</span> — 3 finished products never submitted
+        · Cozy Star Chest · Grand Star Vault · Star Pouch
+      <span class="t-cy">1.</span> Open your next version → In-App Purchases…
+
+<span class="t-red">HIGH</span>  <span class="t-b">AI: Athletic Intelligence</span> — 5 products stuck
+      in Missing Metadata (2 subscriptions, 3 tips)
+
+<span class="t-dim">  … 48 more in this account. Real output, our own studio.</span></pre></div>
+  </header>
+
+  <section>
+    <h2>We built it for our own studio. It found real money on day one.</h2>
+    <p class="lead">SpacePlant ships a lot of apps. When we pointed ASC Pilot at our own account, these are the numbers it returned — straight from Apple's API, unedited.</p>
+    <div class="stats">
+      <div class="stat"><b>131</b><span>apps scanned in 95s</span></div>
+      <div class="stat"><b style="color:var(--red)">51</b><span>revenue leaks in apps still in play (+71 low-priority)</span></div>
+      <div class="stat"><b style="color:var(--gold)">72</b><span>in-app products customers couldn't buy</span></div>
+      <div class="stat"><b style="color:var(--cy)">38</b><span>apps with at least one leak</span></div>
+    </div>
+  </section>
+
+  <section id="leaks">
+    <h2>What it finds</h2>
+    <p class="lead">Deterministic rules over Apple's own data. No guesses, no revenue "estimates", no currency conversion.</p>
+    <div class="grid3">
+      <div class="card"><span class="sev crit">CRITICAL</span><h3>Approved, never released</h3><p>Apple approved the build weeks ago. It's waiting on you to press "Release".</p></div>
+      <div class="card"><span class="sev crit">CRITICAL</span><h3>Live in 0 storefronts</h3><p>Approved and on the store — but switched off in every territory, so nobody can find it.</p></div>
+      <div class="card"><span class="sev high">HIGH</span><h3>Frozen checkout</h3><p>IAPs and subscriptions stuck in <i>Missing Metadata</i> or <i>Ready to Submit</i>. Your paywall shows nothing — or fails silently.</p></div>
+      <div class="card"><span class="sev high">HIGH</span><h3>Rejections holding paywalls hostage</h3><p>A rejected version is blocking the products that ride on it.</p></div>
+      <div class="card"><span class="sev med">MEDIUM</span><h3>Installs, zero payers</h3><p>Pro reads Apple's Sales API: people install, nobody pays. That's a paywall problem, not a traffic problem.</p></div>
+      <div class="card"><span class="sev med">MEDIUM</span><h3>Free with nothing to buy · stalled drafts</h3><p>Live apps that can't earn a cent, and finished versions rotting in <i>Prepare for Submission</i>.</p></div>
+    </div>
+  </section>
+
+  <section id="agents">
+    <div class="two">
+      <div>
+        <h2>Give your AI agent eyes on App Store Connect.</h2>
+        <p class="lead">ASC Pilot ships an MCP server. Claude Code, Codex, Cursor and Antigravity can list your apps, read the review radar, run the leak scan, pull Sales-API proceeds and write the Cash-Flow report — then go fix what it found.</p>
+        <p class="lead" style="margin-bottom:0">Your key stays on your Mac. ASC Pilot talks only to <code>api.appstoreconnect.apple.com</code>. Zero dependencies, open source core.</p>
+      </div>
+      <div class="code">$ claude mcp add ascpilot -- ascpilot mcp
+$ codex  mcp add ascpilot -- ascpilot mcp
+
+<span class="t-dim"># then just ask:</span>
+<span class="t-em">›</span> Which of my apps are leaking revenue?
+  Fix the IAP metadata on the worst one.
+
+<span class="t-dim">tools:</span> asc_list_apps · asc_review_radar
+       asc_revenue_leaks · asc_sales_summary
+       asc_cashflow_report</div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2>Pricing</h2>
+    <p class="lead">One fixed leak usually pays for Pro many times over. If it doesn't find anything useful, you get a full refund within 14 days.</p>
+    <div class="prices">
+      <div class="price">
+        <h3>Free</h3><div class="amt">$0</div><span class="t-dim">forever</span>
+        <ul><li>Every app, status &amp; IAP health</li><li>Review radar</li><li>Leak summary + your worst leak</li><li>CI gate (<code>--fail-on-leak</code>)</li><li>3 MCP tools</li></ul>
+        <a class="btn ghost" href="#install" style="justify-content:center">Install free</a>
+      </div>
+      <div class="price best">
+        <h3>Pro <span class="sev crit" style="margin-left:6px">FOUNDING PRICE</span></h3><div class="amt">$49 <small>one-time</small></div><span class="t-dim">1 developer · all your Macs</span>
+        <ul><li><b>Every</b> leak, with step-by-step fixes</li><li>Money: installs, payers &amp; proceeds (Sales API)</li><li>Installs-but-no-payers detection</li><li>Markdown Cash-Flow report</li><li>All 5 MCP tools, full detail</li><li>All 1.x updates</li></ul>
+        <a class="btn primary buy" data-plan="pro" href="#" style="justify-content:center">Get Pro</a>
+        <div class="note">Offline license key · never phones home</div>
+      </div>
+      <div class="price">
+        <h3>Studio</h3><div class="amt">$149 <small>one-time</small></div><span class="t-dim">your whole team</span>
+        <ul><li>Everything in Pro</li><li>Unlimited seats in one company</li><li>Multiple App Store Connect accounts</li><li>Priority fixes &amp; rule requests</li></ul>
+        <a class="btn ghost buy" data-plan="studio" href="#" style="justify-content:center">Get Studio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Is my API key safe?</summary><p>It never leaves your machine. ASC Pilot signs a short-lived token locally with the <code>openssl</code> that ships with macOS and calls only Apple's API. The core is open source — read it.</p></details>
+    <details><summary>What API key role do I need?</summary><p><i>App Manager</i> covers apps, versions, IAPs and availability. Add <i>Sales</i> (or use <i>Admin</i>) for the Money view.</p></details>
+    <details><summary>Does it change anything in my account?</summary><p>No. ASC Pilot is read-only. It tells you (or your agent) exactly what to fix and how.</p></details>
+    <details><summary>Does it estimate revenue?</summary><p>Never. Money comes from Apple's daily Sales reports, per currency, exactly as Apple publishes them. Days without a report are shown as missing — not filled in.</p></details>
+    <details><summary>How is the license delivered?</summary><p>After checkout you receive a key by email. Run <code>ascpilot license activate &lt;KEY&gt;</code>. Verification is offline (Ed25519).</p></details>
+  </section>
+
+  <footer>ASC Pilot is made by <a href="/">SpacePlant Corporation</a>. Not affiliated with Apple. App Store Connect is a trademark of Apple Inc. · <a href="https://github.com/spaceplantcorporationofficial/ascpilot">Source</a></footer>
+</div>
+<script>
+  // Checkout links. Empty string => founding-license reservation via GitHub (no account email needed).
+  const CHECKOUT = { pro: "", studio: "" };
+  const RESERVE = plan => "https://github.com/spaceplantcorporationofficial/ascpilot/issues/new?labels=license-request&title=" +
+    encodeURIComponent("Founding " + plan + " license") + "&body=" +
+    encodeURIComponent("Plan: " + plan + "\nEmail for the license key + invoice:\nNumber of apps in your account:\n\n(We'll reply with a secure checkout link within 24h. Founding price is locked for you.)");
+  document.querySelectorAll(".buy").forEach(a => {
+    const plan = a.dataset.plan;
+    a.href = CHECKOUT[plan] || RESERVE(plan);
+    if (!CHECKOUT[plan]) { a.textContent = plan === "pro" ? "Reserve Pro at $49" : "Reserve Studio"; a.target = "_blank"; a.rel = "noopener"; }
+  });
+</script>
+</body>
+</html>
