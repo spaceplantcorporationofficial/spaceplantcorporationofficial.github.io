@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Sound Studio 39.0 — Free Online Rap Syllable, Pocket, Rhyme &amp; Split-Sheet Studio + On-Device iOS DAW</title>
+  <meta name="description" content="Free instant rap bar syllable counter, BPM pocket analyzer, rhyme finder, tap-BPM calculator, and official Split Sheet / Spotify .LRC exporter — powered by Music Sound Studio (5.0★ iPhone & iPad offline studio with 48 kits, key-locked Auto-Tune, 4-Stem Splitter & 24-bit WAV mastering)." />
+  <meta name="apple-itunes-app" content="app-id=6739277754" />
+  <meta property="og:title" content="Music Sound Studio 39.0 — Free Bar Pocket, Rhyme &amp; Split-Sheet Studio (iPhone &amp; iPad)" />
+  <meta property="og:description" content="Test your bars, count syllables against BPM, find rhymes, and generate Spotify .LRC & Split Sheets free in your browser — then record with Pro Vocal Booth, 48 Kits & Key-Locked Auto-Tune offline on iPhone & iPad ($2.99 lifetime unlock)." />
+  <meta property="og:image" content="https://spaceplantcorporationofficial.github.io/music-sound-studio/assets/hero-og.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://spaceplantcorporationofficial.github.io/music-sound-studio/assets/hero-og.png" />
+  <link rel="canonical" href="https://spaceplantcorporationofficial.github.io/music-sound-studio/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Music Sound Studio",
+    "operatingSystem": "iOS, iPadOS",
+    "applicationCategory": "MusicApplication",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "3" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://apps.apple.com/app/id6739277754",
+    "description": "100% on-device music creation studio for iPhone, iPad mini landscape, and iPhone Duo: Pro Vocal Booth with 5 comping lanes, live headphone monitor, key-locked Auto-Tune, 48 studio kits, 4-stem beat splitter, 24-bit True-Peak WAV mastering, synced .LRC, and License/Split Sheet PDFs."
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #07090f;
+      --surface: #111521;
+      --elevated: #171d2e;
+      --border: rgba(255,255,255,0.11);
+      --violet: #7707EF;
+      --cobalt: #2545FC;
+      --cyan: #29F5FE;
+      --emerald: #29db8f;
+      --warn: #faad2e;
+      --red: #ff5b69;
+      --text: #f6f8fc;
+      --muted: #98a4bc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 45% at 50% -10%, rgba(119,7,239,0.24), transparent 62%),
+        radial-gradient(ellipse 55% 40% at 88% 16%, rgba(41,245,254,0.14), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 22px; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; backdrop-filter: blur(18px); background: rgba(7,9,15,0.85); z-index: 40;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 17px; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--border); }
+    .nav-links { display: flex; gap: 18px; font-size: 13.5px; font-weight: 700; color: var(--muted); }
+    .nav-links a:hover { color: #fff; }
+    @media (max-width: 780px) { .nav-links { display: none; } }
+    .cta-grad {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 18px; border-radius: 999px; font-weight: 800; font-size: 13.5px; color: #fff;
+      background: linear-gradient(95deg, var(--violet), var(--cobalt) 55%, #0EB8E8);
+      border: 1px solid rgba(255,255,255,0.22); cursor: pointer;
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 10px 16px; border-radius: 12px; font-weight: 700; font-size: 13px;
+      background: var(--elevated); border: 1px solid var(--border); color: #fff; cursor: pointer;
+    }
+    .btn-ghost:hover { border-color: var(--cyan); }
+
+    .hero {
+      display: grid; grid-template-columns: 1.2fr 0.85fr; gap: 28px; align-items: center;
+      padding: 48px 0 36px;
+    }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 5px 13px; border-radius: 999px;
+      background: rgba(119,7,239,0.18); border: 1px solid rgba(41,245,254,0.38);
+      color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: clamp(32px, 4.8vw, 54px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 14px; }
+    .grad-text { background: linear-gradient(92deg, #fff 15%, var(--cyan) 92%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--muted); font-size: 16.5px; margin-bottom: 20px; }
+    .video-card {
+      background: var(--surface); border: 1px solid rgba(41,245,254,0.3); border-radius: 22px;
+      padding: 12px; text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .video-card video { width: 100%; max-height: 440px; border-radius: 14px; background: #000; object-fit: contain; }
+
+    /* Interactive Free Creator Tool Workbench */
+    .workbench {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+      padding: 24px; margin: 16px 0 44px; box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
+    .wb-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+    .wb-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+    @media (max-width: 900px) { .wb-grid { grid-template-columns: 1fr; } }
+    textarea, input[type="text"], input[type="number"] {
+      width: 100%; background: #0a0d16; color: var(--text); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 14px; font: inherit; font-size: 14px;
+    }
+    textarea:focus, input:focus { outline: none; border-color: var(--cyan); }
+    .bar-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 10px; background: var(--elevated); border: 1px solid var(--border);
+      font-size: 13px; cursor: pointer;
+    }
+    .bar-row:hover { border-color: var(--cyan); }
+    .badge { padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .b-tight { background: rgba(41,219,143,0.16); color: var(--emerald); }
+    .b-space { background: rgba(41,245,254,0.15); color: var(--cyan); }
+    .b-crowd { background: rgba(255,91,105,0.18); color: var(--red); }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .rhyme-chip {
+      padding: 5px 11px; border-radius: 999px; font-size: 12.5px; font-weight: 700;
+      background: rgba(119,7,239,0.2); border: 1px solid rgba(119,7,239,0.5); color: #e9d8ff; cursor: pointer;
+    }
+    .rhyme-chip:hover { background: var(--violet); color: #fff; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 44px; }
+    @media (max-width: 860px) { .feat-grid { grid-template-columns: 1fr; } }
+    .feat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+    .feat-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .feat-card p { font-size: 13.5px; color: var(--muted); }
+    footer { border-top: 1px solid var(--border); padding: 28px 0 48px; text-align: center; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="/">
+      <img src="/assets/mss-icon.png" alt="Music Sound Studio icon" />
+      <span>Music Sound Studio</span>
+    </a>
+    <div class="nav-links">
+      <a href="#studio-tool">Free Lyric &amp; Pocket Lab</a>
+      <a href="#features">39.0 Cockpit HUD</a>
+      <a href="/">All SpacePlant Apps</a>
+      <a href="/ascpilot/">ASC Pilot</a>
+    </div>
+    <a class="cta-grad" href="https://apps.apple.com/app/id6739277754?ct=mss_web_nav&amp;mt=8" target="_blank">Download Free on App Store ↗</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">★ 5.0 Rated · 100% On-Device Apple Silicon · Zero Cloud Subscriptions</div>
+      <h1>Your Complete Pocket <span class="grad-text">Vocal Booth, Beat Console &amp; Release Studio.</span></h1>
+      <p>Write bars with live pocket scoring, record 5-lane vocals with Key-Locked Auto-Tune &amp; Bleed Guard, drop live drums across 48 studio kits, split any MP3 into 4 stems, and export 24-bit WAV masters + Split Sheet PDFs — all offline on iPhone, iPad mini Landscape, and iPhone Duo.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+        <a class="cta-grad" style="padding:14px 24px;font-size:15px" href="https://apps.apple.com/app/id6739277754?ct=mss_web_hero&amp;mt=8" target="_blank">Get Music Sound Studio Free ↗</a>
+        <a class="btn-ghost" href="#studio-tool">Use Free Browser Pocket &amp; Split-Sheet Tool ↓</a>
+      </div>
+      <div style="font-size:13px;color:var(--muted)">Free core forever · <strong>$2.99</strong> one-time Unlock Everything · Optional Creator / Pro packs · Works in Airplane Mode</div>
+    </div>
+    <div class="video-card">
+      <video src="/assets/video/mss39_preview.mp4" controls muted playsinline preload="metadata" poster="/music-sound-studio/assets/hero-og.png"></video>
+      <div style="font-size:12px;color:var(--muted);margin-top:8px">Tap to unmute — real 39.0 Cockpit HUD + original <em>Dusty Bap</em> kit</div>
+    </div>
+  </section>
+
+  <!-- FREE INTERACTIVE CREATOR LEAD-MAGNET TOOL -->
+  <section id="studio-tool" class="workbench">
+    <div class="wb-head">
+      <div>
+        <div class="eyebrow" style="margin-bottom:6px">Free Online Creator Tool · Runs 100% in Your Browser</div>
+        <h2 style="font-size:24px;font-weight:900;letter-spacing:-0.02em">Rap Bar Syllable &amp; BPM Pocket Lab · Rhyme Finder · Spotify .LRC &amp; Split Sheet</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <label style="font-size:13px;font-weight:700;color:var(--muted)">BPM:
+          <input id="bpmInput" type="number" min="65" max="175" value="92" style="width:78px;display:inline-block;padding:7px 10px;margin-left:4px" oninput="analyze()" />
+        </label>
+        <button class="btn-ghost" onclick="tapBPM()">🥁 Tap BPM</button>
+        <span id="barMath" style="font-size:12px;color:var(--cyan);font-family:ui-monospace,monospace">1 bar = 2.61s · 8 bars = 20.9s</span>
+      </div>
+    </div>
+
+    <div class="wb-grid">
+      <div>
+        <label style="display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px">Paste or write your bars (click any analyzed bar on the right for instant rhymes)</label>
+        <textarea id="lyricsBox" rows="8" oninput="analyze()">Concrete dreams in morning light
+Echoes bounce through dusty lanes
+Neon whispers hit just right
+Built this rhythm in the rain
+Crown heavy on the beat
+Every pocket locked in tight
+Zero cloud fees on the street
+Mastered ready overnight</textarea>
+
+        <div style="margin-top:14px;padding:14px;border-radius:14px;background:#0a0d16;border:1px solid var(--border)">
+          <div style="font-size:12.5px;font-weight:800;margin-bottom:8px;color:var(--cyan)">Instant Distribution Export (Free)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+            <input id="songTitle" type="text" value="Concrete Dreams" placeholder="Song Title" />
+            <input id="artistName" type="text" value="Independent Artist" placeholder="Artist / Stage Name" />
+            <input id="collabName" type="text" value="Producer / Feature" placeholder="Collaborator Name" />
+            <input id="splitPct" type="text" value="50 / 50" placeholder="Master/Pub Split (e.g. 50 / 50)" />
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="cta-grad" style="border-radius:12px" onclick="downloadLRC()">⬇ Download Spotify .LRC</button>
+            <button class="btn-ghost" onclick="downloadSplitSheet()">📄 Download Official Split Sheet</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:12.5px;font-weight:700;color:var(--muted)">Live Bar-by-Bar Syllable &amp; BPM Pocket Check</div>
+        <div id="barList" style="display:flex;flex-direction:column;gap:6px;max-height:260px;overflow:auto"></div>
+
+        <div style="padding:12px;border-radius:14px;background:#0a0d16;border:1px solid var(--border)">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <span id="rhymeHeader" style="font-size:12.5px;font-weight:800;color:var(--cyan)">Offline Rhymes for “overnight”</span>
+            <span style="font-size:11px;color:var(--muted)">Tap chip to add bar idea</span>
+          </div>
+          <div id="rhymeChips" class="chip-row"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 PILLARS + 39.0 COCKPIT HUD -->
+  <section id="features">
+    <h2 style="font-size:28px;font-weight:900;letter-spacing:-0.025em;margin-bottom:16px">Why Creators Switch to Music Sound Studio 39.0</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <h3>🎛 Zero-Popup Adaptive Cockpit HUD</h3>
+        <p>Full-bleed split console on iPad mini Landscape &amp; iPhone Duo, plus simultaneous Camera + Live Teleprompter + Lyrics on standard iPhones. Never lose sight of your bars or your face while recording.</p>
+      </div>
+      <div class="feat-card">
+        <h3>🎙 Pro Vocal Booth &amp; Key-Locked Auto-Tune</h3>
+        <p>5 comping lanes (Lead, Double L/R, Ad-Libs, Harmonies), Loop Punch-In, low-latency Live Headphone Monitor + Plate Reverb, adaptive NLMS Speaker Bleed Guard, Room De-Reverb, and Beat Vocal Pocket.</p>
+      </div>
+      <div class="feat-card">
+        <h3>🥁 48 Kits, Live Drum Drops &amp; 4-Stem Splitter</h3>
+        <p>Fire 48 commercial-safe original kits (plus Global Packs), mute drums live mid-take, or import any MP3/WAV to drag Drop Markers, shift key ±6 st, stretch tempo, and isolate Drums / Bass / Vocals / Melody.</p>
+      </div>
+      <div class="feat-card">
+        <h3>🎹 Live Stereo Beat Builder &amp; MIDI Export</h3>
+        <p>Hot-swap Pattern A/B/C/D without stopping playback, program 2×/3×/4× hi-hat ratchets &amp; 808 glides, play 7 key-locked Smart Chords, hum melodies via Hum→MIDI, and export Format-1 <code>.mid</code> to Logic or Ableton.</p>
+      </div>
+      <div class="feat-card">
+        <h3>💿 24-Bit WAV Mastering &amp; Paperwork PDFs</h3>
+        <p>4× oversampled -1.0 dBTP True-Peak limiter (-14 LUFS Streaming / -9 LUFS Club), separated 24-bit stems, 3000×3000 AI Cover Art, timed <code>.SRT</code> &amp; Spotify <code>.LRC</code>, Commercial License PDF &amp; Split Sheet PDF.</p>
+      </div>
+      <div class="feat-card">
+        <h3>🤝 Zero-Backend .mssverse Collabs</h3>
+        <p>AirDrop or iMessage an entire session (beat, stems, BPM, musical key, lyrics, open bars) as a single <code>.mssverse</code> file — your feature opens it with Auto-Tune &amp; grid already locked. Zero servers.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:28px;border-radius:22px;background:linear-gradient(135deg,rgba(119,7,239,0.22),rgba(41,245,254,0.12));border:1px solid rgba(41,245,254,0.38);margin-bottom:44px">
+      <h2 style="font-size:28px;font-weight:900;margin-bottom:8px">Record Your Next Single Offline Tonight.</h2>
+      <p style="color:#dce4f2;max-width:620px;margin:0 auto 18px">Free to download and create unlimited songs, battles, and takes. Unlock all 48 kits, BPM control, and watermark-free exports forever for <strong>$2.99</strong>.</p>
+      <a class="cta-grad" style="padding:14px 28px;font-size:15.5px" href="https://apps.apple.com/app/id6739277754?ct=mss_web_footer&amp;mt=8" target="_blank">Download Music Sound Studio on App Store ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    SpacePlant Corporation · Music Sound Studio (App ID 6739277754) · 100% On-Device Apple Silicon ·
+    <a href="/" style="text-decoration:underline">SpacePlant Hub</a> ·
+    <a href="/ascpilot/" style="text-decoration:underline">ASC Pilot</a> ·
+    <a href="https://spaceplant-privacy.garbarz.chatgpt.site/" target="_blank" style="text-decoration:underline">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const RHYME_BANK = {
+  "ight": ["light","night","tight","bright","flight","sight","ignite","midnight","spotlight","alright","height","write"],
+  "ane": ["lanes","rain","veins","chains","fame","game","flame","frame","insane","domain","remain","champagne"],
+  "eat": ["beat","street","heat","feet","seat","concrete","repeat","elite","complete","receipt","heartbeat","sweet"],
+  "ow": ["flow","glow","slow","know","show","grow","below","gold","cold","hold","road","code"],
+  "ay": ["day","way","stay","play","pay","say","gray","away","replay","runway","today","sway"],
+  "ine": ["shine","line","mine","time","rhyme","climb","prime","grind","skyline","design","divine","sign"],
+  "ound": ["sound","crown","town","down","ground","around","bound","found","underground","rebound","loud","crowd"],
+  "eal": ["real","feel","steel","wheel","deal","heal","dream","team","beam","stream","clean","scene"],
+  "op": ["drop","top","stop","pop","hop","shop","lock","clock","block","shock","rock","stock"],
+  "ove": ["love","above","glove","dove","pulse","rush","crush","trust","dust","must","just","up"]
+};
+
+let taps = [];
+function tapBPM() {
+  const now = performance.now();
+  if (taps.length && now - taps[taps.length - 1] > 2400) taps = [];
+  taps.push(now);
+  if (taps.length > 8) taps.shift();
+  if (taps.length >= 2) {
+    let sum = 0;
+    for (let i = 1; i < taps.length; i++) sum += taps[i] - taps[i-1];
+    const bpm = Math.max(65, Math.min(175, Math.round(60000 / (sum / (taps.length - 1)))));
+    document.getElementById("bpmInput").value = bpm;
+    analyze();
+  }
+}
+
+function syllablesInWord(w) {
+  const clean = w.toLowerCase().replace(/[^a-z]/g, "");
+  if (!clean) return 0;
+  if (clean.length <= 3) return 1;
+  const trimmed = clean.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "").replace(/^y/, "");
+  let groups = (trimmed.match(/[aeiouy]{1,2}/g) || []).length;
+  const hiatus = (clean.match(/eo|ia|io|ua|uo|iu/g) || []).length;
+  return Math.max(1, groups + hiatus);
+}
+
+function countSyllables(line) {
+  return line.trim().split(/\s+/).reduce((s, w) => s + syllablesInWord(w), 0);
+}
+
+function lastWord(line) {
+  const m = line.toLowerCase().match(/[a-z']+/g);
+  return m ? m[m.length - 1].replace(/'/g, "") : "";
+}
+
+function findRhymes(word) {
+  if (!word) return [];
+  for (const [key, list] of Object.entries(RHYME_BANK)) {
+    if (list.includes(word) || word.endsWith(key)) {
+      return list.filter(x => x !== word);
+    }
+  }
+  const tail = word.slice(-2);
+  const hits = [];
+  Object.values(RHYME_BANK).flat().forEach(w => {
+    if (w !== word && w.endsWith(tail) && !hits.includes(w)) hits.push(w);
+  });
+  return hits.length ? hits.slice(0, 12) : RHYME_BANK.ight.slice(0, 8);
+}
+
+function showRhymesFor(word) {
+  document.getElementById("rhymeHeader").textContent = `Rhymes for “${word || "beat"}”`;
+  const box = document.getElementById("rhymeChips");
+  box.innerHTML = "";
+  findRhymes(word).forEach(r => {
+    const btn = document.createElement("button");
+    btn.className = "rhyme-chip";
+    btn.textContent = r;
+    btn.onclick = () => {
+      const ta = document.getElementById("lyricsBox");
+      ta.value = ta.value.trimEnd() + "\n" + `... ${r}`;
+      analyze();
+    };
+    box.appendChild(btn);
+  });
+}
+
+function analyze() {
+  const bpm = Math.max(65, Math.min(175, Number(document.getElementById("bpmInput").value) || 92));
+  const barSec = (4 * 60) / bpm;
+  document.getElementById("barMath").textContent = `1 bar = ${barSec.toFixed(2)}s · 8 bars = ${(barSec*8).toFixed(1)}s`;
+  const lines = document.getElementById("lyricsBox").value.split("\n").map(l => l.trim()).filter(Boolean);
+  const ideal = bpm < 95 ? [7, 12] : (bpm < 125 ? [6, 11] : [5, 10]);
+  const list = document.getElementById("barList");
+  list.innerHTML = "";
+  lines.forEach((line, idx) => {
+    const syl = countSyllables(line);
+    const cls = syl < ideal[0] ? "b-space" : (syl > ideal[1] ? "b-crowd" : "b-tight");
+    const label = syl < ideal[0] ? "Spacious" : (syl > ideal[1] ? "Crowded" : "Tight Pocket");
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    row.onclick = () => showRhymesFor(lastWord(line));
+    row.innerHTML = `<span><strong style="color:var(--muted);margin-right:6px">${idx+1}</strong>${line.replace(/</g,"&lt;")}</span><span class="badge ${cls}">${syl} syl · ${label}</span>`;
+    list.appendChild(row);
+  });
+  if (lines.length) showRhymesFor(lastWord(lines[lines.length - 1]));
+}
+
+function downloadFile(name, content, mime) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([content], { type: mime }));
+  a.download = name;
+  a.click();
+}
+
+function downloadLRC() {
+  const bpm = Number(document.getElementById("bpmInput").value) || 92;
+  const barSec = (4 * 60) / bpm;
+  const title = document.getElementById("songTitle").value || "Untitled";
+  const artist = document.getElementById("artistName").value || "Independent Artist";
+  const lines = document.getElementById("lyricsBox").value.split("\n").map(l => l.trim()).filter(Boolean);
+  const out = [`[ti:${title}]`, `[ar:${artist}]`, `[by:Music Sound Studio — https://apps.apple.com/app/id6739277754]`];
+  lines.forEach((line, i) => {
+    const t = i * barSec;
+    const mm = String(Math.floor(t / 60)).padStart(2, "0");
+    const ss = String(Math.floor(t % 60)).padStart(2, "0");
+    const cc = String(Math.floor((t % 1) * 100)).padStart(2, "0");
+    out.push(`[${mm}:${ss}.${cc}]${line}`);
+  });
+  downloadFile(`${title.toLowerCase().replace(/[^a-z0-9]+/g,"-")}.lrc`, out.join("\n"), "text/plain");
+}
+
+function downloadSplitSheet() {
+  const title = document.getElementById("songTitle").value || "Untitled";
+  const artist = document.getElementById("artistName").value || "Primary Artist";
+  const collab = document.getElementById("collabName").value || "Collaborator";
+  const split = document.getElementById("splitPct").value || "50 / 50";
+  const bpm = document.getElementById("bpmInput").value || "92";
+  const date = new Date().toISOString().slice(0, 10);
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Split Sheet — ${title}</title><style>body{font-family:-apple-system,sans-serif;max-width:740px;margin:40px auto;color:#111;line-height:1.6}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid #ccc;padding:10px;text-align:left}</style></head><body><h1>Official Song Split Sheet</h1><p><strong>Track:</strong> ${title} · <strong>Tempo:</strong> ${bpm} BPM · <strong>Date:</strong> ${date}</p><table><tr><th>Contributor</th><th>Role</th><th>Master &amp; Publishing Split</th><th>Signature</th></tr><tr><td>${artist}</td><td>Primary Artist / Writer</td><td>${split.split("/")[0]?.trim() || "50"}%</td><td>______________________</td></tr><tr><td>${collab}</td><td>Producer / Collaborator</td><td>${split.split("/")[1]?.trim() || "50"}%</td><td>______________________</td></tr></table><p style="font-size:12px;color:#555">Generated free with Music Sound Studio (https://apps.apple.com/app/id6739277754). Export 24-bit WAV masters, stems &amp; PDF release certificates directly on iPhone &amp; iPad.</p></body></html>`;
+  downloadFile(`${title.toLowerCase().replace(/[^a-z0-9]+/g,"-")}-split-sheet.html`, html, "text/html");
+}
+
+analyze();
+</script>
+</body>
+</html>

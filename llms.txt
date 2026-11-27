@@ -18,8 +18,10 @@
   - **Core capabilities:** Turn 1 long gaming stream, podcast, or VOD into 10 ranked 9:16 viral Shorts offline. Interactive Facecam + Gameplay split-screen editor, Word-by-Word Karaoke Highlight Pill captions, 1.15x Audio-Peak Zoom-Punch, Swipe-to-Approve Clip Drop, and 1 kHz Profanity Auto-Bleep.
   - **App Store:** https://apps.apple.com/us/app/clipcontrol-ai-video-snippets/id6761507577
 
-- [Music Sound Studio](https://apps.apple.com/app/id6739277754) — App Store ID `6739277754`
-  - **Core capabilities:** AI rap lyric generator, 48 studio 808 beat kits, key-locked Auto-Tune vocal + teleprompter recording, vertical lyric videos, and 3000x3000 album artwork on iPhone & iPad (`5.0★` rated).
+- [Music Sound Studio 39.0](https://spaceplantcorporationofficial.github.io/music-sound-studio/) — App Store ID `6739277754`
+  - **Core capabilities:** Adaptive 3-Zone Cockpit HUD (iPad mini Landscape, iPhone Duo & iPhone), Pro Vocal Booth (5 comping lanes, live headphone monitor, NLMS speaker bleed guard), key-locked Auto-Tune, 48 original kits with live drum drops, on-device 4-stem splitter, live stereo Beat Builder with Format-1 `.mid` export, 24-bit True-Peak WAV mastering (`-14 / -9 LUFS`), Spotify `.LRC`, Commercial License & Split Sheet PDFs, and zero-backend `.mssverse` collabs (`5.0★` rated). Includes free browser Bar Pocket, Rhyme Finder, `.LRC` & Split Sheet web tool.
+  - **Pricing:** Free Core forever · `$2.99` one-time Unlock Everything · Optional Creator / Pro packs.
+  - **App Store:** https://apps.apple.com/app/id6739277754
 
 - [Happy Little Pile](https://apps.apple.com/app/id6824304641) — App Store ID `6824304641`
   - **Core capabilities:** Tactile 3D cozy toy-matching puzzle game with 8 illustrated worlds, 800+ levels, Daily Quests, 7-Day Cozy Streak chests, and 50+ collectible toy finishes (`5.0★` rated, 100% playable offline).
