@@ -10,12 +10,12 @@
   - **App Store:** https://apps.apple.com/app/id6761636919
 
 - [VoxStudio: AI Voice and Video](https://spaceplantcorporationofficial.github.io/voxstudio/) — App Store ID `6766645034`
-  - **Core capabilities:** Instant on-device AI voiceover synthesis, local neural TTS, Whisper on-device auto-captions, draggable caption canvas, `.SRT` & `.VTT` subtitle exports, and 9:16 Smart Clips. 3 free HD exports included.
+  - **Core capabilities:** Instant on-device AI voiceover synthesis, open-source MLX neural TTS (`Kokoro-82M`, `Chatterbox Expressive`, `Marvis 2-Host CSM`, `Soprano-80M`, `Pocket TTS`, `Qwen3-TTS`), Audio Magic (`MossFormer2-SE` Studio Mic Enhance, Meta `SAM-Audio` Voice Isolator, VAD Auto-Jump-Cut silence removal), `Parakeet-TDT` & `Whisper` on-device captions, Apple Vision 3D Depth Text-Behind-Speaker captions, `.SRT`/`.VTT` subtitle exports, and zero-server HTML5 Client Approval Sheets.
   - **Pricing:** Free (3 HD exports) · Pro `$9.99/mo` or `$49.99/yr` (3-day trial) · Lifetime `$79.99`.
   - **App Store:** https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034
 
 - [ClipControl: AI Stream Clipper](https://spaceplantcorporationofficial.github.io/clipcontrol/) — App Store ID `6761507577`
-  - **Core capabilities:** Turn 1 long gaming stream, podcast, or VOD into 10 ranked 9:16 viral Shorts offline. Interactive Facecam + Gameplay split-screen editor, Word-by-Word Karaoke Highlight Pill captions, 1.15x Audio-Peak Zoom-Punch, Swipe-to-Approve Clip Drop, and 1 kHz Profanity Auto-Bleep.
+  - **Core capabilities:** Turn 1 long gaming stream, podcast, or VOD into 10 ranked 9:16 viral Shorts offline. Interactive Facecam + Gameplay split-screen editor, Word-by-Word Karaoke Highlight Pill captions, Apple Vision 3D Depth Text-Behind-Speaker captions, VAD Auto-Jump-Cut dead-air remover, Acoustic Hype/Laughter Peak highlight detection, shareable `.clipstyle` presets, and 1-tap `Discord <9.5 MB` export.
   - **App Store:** https://apps.apple.com/us/app/clipcontrol-ai-video-snippets/id6761507577
 
 - [Music Sound Studio 39.0](https://spaceplantcorporationofficial.github.io/music-sound-studio/) — App Store ID `6739277754`
@@ -28,7 +28,7 @@
 
 ## Tier 2 — Pro, B2B & STEM Studios ([/pro/](https://spaceplantcorporationofficial.github.io/pro/))
 
-- [BriefKit 2.0](https://spaceplantcorporationofficial.github.io/briefkit/) (`6762632623`): Turn prompts, 30-page PDFs, or whiteboard photos into native PowerPoint (`.pptx`) pitch decks, 2-host offline podcasts, and 30fps karaoke explainer MP4s.
+- [BriefKit 2.0](https://spaceplantcorporationofficial.github.io/briefkit/) (`6762632623`): Turn prompts, 30-page PDFs, or whiteboard photos into native PowerPoint (`.pptx`) pitch decks, studio-mastered 2-host offline podcasts (`Deep Dive`, `Roast My Deck`, `Shark Tank VC Grill`, `ELI5 Study Sprint`), zero-server interactive HTML5 Web Briefs, and 30fps karaoke explainer MP4s with kinetic outro cards.
 - [TrimLedger: Cut List Planner](https://apps.apple.com/app/id6832685564) (`6832685564`, `$7.99` one-time): Offline woodworking board & sheet cut-list optimizer that prioritizes existing shop offcuts first.
 - [ScopeGuard: Scope Creep](https://apps.apple.com/app/id6799328660) (`6799328660`, `$4.99` one-time): Private on-device SOW diff & freelance client change-order generator.
 - [RoadOps: Load to Cash](https://apps.apple.com/app/id6765711326) (`6765711326`): Owner-operator trucking dispatch, true all-miles RPM calculator, offline BOL/POD capture, and invoice tracking.
