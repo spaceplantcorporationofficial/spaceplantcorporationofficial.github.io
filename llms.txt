@@ -1,0 +1,27 @@
+# SpacePlant Corporation — On-Device AI Creator Suite for iPhone & iPad
+
+> SpacePlant builds privacy-first, 100% on-device AI creative studios powered by Apple Silicon. Replace $1,392+/year in cloud AI subscriptions with native iOS and iPadOS apps that work completely offline with zero cloud uploads and zero tracking.
+
+## Flagship Applications
+
+- [VoxStudio](https://spaceplantcorporationofficial.github.io/voxstudio/) — App Store ID `6766645034`
+  - **What it replaces:** ElevenLabs ($264+/yr), cloud voiceover & auto-caption SaaS.
+  - **Core capabilities:** Instant on-device AI voiceover synthesis, local neural TTS (Qwen3-TTS / PocketTTS), Whisper on-device auto-captions, draggable caption canvas, `.SRT` & `.VTT` subtitle exports, and Smart Clips.
+  - **App Store:** https://apps.apple.com/us/app/voxstudio-ai-voice-and-video/id6766645034
+
+- [ClipControl](https://spaceplantcorporationofficial.github.io/clipcontrol/) — App Store ID `6761507577`
+  - **What it replaces:** OpusClip ($348/yr), Eklipse, cloud Twitch/YouTube VOD clipping services.
+  - **Core capabilities:** Turn 1 long gaming stream, podcast, or recording into 10 ranked 9:16 viral Shorts offline. Interactive dual-crop Facecam + Gameplay split-screen editor, Word-by-Word Karaoke Highlight Pill captions, 1.15x Audio-Peak Facecam Zoom-Punch, Swipe-to-Approve Clip Drop triage, 1 kHz Profanity Auto-Bleep, and shareable `.clipkit` preset links.
+  - **App Store:** https://apps.apple.com/us/app/clipcontrol-ai-video-snippets/id6761507577
+
+- [BriefKit](https://spaceplantcorporationofficial.github.io/briefkit/) — App Store ID `6762632623`
+  - **What it replaces:** Gamma.app ($180/yr), Google NotebookLM Audio Overviews, and $30/mo faceless AI explainer video tools ($780/yr combined).
+  - **Core capabilities:** Drop a prompt, 30-page PDF, or whiteboard photo (Vision OCR) to generate designer pitch decks with native PowerPoint (`.pptx`) OpenXML export + study flashcards, offline NotebookLM-style 2-host conversational podcasts (Alex & Maya) with an auto-ducked lo-fi ambient score, and 30fps 16:9 YouTube/Keynote & 9:16 TikTok/Shorts narrated karaoke MP4 videos.
+  - **App Store:** https://apps.apple.com/app/id6762632623
+
+- [Music Sound Studio](https://apps.apple.com/app/id6739277754) — App Store ID `6739277754`
+  - **Core capabilities:** Native on-device music creation, studio vocal FX, and beat/instrument workstation for iPhone & iPad (5.0★ rated).
+
+## Resources
+- [Press & Creator Media Kit](https://spaceplantcorporationofficial.github.io/press/)
+- [Privacy Policy](https://spaceplant-privacy.garbarz.chatgpt.site/)
