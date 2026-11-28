@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SellerExtreme — Lowest-Cost Stockroom, Shopify Fulfillment &amp; Profit Calculator for Small Sellers</title>
+  <meta name="description" content="Turn any garage, spare room, or stockroom into an instant Find & Pick fulfillment center for $0–$9.99/mo. Free up to 25 SKUs, zero per-order fees, fact-checked on-device Apple Intelligence listing drafts, Shopify Admin GraphQL sync, and a free multi-channel profit & WMS savings calculator." />
+  <meta name="apple-itunes-app" content="app-id=6744349758" />
+  <meta property="og:title" content="SellerExtreme — Lowest-Cost Stockroom &amp; Shopify Fulfillment for Small Sellers" />
+  <meta property="og:description" content="Free up to 25 SKUs · $9.99/mo unlimited. Scan once, lock every SKU's exact shelf, pick & fulfill Shopify orders in 1 tap, and calculate net profit across 7 channels." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://spaceplantcorporationofficial.github.io/sellerextreme/" />
+  <link rel="canonical" href="https://spaceplantcorporationofficial.github.io/sellerextreme/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SellerExtreme",
+    "operatingSystem": "iOS 26.0+",
+    "applicationCategory": "BusinessApplication",
+    "url": "https://spaceplantcorporationofficial.github.io/sellerextreme/",
+    "downloadUrl": "https://apps.apple.com/app/id6744349758",
+    "offers": [
+      { "@type": "Offer", "name": "Starter Shelf (up to 25 SKUs)", "price": "0", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "SellerExtreme Pro (Unlimited)", "price": "9.99", "priceCurrency": "USD" }
+    ],
+    "publisher": { "@type": "Organization", "name": "SpacePlant Corporation" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #07090f;
+      --surface: #111521;
+      --elevated: #181e2f;
+      --border: rgba(255,255,255,0.10);
+      --emerald: #29db8f;
+      --cyan: #2eccf0;
+      --gold: #faad2e;
+      --coral: #fa7057;
+      --text: #f6f8fc;
+      --muted: #98a4bc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 45% at 50% -10%, rgba(41,219,143,0.18), transparent 60%),
+        radial-gradient(ellipse 50% 40% at 88% 15%, rgba(46,204,240,0.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; backdrop-filter: blur(18px); background: rgba(7,9,15,0.86); z-index: 40;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 17px; letter-spacing: -0.02em; }
+    .logo {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--emerald), var(--cyan));
+      display: grid; place-items: center; color: #05130e; font-weight: 900; font-size: 16px;
+    }
+    .nav-links { display: flex; gap: 18px; align-items: center; font-size: 13.5px; font-weight: 700; color: var(--muted); }
+    .nav-links a:hover { color: #fff; }
+    @media (max-width: 780px) { .nav-links { display: none; } }
+    .pill-cta {
+      padding: 9px 17px; border-radius: 999px; font-size: 13px; font-weight: 800;
+      background: linear-gradient(95deg, var(--emerald), var(--cyan)); color: #051116;
+    }
+    .hero { text-align: center; padding: 60px 0 38px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 15px; border-radius: 999px;
+      background: rgba(41,219,143,0.12); border: 1px solid rgba(41,219,143,0.38);
+      color: var(--emerald); font-size: 11.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(34px, 5.4vw, 60px); font-weight: 900; letter-spacing: -0.036em; line-height: 1.05;
+      max-width: 920px; margin: 0 auto 16px;
+    }
+    .grad {
+      background: linear-gradient(92deg, #ffffff 10%, var(--emerald) 55%, var(--cyan) 92%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 18px; color: var(--muted); max-width: 740px; margin: 0 auto 24px; }
+    .cta-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 13px 22px; border-radius: 13px; font-weight: 800; font-size: 14.5px;
+      background: linear-gradient(95deg, var(--emerald), var(--cyan)); color: #051116;
+    }
+    .btn-secondary {
+      display: inline-block; padding: 12px 20px; border-radius: 13px; font-weight: 700; font-size: 14px;
+      background: var(--elevated); border: 1px solid var(--border); color: #fff;
+    }
+    .stats {
+      display: flex; justify-content: center; gap: 26px; flex-wrap: wrap; margin-top: 24px;
+      font-size: 13.5px; color: var(--muted); font-weight: 600;
+    }
+    .stats strong { color: #fff; }
+    section.block { margin: 44px 0; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 860px) { .grid-3 { grid-template-columns: 1fr; } }
+    .grid-2 { display: grid; grid-template-columns: 1.05fr 1.25fr; gap: 22px; align-items: start; }
+    @media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+    h2 { font-size: clamp(24px, 3.2vw, 34px); font-weight: 900; letter-spacing: -0.025em; margin-bottom: 10px; }
+    h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .muted { color: var(--muted); font-size: 14.5px; }
+    .tabs { display: inline-flex; gap: 8px; background: #0a0e17; padding: 6px; border-radius: 14px; border: 1px solid var(--border); margin-bottom: 20px; }
+    .tab-btn {
+      border: 0; background: transparent; color: var(--muted); padding: 9px 16px; border-radius: 10px;
+      font: inherit; font-size: 13.5px; font-weight: 800; cursor: pointer;
+    }
+    .tab-btn.active { background: linear-gradient(95deg, var(--emerald), var(--cyan)); color: #051116; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .field input, .field select {
+      width: 100%; padding: 11px 13px; border-radius: 11px; border: 1px solid var(--border);
+      background: #0a0e17; color: #fff; font: inherit; font-size: 15px; font-weight: 700;
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--border); }
+    th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    tr.highlight { background: rgba(41,219,143,0.10); }
+    .pos { color: var(--emerald); font-weight: 800; }
+    .neg { color: var(--coral); font-weight: 800; }
+    .big-kpi {
+      background: #0a0e17; border: 1px solid rgba(41,219,143,0.35); border-radius: 18px;
+      padding: 20px; text-align: center; margin-bottom: 16px;
+    }
+    .big-kpi .num { font-size: 46px; font-weight: 900; letter-spacing: -0.04em; color: var(--emerald); line-height: 1.06; }
+    .pill {
+      display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 800;
+      background: rgba(41,219,143,0.14); color: var(--emerald); border: 1px solid rgba(41,219,143,0.35);
+    }
+    .hidden { display: none; }
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 0 50px; text-align: center;
+      font-size: 13px; color: var(--muted);
+    }
+    footer a { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="/"><div class="logo">SE</div> SellerExtreme <span style="color:var(--muted);font-weight:600;font-size:13px">by SpacePlant</span></a>
+    <div class="nav-links">
+      <a href="#calculator">Free Profit Calculator</a>
+      <a href="#why-cheapest">Why $9.99/mo</a>
+      <a href="#shopify">Shopify Sync</a>
+      <a href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/support">Support</a>
+      <a href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/privacy">Privacy</a>
+    </div>
+    <a class="pill-cta" href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/shopify">Connect Shopify →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="eyebrow">Free up to 25 SKUs · $9.99/mo Pro · $0 Per-Order Fees</div>
+    <h1>The <span class="grad">Lowest-Cost</span> Stockroom &amp; Fulfillment App for Small Sellers.</h1>
+    <p>Built for Shopify merchants, vintage &amp; collectibles shops, and multi-channel resellers packing out of garages, spare rooms, and stockrooms. Scan once on iPhone, lock the exact bin, draft fact-checked listings on-device, and fulfill Shopify orders without paying $79–$449/mo for enterprise WMS bloat.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://apps.apple.com/app/id6744349758?ct=sellerextreme_web&amp;mt=8" target="_blank">Download Free on App Store ↗</a>
+      <a class="btn-secondary" href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/shopify">Shopify Store Setup →</a>
+      <a class="btn-secondary" href="#calculator">Use Free Profit &amp; WMS Calculator ↓</a>
+    </div>
+    <div class="stats">
+      <span><strong>$0</strong> Starter Shelf (25 SKUs)</span>
+      <span><strong>$9.99/mo</strong> Unlimited Pro</span>
+      <span><strong>$0</strong> Cloud AI Markup (On-Device)</span>
+      <span><strong>10,000 SKUs</strong> Per Edge Sync</span>
+    </div>
+  </section>
+
+  <!-- FREE INTERACTIVE SMALL-SELLER PROFIT & WMS SAVINGS CALCULATOR -->
+  <section id="calculator" class="block">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+        <div>
+          <span class="pill">Free Tool · Zero Signup · Runs Locally in Your Browser</span>
+          <h2 style="margin-top:8px">Small-Seller Net Profit &amp; WMS Savings Calculator</h2>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab-btn active" id="tabProfit" onclick="switchTab('profit')">Channel Profit &amp; Fees</button>
+          <button class="tab-btn" id="tabWms" onclick="switchTab('wms')">WMS Software Savings</button>
+        </div>
+      </div>
+
+      <!-- TAB 1: CHANNEL PROFIT -->
+      <div id="panelProfit" class="grid-2">
+        <div>
+          <div class="field-row">
+            <div class="field">
+              <label for="salePrice">Item Sale Price ($)</label>
+              <input id="salePrice" type="number" min="0" step="0.50" value="48.00" oninput="calcProfit()" />
+            </div>
+            <div class="field">
+              <label for="itemCost">Item Cost / COGS ($)</label>
+              <input id="itemCost" type="number" min="0" step="0.50" value="14.00" oninput="calcProfit()" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="shipCharged">Shipping Charged Buyer ($)</label>
+              <input id="shipCharged" type="number" min="0" step="0.50" value="6.00" oninput="calcProfit()" />
+            </div>
+            <div class="field">
+              <label for="shipPaid">Actual Label + Packaging ($)</label>
+              <input id="shipPaid" type="number" min="0" step="0.50" value="5.75" oninput="calcProfit()" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="monthlyOrders">Monthly Orders</label>
+            <input id="monthlyOrders" type="number" min="1" step="10" value="120" oninput="calcProfit()" />
+          </div>
+          <p class="muted" style="font-size:12.5px">Uses standard US baseline rates: Shopify Payments Basic (2.9% + $0.30), Square POS (2.6% + $0.15), Whatnot (8% + 2.9% + $0.30), Mercari (10%), eBay standard (13.25% + $0.40), Amazon FBM (15%), Poshmark (20% over $15 / $2.95 flat under $15).</p>
+        </div>
+        <div>
+          <div class="big-kpi">
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase">Highest-Margin Channel Net Profit / Month</div>
+            <div class="num" id="bestMonthlyProfit">$0</div>
+            <div class="muted" id="bestChannelNote" style="margin-top:6px"></div>
+          </div>
+          <div style="overflow-x:auto">
+            <table>
+              <thead>
+                <tr><th>Channel</th><th>Platform Fee</th><th>Net / Order</th><th>Margin</th><th>Monthly Net</th></tr>
+              </thead>
+              <tbody id="profitRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: WMS SAVINGS -->
+      <div id="panelWms" class="grid-2 hidden">
+        <div>
+          <div class="field">
+            <label for="currentTool">Compare Against</label>
+            <select id="currentTool" onchange="calcWms()">
+              <option value="49">Sortly Advanced ($49/mo)</option>
+              <option value="80">BoxHero Growth ($80/mo)</option>
+              <option value="149" selected>Sortly Ultra / Small WMS ($149/mo)</option>
+              <option value="349">Cin7 Core Standard ($349/mo)</option>
+              <option value="449">SkuVault Core ($449/mo)</option>
+              <option value="1995">ShipHero Brand WMS ($1,995/mo)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="skuCount">Active Unique SKUs</label>
+            <input id="skuCount" type="number" min="1" step="10" value="350" oninput="calcWms()" />
+          </div>
+          <div class="field">
+            <label for="cloudAiTool">Extra Cloud AI Listing Tool ($/mo)</label>
+            <input id="cloudAiTool" type="number" min="0" step="5" value="29" oninput="calcWms()" />
+          </div>
+          <p class="muted" style="font-size:12.5px">SellerExtreme is <strong>$0/mo</strong> up to 25 SKUs and <strong>$9.99/mo</strong> unlimited—with on-device Apple Intelligence listing drafts included at zero extra token cost.</p>
+        </div>
+        <div>
+          <div class="big-kpi">
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase">Annual Cash Kept With SellerExtreme</div>
+            <div class="num" id="wmsSavings">$0/yr</div>
+            <div class="muted" id="wmsBreakdown" style="margin-top:6px"></div>
+          </div>
+          <table>
+            <thead>
+              <tr><th>Cost Line</th><th>Legacy Stack</th><th>SellerExtreme</th></tr>
+            </thead>
+            <tbody id="wmsRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY LOWEST COST -->
+  <section id="why-cheapest" class="block">
+    <div style="text-align:center;margin-bottom:24px">
+      <h2>How SellerExtreme Delivers 10× Value at $9.99/mo</h2>
+      <p class="muted" style="max-width:720px;margin:0 auto">Most inventory apps charge $79–$449/mo because they rent expensive cloud databases and pay OpenAI per API call. SellerExtreme flips the architecture.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <span class="pill">Architecture #1</span>
+        <h3 style="margin-top:10px">On-Device AI = $0 Token Markup</h3>
+        <p class="muted">Apple Foundation Models + Vision OCR run privately on your iPhone. Every draft passes a strict 11-check Grounded Copy Validator so AI never invents brands, fake "like-new" conditions, or bogus prices from model numbers.</p>
+      </div>
+      <div class="card">
+        <span class="pill">Architecture #2</span>
+        <h3 style="margin-top:10px">Exact Bin &amp; Shelf Find-and-Pick</h3>
+        <p class="muted">Barcode-free or UPC-scanned. Log any tote, rack, closet, or garage shelf once. When an order arrives, tap Find to jump straight to the exact shelf—never hunt through 40 bins or oversell a missing SKU again.</p>
+      </div>
+      <div class="card">
+        <span class="pill">Architecture #3</span>
+        <h3 style="margin-top:10px">Cloudflare Edge Commerce Broker</h3>
+        <p class="muted">Instead of bloated SaaS middleware, SellerExtreme uses a lightweight Cloudflare Worker + SQLite Durable Objects for AES-GCM token encryption, compare-and-set Shopify inventory updates, and idempotent 1-tap fulfillment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOPIFY & MULTI-CHANNEL -->
+  <section id="shopify" class="block">
+    <div class="card" style="background:linear-gradient(135deg, rgba(41,219,143,0.10), rgba(46,204,240,0.06));border-color:rgba(41,219,143,0.35)">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <span class="pill">Built for Shopify Black Friday &amp; Cyber Monday Velocity</span>
+          <h2 style="margin-top:10px">Shopify Admin GraphQL 2026-10 Sync, Without Enterprise Pricing.</h2>
+          <p class="muted" style="margin-bottom:16px">SellerExtreme's commerce broker supports up to 10,000 SKUs and 4,000 open unfulfilled orders per sync, automatic rate-limit backoff during holiday rushes, compare-and-set <code>inventorySetQuantities</code> protection against overselling, seller-reviewed <code>productUpdate</code> publishing, and mandatory GDPR/uninstall webhooks with 90-day bounded retention.</p>
+          <div class="cta-row" style="justify-content:flex-start">
+            <a class="btn-primary" href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/shopify">Open Shopify Onboarding →</a>
+            <a class="btn-secondary" href="https://testflight.apple.com/join/4HvtGbXS" target="_blank">Join iOS TestFlight ↗</a>
+          </div>
+        </div>
+        <div style="background:#080c16;border:1px solid var(--border);border-radius:16px;padding:18px;font-family:ui-monospace,monospace;font-size:13px;color:#cbd5e1">
+          <div style="color:var(--emerald);font-weight:800;margin-bottom:8px">SELLEREXTREME EDGE BROKER · LIVE SPEC</div>
+          <div>✓ OAuth + HMAC-SHA256 verification</div>
+          <div>✓ AES-GCM encrypted server-side tokens</div>
+          <div>✓ Durable Object compare-and-set inventory</div>
+          <div>✓ Idempotent 1-tap Shopify fulfillmentCreate</div>
+          <div>✓ Automatic purge on app/uninstalled &amp; shop/redact</div>
+          <div>✓ 11/11 Grounded Listing Copy checks passed</div>
+          <div style="margin-top:10px"><a href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/v1/commerce/readiness" style="color:var(--cyan);text-decoration:underline">Inspect live /v1/commerce/readiness JSON ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    SellerExtreme · SpacePlant Corporation ·
+    <a href="/">All SpacePlant Apps</a> ·
+    <a href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/shopify">Shopify Setup</a> ·
+    <a href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/support">Support</a> ·
+    <a href="https://sellerextreme-commerce-broker.spaceplant-roadops.workers.dev/privacy">Privacy &amp; Server Retention</a>
+  </footer>
+</div>
+
+<script>
+function switchTab(tab) {
+  const isProfit = tab === 'profit';
+  document.getElementById('panelProfit').classList.toggle('hidden', !isProfit);
+  document.getElementById('panelWms').classList.toggle('hidden', isProfit);
+  document.getElementById('tabProfit').classList.toggle('active', isProfit);
+  document.getElementById('tabWms').classList.toggle('active', !isProfit);
+}
+
+function fmt(n) {
+  const sign = n < 0 ? '-' : '';
+  return sign + '$' + Math.abs(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function calcProfit() {
+  const sale = Math.max(0, Number(document.getElementById('salePrice').value) || 0);
+  const cost = Math.max(0, Number(document.getElementById('itemCost').value) || 0);
+  const shipIn = Math.max(0, Number(document.getElementById('shipCharged').value) || 0);
+  const shipOut = Math.max(0, Number(document.getElementById('shipPaid').value) || 0);
+  const qty = Math.max(1, Number(document.getElementById('monthlyOrders').value) || 1);
+  const gross = sale + shipIn;
+
+  const channels = [
+    { name: 'Shopify (Basic Payments)', fee: gross > 0 ? gross * 0.029 + 0.30 : 0, star: true },
+    { name: 'Square POS', fee: gross > 0 ? gross * 0.026 + 0.15 : 0 },
+    { name: 'Mercari (10% seller fee)', fee: sale * 0.10 },
+    { name: 'Whatnot (8% + 2.9% + $0.30)', fee: gross > 0 ? sale * 0.08 + gross * 0.029 + 0.30 : 0 },
+    { name: 'eBay (13.25% + $0.40)', fee: gross > 0 ? gross * 0.1325 + 0.40 : 0 },
+    { name: 'Amazon FBM (15% referral)', fee: gross * 0.15 },
+    { name: 'Poshmark (20% / $2.95 <$15)', fee: sale <= 0 ? 0 : (sale < 15 ? 2.95 : sale * 0.20) }
+  ];
+
+  const results = channels.map(ch => {
+    const net = gross - cost - shipOut - ch.fee;
+    const margin = gross > 0 ? (net / gross) * 100 : 0;
+    return { ...ch, net, margin, monthly: net * qty };
+  }).sort((a, b) => b.net - a.net);
+
+  const best = results[0];
+  document.getElementById('bestMonthlyProfit').textContent = fmt(best.monthly);
+  document.getElementById('bestChannelNote').textContent =
+    `${best.name} keeps ${fmt(best.net)}/order (${best.margin.toFixed(1)}% margin) — ${fmt((best.net - results[results.length - 1].net) * qty)}/mo more than ${results[results.length - 1].name}.`;
+
+  document.getElementById('profitRows').innerHTML = results.map((r, i) => `
+    <tr class="${i === 0 ? 'highlight' : ''}">
+      <td><strong>${r.name}</strong></td>
+      <td>${fmt(r.fee)}</td>
+      <td class="${r.net >= 0 ? 'pos' : 'neg'}">${fmt(r.net)}</td>
+      <td>${r.margin.toFixed(1)}%</td>
+      <td class="${r.monthly >= 0 ? 'pos' : 'neg'}">${fmt(r.monthly)}</td>
+    </tr>
+  `).join('');
+}
+
+function calcWms() {
+  const legacyMonthly = Math.max(0, Number(document.getElementById('currentTool').value) || 0);
+  const skus = Math.max(1, Number(document.getElementById('skuCount').value) || 1);
+  const aiMonthly = Math.max(0, Number(document.getElementById('cloudAiTool').value) || 0);
+  const seMonthly = skus <= 25 ? 0 : 9.99;
+  const legacyAnnual = (legacyMonthly + aiMonthly) * 12;
+  const seAnnual = seMonthly * 12;
+  const saved = Math.max(0, legacyAnnual - seAnnual);
+
+  document.getElementById('wmsSavings').textContent = fmt(saved) + '/yr';
+  document.getElementById('wmsBreakdown').textContent = skus <= 25
+    ? 'Under 25 SKUs: SellerExtreme Starter Shelf is 100% free forever.'
+    : `You pay ${fmt(seAnnual)}/yr for SellerExtreme Pro vs ${fmt(legacyAnnual)}/yr on a legacy cloud stack.`;
+
+  document.getElementById('wmsRows').innerHTML = `
+    <tr><td>Inventory &amp; Bin Tracking</td><td>${fmt(legacyMonthly)}/mo</td><td class="pos">${fmt(seMonthly)}/mo</td></tr>
+    <tr><td>AI Listing Drafts</td><td>${fmt(aiMonthly)}/mo</td><td class="pos">$0.00/mo (On-Device)</td></tr>
+    <tr class="highlight"><td><strong>Annual Total</strong></td><td><strong>${fmt(legacyAnnual)}/yr</strong></td><td class="pos"><strong>${fmt(seAnnual)}/yr</strong></td></tr>
+  `;
+}
+
+calcProfit();
+calcWms();
+</script>
+</body>
+</html>
